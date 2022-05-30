@@ -1,0 +1,13 @@
+Ubuntu:
+  RAM :4 GB
+  Virtual hard disk
+  VirtualBox Disk Image
+  Hard Disk Dynamically allocated
+  Hard Disk 25 GB
+  
+  Iso dosyasini bul baslat
+  Install Ubuntu
+  Erase disk and install Ubuntu
+  
+  
+  Kurulum sonrasi komut ekrani icin terminal i acabiliriz.
