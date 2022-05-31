@@ -1,1 +1,22 @@
-.
+Iso dosyasini indir
+isim ver
+generation:2 
+arbeitspeicher 2048MB (dinamik olamayacak)
+Netzwerk: extern
+
+Einstellungen:
+Prozessor:2
+Sicherheit:UEFI
+Prüfpunkte: deaktiviert
+DVD ekle (Iso dosyasini bul)
+
+starten:
+biraz bekledikten sonra calisiyor
+Install Ubuntu eklentisini calistir desktop taki
+dili sec
+klavyeyi sec
+sifre belirle
+kullanici adi ve sifreleri belirle
+kurulum baslasin
+kurulduktan sonra yeniden baslat
+
