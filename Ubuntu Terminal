@@ -1,3 +1,35 @@
 LUI (Line User Interface) i kullanacagiz
 
-man
+man man
+  ingilizce olarak manuel girebilecegimiz komutlarin ayrintisini görürüz
+  bir rehberdir diyebiliriz.
+  
+  Z.B. man ping yazdigimizda ping ile ilgili ne tür komutlar ne sekilde girilir 
+  onu görmüs oluruz.
+  
+Eger sayfa uzun ise space tusu ile asagiya inilebilir
+
+Geri cikmak icin q tüsüna basilir
+
+ls
+  bulunulan konumdaki dosyalari listeler. Windows taki karsiligi "dir"
+  Bilder Downloads Videos ...
+  
+pwd (print working directory)
+  bulunulan klosörü atalariyla birlikte gösterir.
+  /home/admin1
+  
+cd / (chance directory)
+  Ana dosyaya gelir.
+  yani ls yaparsak bin etc opt root sbin gibi aan dosyalari görürüz
+  
+cd /home
+  istenilen klosöre girer
+  
+cd ..
+  Bir üst klosöre cikar
+
+ls --color
+  terminale renk verir, man ls yazarak ayrintilar görülebilir
+
+
