@@ -84,4 +84,14 @@ ps
   sedece kendimizin calistirdigi programlari görürüz
 
 ps aux
-  tüm prosessleri gösterir
+  tüm prosessleri gösterir. PID leri gösterir
+
+ps aux | grep firefox
+  firefox un calistigi prosess in tüm ayrintilarini gösterir
+  aslinda cikan text üzerinde arama yapar ve grep ten sonra yazilan kelimenin gectigi satirlari getirir.
+  
+kill -9 PID
+  PID kodu girilen programi sonlandirir.
+  
+touch a.txt
+  a isimli bir txt dosyasi olusturur
