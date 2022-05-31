@@ -15,6 +15,13 @@ ls
   bulunulan konumdaki dosyalari listeler. Windows taki karsiligi "dir"
   Bilder Downloads Videos ...
   
+ls -l
+  bulunulan konumdaki dosyalari liste halinde gösterir.
+  listenin basindaki d harfi o dosyanin Directory oldugunu ifade eder
+    dosya icine cd komutuyla girilebilir.
+  - isareti dosya oldugunu belirtir
+  l harfi ise link oldugunu ifade eder.
+  
 pwd (print working directory)
   bulunulan klosörü atalariyla birlikte gösterir.
   /home/admin1
@@ -32,4 +39,49 @@ cd ..
 ls --color
   terminale renk verir, man ls yazarak ayrintilar görülebilir
 
+whoami
+  su anki aktif kullaniciyi gösterir
+  
+w 
+  su an login olan aktif kullanicilari gösterir
+  
+uname -a
+  su an kurulu olan unix ayrintilarini gösterir.
+  
+Normalde ubuntu default kullanici olarak admistrator u vermez
 
+sudo (super User do)
+  komut un basina yazilirsa sifre ister ve sinirsiz yetki ile islem yapilir
+  
+apt 
+  application kurmak icin kullanilan bir komut
+  sudo apt uninstall tasksel (tasksel programini kurar/kaldirir)
+  man apt den ayrintilar ögrenilebilir
+  
+tasksel 
+  hazir eklenti paketi
+  
+shudown
+  linux u kapatmak icin bir zaman ayarlar
+  man shutdown yazarak ayrintilara bakilabilir.
+  
+shutdown -c 
+  ayarlanan kapatilma zamanini iptal eder
+  
+shutdown -h now
+  aninda kapatir.
+  
+reboot
+  linux u yeniden baslatir.
+  
+top
+  calismakta olan prosessleri gösterir.
+  
+top -o %CPU
+  cpu larina göre calisan programlari siralar
+  
+ps
+  sedece kendimizin calistirdigi programlari görürüz
+
+ps aux
+  tüm prosessleri gösterir
