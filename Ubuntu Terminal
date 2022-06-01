@@ -53,6 +53,9 @@ Normalde ubuntu default kullanici olarak admistrator u vermez
 sudo (super User do)
   komut un basina yazilirsa sifre ister ve sinirsiz yetki ile islem yapilir
   
+exit
+  root yetkisinden cikartir
+  
 apt 
   application kurmak icin kullanilan bir komut
   sudo apt uninstall tasksel (tasksel programini kurar/kaldirir)
@@ -95,3 +98,21 @@ kill -9 PID
   
 touch a.txt
   a isimli bir txt dosyasi olusturur
+  
+clear 
+  sayfayi temizler
+  
+date
+  tarihi saat dilimiyle birlikte gösterir.
+  
+mkdir
+rmdir
+cat
+  terminale metin yazar
+  Cikmak icin ctrl+d tusuna basilir
+  Ama yazialn metni kaydetmek istersek:
+  cat << END > dosya_adi
+  sonrasinda END yazarak yazilan metni kaydetmis oluruz.
+  yazilan metnin ayrintisini görmek icin: ls -l dosya_ismi
+  yazilan metni okumak icin: cat dosya_ismi
+  
