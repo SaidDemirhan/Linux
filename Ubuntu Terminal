@@ -118,6 +118,13 @@ cat
   yazilan metnin ayrintisini görmek icin: ls -l dosya_ismi
   yazilan metni okumak icin: cat dosya_ismi
   
+  eger icinde gecenlerden aranmak istenirse: grep [HKO] doya_adi
+  eger köseli parantez icine ! veya ^ isaareti koysaydik o harfler olmayanlari getirecekti
+  grep ^[^HKO] DOSYA_ADI
+  ^k
+  ^k*
+  ^k.*
+  
 tty
   Bu komutu yazdığınız terminalin ismini bildirir.
   
