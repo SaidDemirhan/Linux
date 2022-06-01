@@ -98,6 +98,7 @@ kill -9 PID
   
 touch a.txt
   a isimli bir txt dosyasi olusturur
+  dosyayi bulabilmek icin: find . -name a.txt
   
 clear 
   sayfayi temizler
@@ -105,6 +106,7 @@ clear
 date
   tarihi saat dilimiyle birlikte gösterir.
   
+echo
 mkdir
 rmdir
 cat
@@ -115,4 +117,16 @@ cat
   sonrasinda END yazarak yazilan metni kaydetmis oluruz.
   yazilan metnin ayrintisini görmek icin: ls -l dosya_ismi
   yazilan metni okumak icin: cat dosya_ismi
+  
+tty
+  Bu komutu yazdığınız terminalin ismini bildirir.
+  
+sudo apt install vim  
+  vi yi kurar
+  cikmak icin esc+:q! enter
+  vimtutor yazarak icerik okunabilir. cikmak icin yine ayni yöntem gecerlidir.
+  
+  yardimci linkler:
+  https://www.hostinger.web.tr/rehberler/linux-komutlari/
+  
   
