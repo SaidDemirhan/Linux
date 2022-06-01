@@ -109,6 +109,11 @@ date
 echo
 mkdir
 rmdir
+df
+passwd
+cp
+rm
+mv?
 cat
   terminale metin yazar
   Cikmak icin ctrl+d tusuna basilir
