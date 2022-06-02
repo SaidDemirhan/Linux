@@ -22,6 +22,15 @@ ls -l
   - isareti dosya oldugunu belirtir
   l harfi ise link oldugunu ifade eder.
   
+  ls -la 
+    kullanici dosyalarini da gösterir
+    
+  ls -la ~  
+  ls -la * | less
+  
+ls a*
+  a ile baslayanlari listeleyecektir
+  
 pwd (print working directory)
   bulunulan klosörü atalariyla birlikte gösterir.
   /home/admin1
@@ -99,20 +108,31 @@ kill -9 PID
 touch a.txt
   a isimli bir txt dosyasi olusturur
   dosyayi bulabilmek icin: find . -name a.txt
+  touch belge_adi_$(date +%d.%m.%Y)_baska_bilgi : olusturulan günün tarihiyle belge olusturulur.
+  ya da
+  touch belge_adi_`date +%d.%m.%Y`
+  eger istenirse bir ; isareti eklenerek listelenebilir: touch belge_adi_`date +%d.%m.%Y`;ls belge_adi
   
 clear 
   sayfayi temizler
   
 date
   tarihi saat dilimiyle birlikte gösterir.
+  date +%d.%m.%Y tarihi gun ay ve yil olarak yazar
   
 echo
+echo $[3*5]
+  matematiksel islemler yapmak icin kullanilir.
+  
 mkdir
 rmdir
 df
 passwd
 cp
 rm
+  silmak icin kullanilir.
+  eger rm -i dosya_adi olarak yazilirsa emin olup olmadigimizi sorar j/n olarak cevaplanmali
+  
 mv?
 cat
   terminale metin yazar
@@ -132,11 +152,18 @@ cat
   
 tty
   Bu komutu yazdığınız terminalin ismini bildirir.
+  ctrl+alt+F3 e basilirsa ayri bir terminal aciliyor 
+  kullanici ismi ve sifreyi girdikten sonra terminal bilgi ekrani karsimiza cikiyor
+  burada echo $0 yazarsak karsimiza bash cikiyor
+  eger cikmak istersek ctrl+alt+f1 e bas.
+  
   
 sudo apt install vim  
   vi yi kurar
   cikmak icin esc+:q! enter
   vimtutor yazarak icerik okunabilir. cikmak icin yine ayni yöntem gecerlidir.
+
+
   
   yardimci linkler:
   https://www.hostinger.web.tr/rehberler/linux-komutlari/
