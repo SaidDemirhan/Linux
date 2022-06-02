@@ -171,6 +171,10 @@ cat
   ^k*
   ^k.*
   
+  cat /etc/passwd | grep admin1
+  
+  
+  
 tty
   Bu komutu yazdığınız terminalin ismini bildirir.
   ctrl+alt+F3 e basilirsa ayri bir terminal aciliyor 
@@ -184,8 +188,22 @@ sudo apt install vim
   cikmak icin esc+:q! enter
   vimtutor yazarak icerik okunabilir. cikmak icin yine ayni yöntem gecerlidir.
 
+journalctl
+journalctl | wc -l  :satir sayisini verir
+journalctl | grep Hyper-V  :icinde Hyper-V gecen satirlari getirir
+journalctl | grep Hyper-V | wc -l   :satir sayisini getirir.
 
-  
+tail -f
+##################################################################
+&& ve || isaretlerinin anlamlari
+
+ls dosya_adi && rm dosya_adi  : bulmasi lazim ve silmesi lazim 
+eger bulamaz veya silme yetkisi yoksa hata mesajini yadirir (exitcode==0)
+
+ls dosya_adi || mkdir dosya_adi  : dosyayi bulamazsa bile dosyayi olusturacaktir. (exitcode<>0)
+
+istenirse arkasina ; echo mesaj da eklenebilir. (dosya silindi)
+##############################################################################################
   yardimci linkler:
   https://www.hostinger.web.tr/rehberler/linux-komutlari/
   
