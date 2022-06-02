@@ -121,11 +121,23 @@ date
   date +%d.%m.%Y tarihi gun ay ve yil olarak yazar
   
 echo
-echo $[3*5]
-  matematiksel islemler yapmak icin kullanilir.
+  echo $[3*5]
+    matematiksel islemler yapmak icin kullanilir.
+  echo $USER
+  echo $PWD
+  echo $PATH
+  k=kursteilnehmer
+  echo $k
+  eger bash ta görmek istersek 
+  export k
+  echo $k
   
 mkdir
+  yeni dosya-klosör ekler
+  
 rmdir
+  dosya -klosörü siler
+  
 df
 passwd
 cp
@@ -142,6 +154,15 @@ cat
   sonrasinda END yazarak yazilan metni kaydetmis oluruz.
   yazilan metnin ayrintisini görmek icin: ls -l dosya_ismi
   yazilan metni okumak icin: cat dosya_ismi
+  
+  Eger altina icerik eklenmek isteniyorsa;
+  cat << EOT >> dosya_adi yazarak EOT ile sonlandirip görebiliriz
+  
+  örnegin icinde isimler var ve siralamak istiyoruz:
+  cat dosya_adi | sort
+  eger siralanmis sekilde kaydetmek istersek:
+  cat dosya_adi | sort dosya_adi2
+  iki dosyamiz olmus oldu, eger aynisini yazarsa üzerine yazacakti.
   
   eger icinde gecenlerden aranmak istenirse: grep [HKO] doya_adi
   eger köseli parantez icine ! veya ^ isaareti koysaydik o harfler olmayanlari getirecekti
