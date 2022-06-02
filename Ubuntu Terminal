@@ -141,11 +141,22 @@ rmdir
 df
 passwd
 cp
+  kopyalama yapar
+  dosya ise cp ile dizin ise cp -r ile kopyalamasina izin verilir.
+  cp kayisi meyveler/   : kayisi dosyasini meyveler dizinine kopyaladi
+  cp -r meyveler/Desktop  : meyveler dizinini masaüstüne tasidi.
 rm
   silmak icin kullanilir.
+  rm örnek.txt
+  rm -r meyveler  :ditin oldugu icin directory ister
   eger rm -i dosya_adi olarak yazilirsa emin olup olmadigimizi sorar j/n olarak cevaplanmali
   
-mv?
+mv
+  bir dosya veya dizini tasir. Ayrica isim degistirmek icin de kullanilir.
+  mv meyveler/ Desktop  :meyveler dizini (klosörü masaüstüne geldi
+  
+  mv kayisi kayisi2   :icerik degismez ssadece rename yapmis olduk.
+  
 cat
   terminale metin yazar
   Cikmak icin ctrl+d tusuna basilir
