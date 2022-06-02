@@ -1,0 +1,46 @@
+Memorysize: min 4096 MB
+dynamic
+20GB hdd
+kur
+
+ayarlardan storage 
+iso diskini yerlestir
+network:bridge adaptor
+
+calistir
+install
+
+English
+date
+klavye
+software istallation: Gnome Desktop KDE de olabilir sagdakilerin taamini sec
+network :on
+hostname: servercentos.redhat.local
+installation Destination :auto olaraak kalsin simdilik sonrasinda neye ne kadar gerekirse ayarlanabilir
+
+kurulumu baslat
+
+kurulum devam ederken root password u ayarla
+kullanici olustur ve admin yap
+
+kurulum bitince reboot de
+
+ekran acilinca ekrani ayarlamak icin:
+application-system tools -ssettings-devices- resolution -1280x800 iyidir
+
+
+Places kismina tiklarssak dosyalari görürüz(ne c var ne d var)
+
+burasi root tur. ve / isareti sembolüdür.
+
+etc adminin kabesidir.
+home kullanicilarin dizini
+mnt cdroom ve diskleri icerir
+media usb bellekleri görebildigimiz dizin
+var loglarin yazildigi dizindir binary sistem dosyalarinin oldugu dizindir.
+temp gecici klosörlerin oldugu dizin
+sys sistem modullerinin oldugu dizin
+dev disklerimizin oldugu dizin
+lib kütüphaneler vardir
+
+
