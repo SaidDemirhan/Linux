@@ -205,6 +205,14 @@ journalctl | grep Hyper-V  :icinde Hyper-V gecen satirlari getirir
 journalctl | grep Hyper-V | wc -l   :satir sayisini getirir.
 
 tail -f
+
+history
+  su ana kadar yazilan komutlari gösterir
+  
+sudo vi /etc/resolv.conf
+  eger internet ayarlari yapilamiyorsa manuel yapabilmek icin bir triktir.
+  nameserver 8.8.8.8
+  
 ##################################################################
 && ve || isaretlerinin anlamlari
 
