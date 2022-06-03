@@ -213,7 +213,9 @@ sudo vi /etc/resolv.conf
   eger internet ayarlari yapilamiyorsa manuel yapabilmek icin bir triktir.
   nameserver 8.8.8.8
   
+  
 ##################################################################
+
 && ve || isaretlerinin anlamlari
 
 ls dosya_adi && rm dosya_adi  : bulmasi lazim ve silmesi lazim 
@@ -222,6 +224,7 @@ eger bulamaz veya silme yetkisi yoksa hata mesajini yadirir (exitcode==0)
 ls dosya_adi || mkdir dosya_adi  : dosyayi bulamazsa bile dosyayi olusturacaktir. (exitcode<>0)
 
 istenirse arkasina ; echo mesaj da eklenebilir. (dosya silindi)
+
 ##############################################################################################
   yardimci linkler:
   https://www.hostinger.web.tr/rehberler/linux-komutlari/
