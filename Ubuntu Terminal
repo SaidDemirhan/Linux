@@ -184,6 +184,10 @@ cat
   
   cat /etc/passwd | grep admin1
   
+grep "[ng]$" sehirler
+  Sehirler dizini icindeki hem  n hem de g ile biten sehirleri bulmak icin kullnailir.
+  
+  
   
   
 tty
@@ -262,6 +266,44 @@ ls dosya_adi || mkdir dosya_adi  : dosyayi bulamazsa bile dosyayi olusturacaktir
 istenirse arkasina ; echo mesaj da eklenebilir. (dosya silindi)
 
 ##############################################################################################
+
+/ isareti
+  Asagi satia gecme komutu olarak kullanilir
+  
+* ? [] (Bosluk) 
+  özel isaretlerdir kullanilacaklarsa tirnak icinde kullanilmalidir. (")
+
+--------------------------------------------------------------------------------
+
+Shel Variable
+
+k=kedi
+  kedi kelimesi icin k harfini gecici olarak atar
+  Echo Hello $k   : Hello Kedi
+  eger kullanici degisecekse; 
+  export k : komutu girilmelidir.
+  Eger atanan kelimede bosluk varsa tirnak icine alarak ata   k="Kedi Yavrusu"
+  NOT: kseinlikle tirnak disinda bosluk kullanma
+  Eger atanacak sözcük birden fazla harfe karsilik geliyorsa:
+  ${klm} seklinde belirtilmeli
+  
+set 
+  Aktüel atanmis degiskenleri gösterir
+  
+env
+  Export edilmis degiskenleri gösterir.
+  
+  ÖNEMLI: Atamalar sadece gecerli oturumda gecici olarak gecerli olacaktir.
+  
+  $(date) tarihi gösterecektir
+  farkli yazim olarak `date` kullanilabilir
+  
+  degisikliklerin kalici olmnasi isteniyorsa:
+  chsh komutu girilmeli
+  bash degisikliklerden cikmak icin kullanilir.
+--------------------------------------------------------------------------------  
+  
+
   yardimci linkler:
   https://www.hostinger.web.tr/rehberler/linux-komutlari/
   
