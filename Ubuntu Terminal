@@ -239,6 +239,16 @@ done
 
 df
   
+sudo adduser inke
+  inke isminde yeni bir kullanici ekler (kücük harflerle)
+  bilgilerini gürdikten sonra j ile onayla
+  cat etc/passwd | grep inke
+  yazdiginda kirmizi sekile eklenilen kullanici görünecektir.
+  su inke : olusturulan kullaniciya gecmek icin kullanilan bir emirdir.
+  exit : kullanicidan cikip yetkili kullaniciya gecmek icin kullanilir.
+  
+  sudo passwd inke  :olusturdugumuz kullanicinin sifresini degistirir. 
+  
   
 ##################################################################
 
