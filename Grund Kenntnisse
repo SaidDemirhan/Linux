@@ -4,6 +4,7 @@ Shell : kabuk manasina gelir ve bizim isletim sistemiyle iletisim kurdugumuz yap
   
   1. GUI (Graphical User Interface) :Desktop uzerinden
     Gnome KDE
+    
   2. LUI (Line User Interface) : Sadece komut satiriyla
     BASH, CSH, TCSH,KORN SHELL vb.
     Neredeyse olmazsa olmazdir
