@@ -48,6 +48,11 @@ cd ..
 ls --color
   terminale renk verir, man ls yazarak ayrintilar görülebilir
 
+ls /bin |wc -w
+  sorgulanan dosyada kac karakter oldugunu getirir. (kelime satir)
+  ls /bin |wc -l
+  ls /bin/?? |wc -l
+  
 whoami
   su anki aktif kullaniciyi gösterir
   
@@ -184,6 +189,9 @@ cat
   
   cat /etc/passwd | grep admin1
   
+  cat Dosya1 dosya2 dosya3>> dosya4
+    dosya 1 2 3 teki icerikler dosya 4 ün arkasina eklenir.
+  
 grep "[ng]$" sehirler
   Sehirler dizini icindeki hem  n hem de g ile biten sehirleri bulmak icin kullnailir.
   
@@ -202,6 +210,9 @@ sudo apt install vim
   vi yi kurar
   cikmak icin esc+:q! enter
   vimtutor yazarak icerik okunabilir. cikmak icin yine ayni yöntem gecerlidir.
+
+NOT: Eger vi de arama yapmak istersek;
+/ isareti koyduktan sonra istenilen harf veya sözcük yazilir ve ENTER.
 
 journalctl
 journalctl | wc -l  :satir sayisini verir
@@ -252,7 +263,8 @@ sudo adduser inke
   exit : kullanicidan cikip yetkili kullaniciya gecmek icin kullanilir.
   
   sudo passwd inke  :olusturdugumuz kullanicinin sifresini degistirir. 
-  
+
+NOT: eger 15 dk boyunca islem yapilmazsa sudo icin yeniden sifre girilmelidir.
   
 ##################################################################
 
@@ -302,6 +314,62 @@ env
   chsh komutu girilmeli
   bash degisikliklerden cikmak icin kullanilir.
 --------------------------------------------------------------------------------  
+ip link show
+  bilgisayarda bulunan tüm ag birimlerini gösterir.
+  
+sudo apt install htop
+  sürecler kaynaklar sistemler bu program kurularak izlenebilir.
+-------------------------------------------------------------------------------
+firefox &
+  Bir programin arka planda calismasi istenirse programin adinin arkasina & isareti konulmalidir.
+  Her tür emiri arka planda calistirabiliriz. sleep 20 &
+  
+fg 1
+  Arka planda baslatilan bir programi ön plana alir. 
+  Program listesinde en basta hangi rakam yaziliysa o yazilmalidir.
+  
+jobs
+  baslatilan programlarin listesini getirir.
+  
+sleep 10 
+  10 saniye boyunca imlec yanip söner ve bekler.
+  
+ctrl+Z ctrl+C
+  islemi iptal etmek icin kullanilir
+  
+kill -9 PID
+  baslatilan bir programi durdurmak icin kullanilir. PID program ID olarak gecer ve genelde 4 hanelidir
+  
+-------------------------------------------------------------------------------------------------------
+
+ctrl+alt+F1 ....F6
+  Grafik arayuzu bloke olmussa kaullanilir.
+  
+-------------------------------------------------------------
+ps 
+  process status- sürec durumunu listeler
+  
+pstree
+  program calisma hiyerarsisini görmek icin kullanilir.
+  
+kommando >/dev/null
+  eger herhangi bir cikti olmamasi gerekiyorsa kullanilir
+  
+kommando 2> dosya_adi
+  eger bir hata mesaji alinirsa hata msji yeniden yönlendirilmek isteniyorsa 
+  büyüktür isaretinin soluna 2 rakami konur.
+  
+mail dirk < metin.txt
+  metin.txt verisinin icerigini Dirk yöneticisine mail yoluyla iletir.
+  
+ls | sort -f
+  keys sensetiv olmadan harfe göre sirlar 
+  -r (reverse) tersten siralar
+  -n numaralari siralar
+  
+  NOT: eger bir sart yoksa önce büyük harfleri sonra kücük harfleri siralar(ASCII)
+------------------------------------------------------------
+
   
 
   yardimci linkler:
