@@ -392,7 +392,27 @@ unalias atadigimiz_komut
   
 source .bashrc
   eger bash dosyasinda bir degisiklik yapilmissa degisikligin aktif hale gelmesi icin kullanilir.
+  -----------------------------------------------------------------------------------------------------
   
+  sudo adduser kullanici_adi
+    Kullanici ekler
+    8 haneyi gecmesin
+    türkce karakterler kullanilmasin
+    her harf kücük olsun
+    silmek icin:
+    deluser
+    
+    NOT: kullanicilar /etc/passwd grubunda saklanir
+    
+  sudo addgroup grup_adi
+    grup ekler
+    silmek icin:
+    delgroup
+    
+  sudo usermod -aG grup_adi kullaniici_adi
+    kullaniciyi gruba ekler
+    
+    
   
   yardimci linkler:
   https://www.hostinger.web.tr/rehberler/linux-komutlari/
