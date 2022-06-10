@@ -227,6 +227,15 @@ history
 sudo vi /etc/resolv.conf
   eger internet ayarlari yapilamiyorsa manuel yapabilmek icin bir triktir.
   nameserver 8.8.8.8
+-------------------------------------------------------------------------------
+
+
+#!/bin/bash
+  
+chmod +x dosya_adi
+  loop gibi kod yazma ve yapilan islemin uygulamaya konabilmesi icin yazilmasi gereken bir komuttur
+  bash icinde olmalidir.
+  dosya adi: countdown.sh olarak kollandik.
   
 for ((i=1;i<=10;i++)
 do
@@ -369,9 +378,22 @@ ls | sort -f
   
   NOT: eger bir sart yoksa önce büyük harfleri sonra kücük harfleri siralar(ASCII)
 ------------------------------------------------------------
-
+xargs
+  boyut siniri yoktur
   
-
+alias yeni_komut="orijinal_komut"  
+  bir komutu kendimize göre ayarlamak istiyorsak kullaniriz. alias listele="-l"
+  sadece gecerli oturum icin gecerlidir.
+  eger sürekli kullanilmasini yani her acilista orijinaline dönmesiini istemiyorsak bu komutu 
+  .bash icindeki dosyaya yazmamiz gerekir.
+  
+unalias atadigimiz_komut
+  atanan komutu iptal eder.
+  
+source .bashrc
+  eger bash dosyasinda bir degisiklik yapilmissa degisikligin aktif hale gelmesi icin kullanilir.
+  
+  
   yardimci linkler:
   https://www.hostinger.web.tr/rehberler/linux-komutlari/
   
