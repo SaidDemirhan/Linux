@@ -231,6 +231,7 @@ sudo vi /etc/resolv.conf
 
 
 #!/bin/bash
+  betigi calistirmak icin kullanilir
   
 chmod +x dosya_adi
   loop gibi kod yazma ve yapilan islemin uygulamaya konabilmesi icin yazilmasi gereken bir komuttur
@@ -412,6 +413,18 @@ source .bashrc
   sudo usermod -aG grup_adi kullaniici_adi
     kullaniciyi gruba ekler
     
+/home/kullanici_adi
+  siradan kullanicilar burada saklanir
+  
+  ls -la /etc/skel 
+    her yeni kullanici icin baslangic ayarini temsil eder.
+    
+sudo passwd kullanici_adi
+  parola degistirmek icin kullanilir.
+--------------------------------------------------------------------------------------------------------
+source .bashrc
+  yapilandirma dosyasindaki degisikliklerden sonra komutlarin aktif hale gelmesi icin girilen güncelleme komutu
+  
     
   
   yardimci linkler:
