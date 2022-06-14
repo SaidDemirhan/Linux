@@ -224,6 +224,11 @@ tail -f
 history
   su ana kadar yazilan komutlari gösterir
   
+ !1946
+  1946. siradaki komutu getirir.
+ !-8
+  sondan 8. girilen komutu getirir.
+  
 sudo vi /etc/resolv.conf
   eger internet ayarlari yapilamiyorsa manuel yapabilmek icin bir triktir.
   nameserver 8.8.8.8
@@ -442,6 +447,15 @@ ifconfig
     
     eger kurulu degilse;
     sudo apt install net-tools
+    ----------------------------------------------------------------------------------
+ls -l file1
+chmod go-x file1
+  ugo: user groups oder calistirma yetkisini cikarir 
+  +x olsaydi calistirma yetkisi verir
+  
+chmod 764 file1
+  4-2-1 =rwx okuma degistirme calistirma
+  tersten yaziliyor o yüzden aslinda 
   
   yardimci linkler:
   https://www.hostinger.web.tr/rehberler/linux-komutlari/
