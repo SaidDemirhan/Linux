@@ -425,7 +425,23 @@ sudo passwd kullanici_adi
 source .bashrc
   yapilandirma dosyasindaki degisikliklerden sonra komutlarin aktif hale gelmesi icin girilen güncelleme komutu
   
+--------------------------------------------------------------------------------------------------------
+
+[^abc][abci]x.*y$
+
+  linxaxabsy
+  x harfinden sonraki harf a/b/c ile baslayyacak ve sonrasinda icinde a/b/c/i bulunacak ve y harfiyle bitecek
+  cat grep [^abc][abci]x.*y$ dosya_adi
+  
+----------------------------------------------------------------------------------------------------------
+
+ifconfig
+
+  which ifconfig
+    usr/sbin/ifconfig
     
+    eger kurulu degilse;
+    sudo apt install net-tools
   
   yardimci linkler:
   https://www.hostinger.web.tr/rehberler/linux-komutlari/
