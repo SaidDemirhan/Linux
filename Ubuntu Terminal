@@ -458,6 +458,112 @@ chmod go-x file1
 chmod 764 file1
   4-2-1 =rwx okuma degistirme calistirma
   tersten yaziliyor o yüzden aslinda 
+  -----------------------------------------------------------------------------------
+  sshd_config
+    sunucu yapilandirmasindan sorumlu
+    SSH :Secure Shell
+    
+  scp belge_adi.txt
+    bigisayarlarin kendi aralarinda parmak izi degis tokus etmesini saglar
+    
+  cURL
+    Kullanici etkilesimi olmadan dosyalarin bir sunucuya veya sunucudan aktarilmasini saglayan program  
+    curl internet_adresi
+    curl -o 
+    curl-u
+    
+VNC 
+  Ekrandaki icerigi yyerel bir ag üzerinden iletmek 
+  veya baska bir bilgisayardan kontrol etmek icin kullanilan bir yazilimdir.
+--------------------------------------------------------------------------------------------
+pwd
+  sistemde nerede bulundugumuzu verir.
+  
+/
+  root u ifade eder ve diger dizinlerle ayirici oolarak kullanilir.
+  
+ls
+  sadece dosya isimleri listelenir
+  inhalt yoktur
+
+netstat -lx
+  iletisim dosyalari icin kullanilir. 
+  internet baglantisi icin TCP/IP kullanir.
+  
+/boot 
+  ön yükleme icin gerekli dosyalari icerir.
+  
+/home/kullnici_Adi
+  kullnici dosyasini icerir.
+  
+/mnt
+  gecici baglama noktalari icin kullanilir.
+  
+----------------------------------------------------------------------------------------------------------------
+
+ext4 
+  ana bellegin daha agresif kullanimio  ve hizli dosya kontrol sistemidir.
+  
+btrfs
+  gelecegin linux dosya sistemidir.
+  
+LVM(Logical Volume Manager)
+  birkac sabit diskin bölümlerini tek ve devasa bir sanal bölümde birlertirebiliriz.
+  
+fstab
+  veri ortamini Linux altinda baglamak icin kullanilir.
+  cat/etc/fstab
+  mount -a yazildiginda veya yeniden baslatildiginda degisiklikler etkili olur.
+  
+GPartend
+  disk bölmek icin kullanilan aractir.
+  
+mount/dev/sdc1/media/usb
+  manuel olarak bir usb monte etmektir.
+  
+-----------------------------------------------------------------------------------------------
+
+rwx(read,write,execute)
+ugo(user,group,oder)
+
+chmod
+  bir dosyaya erisim haklarini degistirme komutu
+  root olamk veya sahibi olmak sarttir.
+  chmod go+wx dosya_adi
+  r:4 w:2 x:1
+  chmod 777
+  erisim hakki: (oktal8li sistem gecerli
+  user group oder
+  421   401   400
+  7       5     4
+  
+  Maske istersek:
+  7 ye tamamlayarak yapariz;
+  0         2          3
+  istenen erisim haklarinin tersidir
+  
+ACL
+  Erisim kontrol listeleridir
+  setfacl: ACL leri ayarlamak ve silmek icin kullanilir
+  getfacl: ACL leri okumak icin kullanilir.
+  
+  
+  crown
+    degisiklik sahibi anlamindadir ve sahip kullaniciya grubunu degistirme izni verir.
+    chrown -R
+    
+  chgrp -c -R music/opt/music
+    kullanici müzik grubundadir ve dizinini grup atamasini ve icerigini muzik olarak degistirir.
+    
+  umask
+    erisim hakkini sorgulmak icin kullanilir.
+    umask -S
+    
+    
+  
+    
+    
+    
   
   yardimci linkler:
   https://www.hostinger.web.tr/rehberler/linux-komutlari/
