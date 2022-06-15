@@ -144,6 +144,8 @@ rmdir
   dosya -klosörü siler
   
 df
+  aktif olan dosyalari sergiler
+  
 passwd
 cp
   kopyalama yapar
