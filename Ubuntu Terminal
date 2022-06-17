@@ -558,7 +558,11 @@ ACL
   umask
     erisim hakkini sorgulmak icin kullanilir.
     umask -S
-    
+-------------------------------------------------------------------------------------------------
+
+nslookup
+  Alan adı ve IP adresi eşleşmesi bulmak veya DNS kayıtlarını sorgulamak/incelemek için kullanılabilen bir komut satırı aracıdır. 
+  Windows kullanıcıları “command prompt” yani komut satırından, Linux kullanıcıları için ise terminal penceresinden bu aracı kullanabilmektedir.
     
   
     
