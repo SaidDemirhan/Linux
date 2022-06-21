@@ -563,8 +563,86 @@ ACL
 nslookup
   Alan adı ve IP adresi eşleşmesi bulmak veya DNS kayıtlarını sorgulamak/incelemek için kullanılabilen bir komut satırı aracıdır. 
   Windows kullanıcıları “command prompt” yani komut satırından, Linux kullanıcıları için ise terminal penceresinden bu aracı kullanabilmektedir.
-    
+------------------------------------------------------------------------------------------------- 
+df -h 
+  cihaz nerede ve ne kadar hafizada bosluk var
   
+mounth
+  USB yi baglamak icin kullanilir.
+  mount/dev/cihaz_adi/dosya_adi
+  
+umount
+  tüm dosya bilgilerinin düzgün sekilde geri yazilmsini saglar
+  
+tar 
+  arsiv komutudur.
+  tar -cvf arsiv_adi.tar dosya_adi
+  -c: tar arsivi olusturur
+  -v: kopyalanan tüm dosyalari ayrintili görüntüler(verbose)
+  -z: arsiv dosyasini gzip ile sikistirir.
+  -j: arsiv dosyasini bzip2 ile sikistirir.
+  -f: HER ZAMAN SONDA olur ve hemen arkasindan gelen arsiv dosyasi olamak zorundadir.
+  uzantisi .tar seklindedir.
+  -t: arsivin icindekileri tablo seklinde gösterir.
+  
+  -x: dosya veya dizinleri ayiklar
+  
+gzip
+  arsivi sikistirir
+  gzip -vdt dosya_adi
+  -d : arsivi cikarir.
+  -t : arsivin bütünlügünü test eder
+  -v : ayrintili görüntüler
+  
+NOT: eger dosya zarar görmüsse Bzip2recover ile arsivden cikarilmalidir.
+
+at
+  istenilen zamanda baslatilmasi istenen programlar icin yazilan komuttur.
+  at 2330
+  ctrl + d tusu ile islem sonlandirilir.
+  -r : belirtilen isi siler
+  -l : verilen isleri listeler
+  -d : isin icerigini görüntüler
+  at -r is_numarasi
+  
+dd
+  sabit disklerin, bölümlerin veya dosyalarin bit hassasiyetli kopyalanmasi icin kullanilir.
+  
+  -------------------------------------------------------------------------------------------------
+ip link show
+  bilgisayarda bulunan tüm arabirimlerin bir listesini getirir.
+  
+ip -c a
+  arayüz devre disi birakilmissa arayüzü etkinlestirir.
+ 
+ping -c4 8.8.8.8
+  yerel ve harici aglardaki diger bilgisayarlarla iletisim kurup kuramayacagimizi gösterir.
+  
+ip route
+  gönderilen paketlerin nereye yönelecegini gösterir.
+  
+sudo apt remove network-manager
+  Ubuntuda ag yöneticisini devre disi birakir.
+  ayrica resolfvconf paketini de kaldirmali ve reboot yapmalisiniz.
+    sudo apt remove resolv.conf
+    sudo reboot now
+    
+ip &ifconfig
+
+ping
+  bir ag üzerinden diger bilgisayarlarin veya cihazlarin erisebilirligini kontrol eden bir komuttur.
+  -c : kac adet ping istegi gönderilmek isteniyorsa (-c6)
+  -w : saniye olarak yazilir ve bu saniyeden sonra cevaplanip cevaplanmadigina bakilmaksizin görev sonlandirilir.
+  -W : ping in otomatik olarak durmadan önce bir yanit icin kac saniye beklenilecegini gösterir.
+  -i : (intervall) kac saniye aralikla bir ping gönderilmesi gerektigini ayarlar
+  -I : (Interface) ping isteginin hangi arayüz üzerinden gönderilecegini belirtir.
+  
+iftop
+  IP tablosu durum girisleri icin bir ekrandir.
+  
+sudo apt install traceroute
+  linux ag analizi  yapabilmek icin kurulmasi gereken bir tool dur.
+
     
     
     
