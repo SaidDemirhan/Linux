@@ -1,7 +1,7 @@
 LUI (Line User Interface) i kullanacagiz
 
 man man
-  ingilizce olarak manuel girebilecegimiz komutlarin ayrintisini görürüz
+  ingilizce olarak manuel girebilecegimiz komutlarin ayrintisini görürüz;
   bir rehberdir diyebiliriz.
   
   z.B. man ping yazdigimizda ping ile ilgili ne tür komutlar ne sekilde girilir 
