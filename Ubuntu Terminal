@@ -642,10 +642,34 @@ iftop
   
 sudo apt install traceroute
   linux ag analizi  yapabilmek icin kurulmasi gereken bir tool dur.
-
+-------------------------------------------------------------------------------------------------
+NOT: Linux altindaki en yaygin Webserver lar Apache ve Nginx tir.
+  sudo apt install apache2 
+    apache webserver i kurma komutudur.
     
+BIND
+  DNS sunucularinin piridir. günümüz inteernetinin temelini olusturur denilebilir.
+    sudo apt install bind9
+      dnsserveri kurma komutudur.
+      
+ISC-DHCPD
+  Linuxtaki en ünlü dhcp sunucusudur.
+  sudo apt install isc-dhcp-server
+  
+MySQL
+  Linux taki datenbank server lardan biridir.
+  Oracle, Mariadb PostgreSQL vb gibileri de vardir.
+  sudo apt install mysql-server
+  
+Squid
+  Linux taki en iyi bilinen Proxy serverdir
+  sudo apt install squid3
+  
+Samba
+  Linux ta cok sik kullanilan file server
     
-    
+SSH
+  Linux sunucular genellikle Secure-Shell üzerinden yönetilir.
   
   yardimci linkler:
   https://www.hostinger.web.tr/rehberler/linux-komutlari/
