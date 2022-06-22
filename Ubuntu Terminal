@@ -46,7 +46,7 @@ cd ..
   Bir üst klosöre cikar
 
 ls --color
-  terminale renk verir, man ls yazarak ayrintilar görülebilir
+  terminale renk verir, man ls yazarak ayrintilar görülebilir.
 
 ls /bin |wc -w
   sorgulanan dosyada kac karakter oldugunu getirir. (kelime satir)
@@ -57,7 +57,7 @@ whoami
   su anki aktif kullaniciyi gösterir
   
 w 
-  su an login olan aktif kullanicilari gösterir
+  su an login olan aktif kullanicilari gösterir.
   
 uname -a
   su an kurulu olan unix ayrintilarini gösterir.
