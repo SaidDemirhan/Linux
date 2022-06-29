@@ -1,0 +1,202 @@
+V_01_05_0010_Prozessverwaltung
+süreç yönetimi
+
+ İşlem özellikleri
+ komut öldürme
+ İş yönetimi
+ Cron işi
+ Süreç öncelikleri
+
+ön plan ve arka plan süreçleri
+Başlatılan bir program, bir süreç olarak adlandırılır, burada başlatılan bir program ayrıca bir dizi bireysel süreçten (alt programlardan) oluşabilir.
+
+ön plan ne demek?
+Kabuğunuz komutu kabul eder, kontrol eder, tüm meta karakterleri değiştirir ve başlatır. Bu program sona ermediği sürece, terminalde başka görünür komutları çağıramazsınız.
+
+Başlangıçta Linux/Unix'in çok kullanıcılı ve çok görevli bir sistem olduğunu öğrendiniz. Bu, her kullanıcının aynı anda birkaç programı başlatabileceği anlamına gelir.
+Ancak bir komut birbiri ardına yürütülürse bu nasıl mümkün olabilir?
+
+Aynı anda birkaç programı başlatan bir boru var - diğer yandan programlar arka planda çalışabilir.
+
+Arka plan süreçleri ile ön plan süreçleri arasındaki fark, kabuğun başlatılan programın bitmesini beklememesi, ancak hazır sinyaliyle hemen rapor vermesidir.
+
+Arka planda çalışması gereken bir programı nasıl başlatırsınız?
+Komut satırına son giriş olarak bir & karakteri eklenir.
+
+Kommando &
+
+Das & - Zeichen schiebt einen Prozess in den Hintergrund
+
+Arka plan işlemleri, ön plan işlemlerinden ne daha hızlı ne de daha yavaş işlenir.
+
+Programları arka planda işlemek ne zaman mantıklı olur?
+
+Grafiksel kullanıcı arayüzüne yönelik bir terminalden bir program başlatırsanız, bu program kapatılmadığı sürece terminaliniz üzerinde çalışmaya devam edemezsiniz.
+
+Adları ve adresleri kronolojik sırayla girdiğiniz büyük bir adres dosyanız "Adresler" olduğunu varsayalım.
+Büyük bir dosyayı sıralamak zaman alıcı olduğundan, şekilde gösterildiği gibi komutu arka plan işlemi olarak adlandırıyoruz:...
+
+Kabuk "tekrar hazır" raporu vermeden önce arka plan programının numarasını duyurur.
+
+Bir arka plan sürecini nasıl öldürürsünüz?
+Bir arka plan işlemini sonlandırmak için ayrı bir komut, kill komutu çağrılır. Bu komut için sistem tarafından program başlatıldığında size verilen işlem numarasına ihtiyacınız vardır.
+kill [-9] Prozessnummer(n)
+öldürmek/vurmak
+	süreci durdurmak için sinyal
+
+<Ctrl+c> tuş kombinasyonu ile ön planda başlattığınız bir işlemi iptal edebilirsiniz. Linux sürece bir sinyal gönderir.
+Bazı programlar "basit" bir öldürme sinyalini yok sayar. Ancak onları gönderirseniz öldür -9
+
+Yani »ateşlemeyi« önleyemezler ve mutlaka öldürüleceklerdir. Kullanıcılar yalnızca kendi süreçlerini "öldürebilir". Yalnızca süper kullanıcı yabancı işlemleri de öldürebilir.
+
+Bir uyarı:
+
+Grafik masaüstü bloke ise, genellikle <Ctrl+Alt+F1> ile <Ctrl+Alt+F6> ile Linux altındaki sanal terminallere gidebilir, orada oturum açabilir ve çalışmaya devam edebilir veya hatayı veya varsayılanı düzeltmeyi deneyebilirsiniz. süreci öldür.
+
+Ama bunun hakkında daha sonra.
+
+Şu anda bilgisayar tarafından hangi programlar işleniyor?
+Arka plan işlemi sona erdikten sonra, arka plan işleminin başlatıldığı ekranda bir "hazır mesajı" çıkar, ancak arada arka plan işleminin başlatılıp başlatılmadığını asla tam olarak bilemezsiniz.
+
+ps (işlem durumu) komutu, kendi işlemleriniz hakkında ve -e seçeneğiyle, o anda çalışan tüm işlemler hakkında size bilgi verir.
+
+ps - programların durumunu sorgulama komutu
+
+ps [-eF]
+
+Yeni başlamış ancak program numarasını not almamış bir arka plan işlemini hemen sonlandırmak istiyorsak, gerekli program bilgilerini almak için ps komutunu kullanabiliriz. ...
+
+Uygulama örnekleri:
+
+Örneğin, yanlış bir komut çağrıldığı için terminali bloke olan iş arkadaşlarına yardımcı olmak için sistem yöneticisi, ps -ef ile elde edilen bilgileri kullanarak hangi programın hangi terminalde başlatıldığını belirleyebilir ve hatalı işlemi sonlandırabilir.
+
+Programlar askıda kalıyor ve yanıt vermiyor.
+
+Örneğin, artık ön planda çalışmasanız bile programlar kapanmaz.
+
+Bir grafik kullanıcı arayüzü ile çalışıyorsanız, yani her zaman birkaç »terminal« ile çalışıyorsanız, çalışan tüm süreçlerinizi görmek için aşağıdaki komut önerilir: ...
+
+Bazı Linux sistemleri, özellikle ps komutu için başka seçeneklere sahiptir.man ps komutu bununla ilgili bilgi sağlar.
+
+Süreçlerin hiyerarşisinin nasıl yapılandırıldığına dair bir fikir edinmek için pstree komutunu kullanabilirsiniz.
+
+KDE grafik arayüzünde, terminalinizden veya Başlat → Sistem → Monitör aracılığıyla ksysguard & ile çağırabileceğiniz açık bir program vardır.
+
+Ubuntu 18.04 LTS'de grafik sistem izleme
+
+Süreçler, kaynaklar ve dosya sistemi kullanımı buradan izlenebilir.
+
+Başka bir seçenek, Ubuntu altında şu komutla kurabileceğiniz htop programıdır: sudo apt install htop. ...
+
+Arka plan süreçlerinin özelliklerinin özeti:
+
+Herhangi bir program arka plana gönderilebilir.
+Komut, kabuk tarafından bir ön plan işlemine benzer şekilde işlenir.
+Arka plan işlemleri başladığında, kabuk onların numaralarını (PID – İşlem Kimlik Numarası) bildirir ve sonraki talimatlar için hemen hazırdır.
+Arka plan işlemleri, kill -9 PID komutuyla güvenilir bir şekilde öldürülebilir.
+Korn ve C kabuğunda, ön plan ve arka plan işlemlerini kontrol etmek için kullanılabilecek özel bir iş kontrolü vardır.
+
+Komutların özeti:
+
+ps mevcut süreçleri gösterir
+
+kill bir işlemi zamanından önce sonlandırır
+
+& bir komutu arka plan işlemi olarak başlatır
+
+İşlemleri farklı bir kimlik altında çalıştırın (sudo)
+sudo, su değişkenlerinden çok farklı bir yaklaşım benimser.
+
+Uygun yapılandırmadan sonra program, belirli kullanıcıların belirli programları kök ayrıcalıklarıyla çalıştırmasını sağlar.
+
+Güvenli tarafta olmak için, root şifresini değil, kendi şifrenizi tekrar girmeniz gerekir.
+
+İşlemleri farklı bir kimlik altında çalıştırın (sudo)
+sudo şifreyi 15 dakika boyunca hatırlar. Bu süre içinde sudo ile başka bir komut çalıştırırsanız, bir daha şifre sorulmayacaktır.
+
+Bellek süresi, /etc/sudoers içinde timestamp_timeout anahtar sözcüğü ile değiştirilebilir.
+
+/etc/sudoers dosyası, sudo'yu yapılandırmak için kullanılır.
+
+Önemli:
+/etc/sudoers üzerinde yapılan değişiklikler sadece visudo programı ile işlenmelidir!
+
+visudo, dosyayı kaydetmeden önce bir sözdizimi denetimi gerçekleştirir.
+
+visudo, varsayılan olarak düzenleyici olarak vi'yi kullanır. bunu değiştirmek istiyor musun? ortam değişkenlerine başka bir düzenleyici aktarmanız gerekir.
+
+export EDITOR=nano
+
+Ubuntu'da sudo
+Ubuntu ve diğer bazı dağıtımlarda, kök kullanıcı varsayılan olarak geçerli bir parola olmadan kurulur. Bu nedenle bir kök oturum açma mümkün değildir! Ayrıca su veya ssh -l root çalışmıyor. Yönetici komutlarını çalıştırmanın tek yolu sudo'dur.
+
+/etc/sudoers dosyası, yorumlardan yalnızca birkaç satır içerir: ...
+
+Sistem süreçleri (daemon'lar)
+Sistem yönetimi için arka plan süreçlerine arka plan programı denir. Bu işlemler genellikle Init-V işleminin bir parçası olarak bilgisayarın önyüklemesi sırasında başlatılır.
+
+Prozess	Bedeutung
+Smbd	Windows/Samba paylaşımları için dosya sunucusu
+Squid	web proxy'si
+Sshd	opensh sunucusu
+Rsyslogd	Sistem günlüğü arka plan programı
+Udevd	Cihaz yönetimi
+Vsftpd	Ftp sunucusu
+Xdm	X Ekran Yöneticisi
+xinetd	Diğer ağ arka plan programlarının yönetimi
+
+Windows terminolojisine aşina iseniz, Linux arka plan programları hizmetlere eşdeğerdir.
+
+İşlemleri otomatik olarak başlat (cron)
+Bu program, bilgisayar başlatıldığında başlatma işlemi tarafından otomatik olarak başlatılır. Dakikada bir aktif olur, tüm crontab dosyalarını inceler ve orada belirtilen programları başlatır.
+
+cron öncelikle bakım çalışmaları için kullanılır.
+
+Cron, /etc/crontab dosyası kullanılarak global olarak yapılandırılır. Ayrıca, kullanıcıların /var/spool/cron/[tabs/]username adlı kullanıcıya özel dosyalarda kendi cron işlerini tanımlamalarına izin verilir.
+
+/etc/crontab veya /etc/crontab dosyası ve /etc/cron.d içindeki dosyalar yürütülecek programlar için satır satır girişler içerir. Sözdizimi şöyle görünür:
+ 
+
+Crontab sözdizimi, son satırdan sonra bir satır sonu gerektirir. Tüm cron yapılandırma dosyalarının bir satır sonu ile bitmesi gerektiğini unutmayın! Aksi takdirde son satır yok sayılacaktır!
+Kürzel	Code	Bedeutung
+@reboot	-	her yeniden başlatmadan sonra çalıştır
+@yearly	0 0 1 1 *	yılda bir kez koşmak
+@annualy	0 0 1 1 *	@yearly gibi
+@monthly	0 0 1 * *	ayda bir kez koşmak
+@weekly	0 0 * * 0	haftada bir koş
+@daily	0 0 * * *	günde bir kez koş
+@hourly	0 * * * *	saatte bir koş
+
+Adından da anlaşılacağı gibi, yinelenen görevler için bir tablo oluşturulur (kronolojik tablo - crontab).
+
+crontab [-elr] [Datei]
+
+e = edit (kullanıcı tarafından çağrılan crontab tablosunu düzenler veya yeniden oluşturur)
+I = list (kullanıcının oluşturulan tüm tablolarını görüntüler)
+r = remove (belirtilen dosyayı kaldırır)
+
+Dosya belirtilmemişse, kullanıcı adı altında bir tablo oluşturulur.
+/var/spool/cron/tabs altında oluşturuldu
+
+Hesaplama süresinin dağılımı(nice, renice, ionice)
+Linux'un günlük işleyişinde, bilgi işlem kapasitesi, çalışan tüm işlemleri gecikme olmadan yürütmek için genellikle fazlasıyla yeterlidir.
+
+Ancak, Linux hesaplama açısından yoğun süreçlerle meşgulse - ör. örneğin kapsamlı bir program derlerken - mevcut hesaplama süresini tüm işlemlere adil bir şekilde dağıtmaya çalışır.
+
+Hesaplama süresinin dağılımı(nice, renice, ionice)
+Bunu yapmak için, 19 (çok düşük) ile -20 (çok yüksek) arasında değişen istenen öncelik Nice'e iletilir. İşlemler varsayılan olarak 0 önceliği ile başlatılır.
+
+Aşağıdaki örnek, diğer işlemlere müdahale etmemesi için daha düşük önceliğe sahip bir yedekleme programını başlatır. (Yedeklemenin birkaç saniye daha uzun sürmesi önemli değildir.)
+
+$ nice –n 10 ./my-backup-script.sh
+
+Hesaplama süresinin dağılımı(nice, renice, ionice)
+renice, halihazırda çalışmakta olan işlemlerin önceliğini değiştirmek için de kullanılabilir. Parametre olarak daha önce top veya ps ile belirlenen işlem kimliği belirtilmelidir. ...
+
+Hesaplama süresinin dağılımı(nice, renice, ionice)
+Programları çalıştırırken sınırlayıcı faktör genellikle CPU değil, veri taşıyıcısıdır. Örneğin, bir yedekleme komut dosyasının bilgisayarın tüm G/Ç kapasitesini işgal etmesini ve böylece diğer, belki de zaman açısından daha kritik süreçleri yavaşlatmasını önlemek istiyorsanız, bunu ionice ile azaltılmış G/Ç önceliği ile çalıştırabilirsiniz.
+
+Aşağıdaki komut, mantıksal bir birimi okur, içeriğini sıkıştırır ve bir görüntü dosyasına kaydeder:
+
+$ ionice –c 3 cat /dev/vg1/snap | lzop –c > /backup/image.lzo
+
