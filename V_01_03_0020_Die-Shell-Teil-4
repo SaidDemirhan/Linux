@@ -1,0 +1,154 @@
+V_01_03_0020_Die-Shell-Teil-4
+Kommando tee
+tee standart bir Unix komutudur.
+Adı, tesisatçıların boruda dal yapmak için kullandıkları tişörtten türemiştir.
+
+Komut, verileri stdin'den okur ve bunları stdout'a ve bir dosyaya atar.
+
+Bir boru içerisinde ara sonuçlar elde etmek için kullanılır.
+
+tee - ek olarak bir dosyaya bir boru çıkışı türetme komutu
+
+"Tee" ile çıktı çarpımı
+Bazen bir programın çıktılarının bir dosyaya kaydedilmesi gerektiği, ancak yine de programın gidişatını aynı anda ekrandan takip etmek istediğiniz olur.
+
+Bu görev tee komutu ile gerçekleştirilir.
+
+Bu komut, terminalde standart çıktıyı görüntüler ve bunun bir kopyasını belirtilen dosyaya kaydeder.
+
+Tee'nin standart çıktısını da bir dosyaya aktarırsanız, bunun gerçekten çıktının bir kopyası olduğunu göreceksiniz.
+
+Komut ikamesi, komut ikamesi içindeki bir komutu sonucuyla değiştirmeyi mümkün kılar.
+
+Bunu yapmak için, bu komutun iki 'karakteri arasına alınması gerekir.
+Yani ör. "kommando"
+Alternatif bir gösterim $(kommando) şeklindedir.
+
+
+İkinci gösterim tercih edilir, çünkü ilk olarak, üç farklı tırnak işareti (", ' und ) kullanmanın yarattığı karışıklığı azaltır ve ikincisi, yuvalamaya izin verir.
+
+Aşağıdaki iki eşdeğer komut, bu çok güçlü mekanizmayı göstermektedir:
+ls -lgo `find /usr/share -name '*README*'`
+ls -lgo $(find /usr/share -name '*README*')
+
+Yukarıdaki komut önce find /usr/share -name '*README*' komutunu çalıştırır. Bu komutun sonucu, /usr/share dizinindeki README dizesini içeren tüm dosyaların bir listesidir. Bu liste artık find komutu yerine komut satırına eklenmiştir. Sonuç şöyle görünür: ...
+
+Bu sonuç, | karakterine sahip basit bir boru ile mümkün olmazdı.
+ls, standart girdi yoluyla herhangi bir girdi beklemez ve bu nedenle boru yoluyla sarf malzemeleri bulan bilgileri de yok sayar.
+
+Bu nedenle, aşağıdaki komut yalnızca geçerli dizinin içeriğini görüntüler. Bulmanın sonuçları görüntülenmiyor!
+
+Ancak komut değişikliği gerektirmeyen başka bir çözüm daha var:
+xargs komutunu kullanarak, standart girdiden gelen veriler, xargs'den sonra belirtilen komuta iletilir:
+
+
+
+
+xargs'ın en büyük avantajı, işlenecek verilerde boyut sınırı olmamasıdır. Öte yandan, komut değiştirme, bir komut satırının maksimum boyutuyla sınırlıdır - genellikle birkaç bin karakter.
+
+
+Bash yapılandırma dosyaları
+
+Takma ad komutunu çalıştırırsanız, mevcut takma adlar görüntülenir.
+alias Alias-Name=“Kommando“
+
+Takma ad işlevi oluşturmak için bir komut
+
+Kısaltmalar bu komutla tanımlanır.
+
+Takma ad kısaltmaları, buna bir örnek:...
+
+Takma ad kısaltmaları
+
+Ancak, örnekteki takma ad işlevleri, yalnızca siz oturumu kapatana kadar veya yalnızca şu anda çalışmakta olduğunuz geçerli pencere için geçerlidir.
+
+Her zaman ls -l yerine yalnızca ll girmek zorunda kalabilmeniz için, bu komutları ana dizininizdeki .bashrc içindeki dosyaya (bash için) yazmak için bir düzenleyici kullanın.
+
+Takma ad kısaltmalarını iptal etme
+Komut tüm oturum için iptal edilecekse, bunun için komut vardır:
+unalias Alias-Name
+Takma ad kısaltmaları
+takma adın en önemli işlevleri özetlenmiştir:
+Befehl	Beispiel	Bedeutung
+alias Alias-Name=“Befehl“	alias ll=“ls -l“
+alias rm=“rm -i“	takma ad oluşturma
+
+\alias-Name	\rm Datei	Geçerli komutun diğer adı.
+unalias	unalias rm	takma ad işlevine sahip
+alias –x Alias-Name	alias –x ll=“ls -l“	Alt kabuklar için takma ad işlevini de dışa aktar
+alias	alias	Mevcut takma adların görüntülenmesi.
+
+giriş istemi
+İstemin içeriği, sistem genelinde genellikle /etc/bash.bashrc dosyasında ve Red Hat/Fedora'da /etc/bashrc dosyasında yer alan PS1 ortam değişkeni tarafından belirlenir.
+
+Aşağıdaki satır, istem olarak yalnızca geçerli dizinin görüntülenmesine neden olur: ...
+
+ \u kullanıcı adı için bir yer tutucu
+ \h ana bilgisayar adı için
+ \w geçerli dizinin tamamı için
+ \W geçerli dizinin son kısmı için
+ \$ istemi sonlandırma için (kök için $ veya #).
+ \t 24 saat biçiminde saat SS:DD:SS
+
+Renkli komut istemi \[\e[0;nnm\] ile nn biçimlendirme kodunu PS1'e gömebilirsiniz.
+
+Tüm ANSI renk kodlarının bir listesini içeren kapsamlı bir yapılandırma kılavuzu, aşağıdaki NASIL belgesinde bulunabilir:
+
+http://tldp.org/HOWTO/Bash-Prompt-HOWTO
+
+profile .bash_profile ve .bashrc arasındaki işlevsel farklar nelerdir?
+
+.bash_profile ve .bashrc, bash'a özeldir
+ 
+.profile, kendi kabuğa özgü yapılandırma dosyalarının yokluğunda birçok kabuk tarafından okunur. (.profile, orijinal Bourne kabuğu tarafından kullanıldı.)
+
+Bütün bunlar neden?
+Bunun arkasındaki fikir, /etc/bash.bashrc'nin tüm sistem için geçerli olmasıydı. Ve sonra her kullanıcı /home/USER/.bashrc dosyasında kendi ayarlarını yapar.
+
+İşleme:
+/etc/bash.bashrc
+/home/USER/.bashrc
+Terminal-Session
+Yapılandırmayı tekrar oku
+Bash yapılandırma dosyalarından birinde bir şey değiştirilirse, yeniden okunmaları gerekir.
+
+source .bashrc
+
+Bunlar doğru sırayla okunmalıdır.
+
+Bash-Skripting (bash komut dosyası)
+değişkenler
+Değişkenleri zaten bilmek zorundasın. Orada bir değişkene değer atanmış:
+Name=Wert; export Name
+
+
+Değişkenler için seçenekler:
+Option	Ableitung von	Auswirkung auf den Wert der Variablen
+-i	Integer	Sadece tam sayılar kabul edilir.
+-u	uppercase	Bu değişken daha sonra hesaplamalar için kullanılabilir.
+-l	lowercase	Atanan dizeler büyük harfe dönüştürülür. (bash altında değil)
+-x	export	Atanan karakter dizileri küçük harfe dönüştürülür. (bash altında değil)
+
+-i tamsayı seçeneği belirtilmişse, temel aritmetik işlevler doğrudan atanabilir:
+Operator	Auswirkung	Beispielwert von $erg jeweils von Zeile zuvor	Ergebins: echo $erg
++	Addition	typeset –i erg=5+12	17
+-	Subtraktion	erg=$erg-3	14
+*	Multiplikation	erg=$erg*3	42
+/	Division	erg=$erg/3	14
+%	Modulo	erg=$erg%3	2
+
+Korn kabuğundaki typeset -i komutu tamsayı takma adını kullanır: tamsayı adı [=değer]
+Bash'de -i veya declare -i kullanırsınız
+
+Örnek olarak, geri sayımın ne kadar sürmesi gerektiğini soran ve geri sayımın mevcut değerini ekranda gösteren küçük bir "geri sayım" prosedürü yazıyoruz:...
+
+Komut dosyasını çalıştırabilmek için yine de izinlere ihtiyacı var.
+
+Bunu yapmak için chmod +x FILENAME yapın (daha sonra chmod hakkında daha fazlası)
+Ardından komut dosyası şu şekilde yürütülebilir: ./FILENAME.
+
+Bu durumda, betiği çalıştırmak için bash kullanılması gerektiğini belirtirsiniz:...
+
+
+Bash komut dosyası oluşturma hakkında daha fazla bilgi: https://wiki.ubuntuusers.de/Shell/Bash-Skritting-Guide_f%C3%BCr_Anf%C3%A4nger/
+
