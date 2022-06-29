@@ -1,0 +1,238 @@
+Linux
+Linux ücretsiz bir işletim sistemidir ve açık kaynak ilkesine uygundur:
+
+Bir yandan sistem ve mevcut tüm programlar herhangi bir kısıtlama olmaksızın ücretsiz olarak kullanılabilir.
+
+Sistemin veya programların kaynak kodu da ücretsiz olarak indirilebilir ve istenildiği gibi değiştirilebilir.
+
+Güvenliği, kararlılığı ve şeffaflığı sayesinde Linux, ana bilgisayarlar, yönlendiriciler ve web sunucuları için muhtemelen en popüler ve en yaygın işletim sistemidir.
+
+Ubuntu veya Linux Mint gibi önceden yapılandırılmış varyantlarla, aşağıdakiler gibi "normal" görevler:
+
+Office programlarının kullanımı
+e-postaları yönetmek,
+müzik ve video dosyalarını vb. oynatmak da derinlemesine bilgi sahibi olmadan Linux altında rahatlıkla kullanılabilir.
+
+Linux (Linus' Unix), Unix sistemlerinden türemiş bir işletim sistemidir. 1991 yılında Fin bilgisayar bilimi öğrencisi Linus Torvalds tarafından geliştirilmiştir.
+
+Ayrıca "Sadece Eğlenmek İçin - Bir ucube bilgisayar dünyasında nasıl devrim yarattı" adlı tavsiye edilebilir kitabına da bakın.
+
+Amacı, üniversitedeki ana bilgisayarlardan bildiği gibi, ev bilgisayarında (bir i386) bir Unix sistemi çalıştırmaktı.
+
+Bir yıl boyunca, bu fikir, Linus'un başkaları tarafından test edilmek üzere İnternet'e koyduğu kendi kendine yazılan bir işletim sistemi ile sonuçlandı.
+
+Sonuç olarak, dünya çapında giderek daha fazla programcı bu sistemin daha da geliştirilmesine ve Unix dünyasından Linux'a uygulamaların taşınmasına katıldı.
+
+Linux'un kendisi aslında sadece işletim sisteminin çekirdeğidir (çekirdek)
+bireysel uygulamalar için donanımı soyutlayan.
+
+Diğer şeylerin yanı sıra çekirdek, bellek yönetimi, çoklu görev ve aygıtların işlenmesinden sorumludur.
+
+Bu çekirdek tek başına kullanıcı için yararlı bir şey yapamadığı için işe yaramaz.
+
+Anlamlı çalışmanın mümkün olması için işletim sistemi bir dizi sistem programını içerir. Önemli bir tanesi olan bash, bir komut satırı yorumlayıcısı (kabuk), daha sonra sunulacaktır.
+
+Diğer tüm programlar, belirli görevler için yazılmış, ancak bunlar olmadan sistemin elbette sorunsuz çalışacağı gerçek uygulamalardır.
+
+istikrar
+Linux çok kararlı bir sistemdir. Hatalı uygulamalar bile Linux'u devre dışı bırakmaz.
+
+Donanım sürücüleri ve yeni işletim sistemi işlevleri ancak birçok kapsamlı testten sonra kararlı olarak yayınlanır.
+
+Koruma
+Her kullanıcının yalnızca kendisinin ve izin verdiği kişilerin erişebileceği kendi özel veri alanı vardır.
+
+Bir kullanıcının süreçleri de bu şekilde korunur.
+
+Serbestçe kullanılabilir kaynak kodu
+İşletim sisteminin kaynakları ve çoğu uygulama açıktır. Bu nedenle, her kullanıcı hataları düzeltebilir, güvenlik açıklarını kapatabilir ve arka kapılar için yazılımı kontrol edebilir.
+
+Herkes bu yazılımı daha da geliştirebilir veya ondan yeni yazılımlar geliştirebilir ve geliştirebilir.
+
+güvenlik
+Kullanıcıların verilerini başkalarından koruyan bir sistem, sizinkini de korur.
+
+Ücretsiz olarak erişilebilen kaynaklar nedeniyle, herkes güvenlik açıklarını yamalayabilir ve yamalar daha hızlı kullanılabilir.
+
+Mantıksal olarak, istikrar da güvenliğe katkıda bulunur.
+
+Basit yönetim:
+
+Standart adımların komut dosyalarını kullanarak otomatikleştirilmesi çok kolaydır.
+Yönetim merkezi olarak yapılabilir.
+Bu, ağdaki herhangi bir bilgisayardan da mümkündür, yani. evden internet üzerinden de...
+
+Neredeyse tüm yaygın donanım platformlarında çalışır
+
+Linux, akıllı telefonlar gibi mikro bilgisayarlardan ana bilgisayarlara kadar neredeyse her şeyde çalışır
+
+Açık Kaynak İlkeleri
+
+Açık Kaynak, bir topluluk ilkesi olarak anlaşılabilir.
+
+Bu nedenle özel bir işletim sistemine bağlı değildir.
+
+Açık Kaynak İlkeleri
+
+Firefox, Thunderbird, Open Office, VLC, Gimp ve Inkscape gibi çok sayıda açık kaynaklı program artık birçok işletim sisteminde bulunabiliyor.
+
+Açık kaynak zihniyetinin en iyi bilineni ise tamamen özgür yazılıma dayanan Linux idi.
+
+Herkes ücretsiz yazılımları ve işletim sistemlerini ücretsiz olarak indirebilir, kullanabilir ve (lisansa bağlı olarak) değiştirebilir.
+
+Örneğin Sourceforge, işletim sisteminden bağımsız olarak çok sayıda açık kaynaklı programa genel bir bakış sunar.
+
+Örneğin Ubuntuusers Wiki, Linux yazılımına genel bir bakış sağlar.
+
+Burada ayrıca (Ubuntu)-Linux'un nasıl kullanılacağına dair çok sayıda talimat bulacaksınız.
+
+Açık Kaynak ve Linux'un tarihsel gelişimi
+
+Açık kaynak hareketi, bazı yazılım şirketlerinin yazılımlarını müşterilerine kaynak kodu yerine programlar hâlihazırda makine koduna dönüştürülmüş olarak satmaya başlamasıyla başladı.
+
+Bazı programcılar, müşterinin kontrolünü kaybetmesinden korkuyordu.
+
+Bilgi birikiminin yakında sadece birkaç şirkette yoğunlaşacağından korkuluyordu.
+
+Başlıca açık kaynak lisansları aşağıdaki gibidir:
+
+GPL lisansı altındaki programlar herhangi bir zamanda (ticari olarak bile) serbestçe kullanılabilir; Ancak, kaynak kodundaki değişiklikler de bir GPL lisansı (copyleft ilkesi) kapsamında olmalıdır.
+
+Ayrıca, GPL kodu diğer tescilli yazılımlara dahil edilemez.
+
+Tescilli: Üreticinin mülkü, kapalı kaynak değil
+
+Creative Commons License'a (CCL) tabi eserler söz konusu olduğunda (genellikle kitaplar, metinler, resimler vb.), eserin yazarının kendisinin belirleyebileceği çeşitli "serbestlik dereceleri" vardır.
+
+Kullanın, anlayın, katılın!
+
+Linux ve açık kaynak topluluğu, sizi yalnızca çok çeşitli programları özgürce indirmeye ve kullanmaya davet etmekle kalmaz, aynı zamanda kullanıcıların açık kaynak projelerinin avantajlarını ve yazılımın nasıl çalıştığını anlamalarını sağlamaya çalışır.
+
+Herkesin, herkesin emeğinden yararlandığı bir ekipte, diğer "meslektaşlar" her zaman bekleriz... :-)
+
+Linux kurulumu rahat hale geldi.
+
+Bu sadece programların çeşitliliği ve kullanım kolaylığı için değil, aynı zamanda kurulum rutinleri için de geçerlidir.
+Linux kurulum türleri:
+
+ USB / CD / DVD
+ PXE
+ Net görüntüler
+
+Yazılım alanında, dağıtım, yazılımın kolayca kullanılabilir bir genel paket halinde derlenmesidir.
+
+Döner serbest bırakma ile:
+İşletim sistemi ve dahil edilen programlar sürekli olarak güncellemelerle sağlanır. Yalnızca güvenlik güncellemeleri değil, aynı zamanda "normal" küçük güncellemeler üzerinde güncellemeler de içerir.
+
+Kurulduktan sonra, her zaman güncel!
+
+Çok sayıda Linux dağıtımı arasındaki temel farklar şunlardır:
+
+hangi programlar yüklü
+güncellemeler ne sıklıkla yapılır
+hangi paket yöneticisi kullanılır
+kullanıcıdan ne kadar yapılandırma alınır
+
+Bu nedenle dağıtımlar, gerçek işletim sistemini de içeren test edilmiş ve koordine edilmiş program paketleridir.
+
+En iyi bilinen ve en yaygın olanları:
+Ubuntu
+fötr şapka
+suse
+Kırmızı şapka
+debian
+Gentoo
+düğme pikseli
+
+Tercihe ve uygulamaya bağlı olarak, geniş bir dağıtım yelpazesi vardır:
+
+"Canlı" sistemler (ör. Knoppix):
+Bazı Linux çeşitleri, harici bir veri taşıyıcısından (CD, USB bellek) yüklenmek ve oradan kurulum yapılmadan kullanılmak üzere tasarlanmıştır.
+
+Tercihe ve uygulamaya bağlı olarak, geniş bir dağıtım yelpazesi vardır:
+
+Son derece yapılandırılabilir dağıtımlar (örn. Gentoo, Arch)
+
+Bazı dağıtımlarda, her zaman Linux çekirdeğini ve programları kaynak kodundan kendiniz derlemeniz normaldir.
+
+Tercihe ve uygulamaya bağlı olarak, geniş bir dağıtım yelpazesi vardır:
+
+Ticari sağlayıcılardan dağıtımlar (ör. Red Hat Enterprise, Suse Enterprise, Mandriva).
+
+Bunlar genellikle ücretsiz değildir!
+
+Linux'un nihai olarak "nasıl göründüğü", yalnızca sınırlı bir ölçüde dağıtıma bağlıdır.
+
+Windows'tan farklı olarak, grafik kullanıcı arayüzü ve gerçek işletim sistemi iki farklı şeydir.
+
+Linux işletim sistemi, kurulumdan sonra herhangi bir zamanda değiştirilebilen çok sayıda kullanıcı arabirimini (“masaüstü ortamları”) destekler.
+
+Linux o kadar yaygınlaştı ki, 2012'de zaten 300'den fazla Linux dağıtımı vardı.
+
+2019'da 350'den fazla dağıtım var, ancak bazı dağıtımlar da durduruldu. Ya da bazıları hiç yayınlanmıyor.
+
+Bu arada, bazı akıllı telefonlar da, ör. B. Android işletim sistemi ile bir Linux çekirdeği üzerine inşa edin.
+
+Linux/Unix'in Özellikleri
+
+Linux/Unix'in temel ve göze çarpan özelliklerinden biri, onu yaygın, bilgisayardan bağımsız bir işletim sistemi haline getiren taşınabilirliğidir.
+
+Çok kullanıcılı operasyon (çok kullanıcılı operasyon)
+Sistem üzerinde aynı anda birden fazla kullanıcı çalışabilir.
+Her kullanıcı kendi ad kimliği ve parolası ile oturum açar.
+
+çoklu görev
+Her kullanıcı birkaç programı paralel olarak çalıştırabilir, örneğin metinleri aynı anda düzenleyebilir ve yazdırabilir ve aynı anda bir arama başlatabilir.
+
+zaman paylaşımı
+Aynı anda birkaç işlem çalışıyorsa, ana bellekteki veya işlemcideki alan, bir öncelik şemasına göre dönüşümlü olarak bireysel işlemlere atanır.
+
+diyalog işleme
+Her kullanıcı kendi terminalinden (klavye ve ekran) diyalog odaklı programları çağırabilir ve verileri girebilir ve sonuçlar ekranda görüntülenir.
+
+Dosyalar için bireysel erişim hakları
+Erişim hakları, dosyaları, cihazları veya dizinleri kimlerin görüntüleyebileceğini, değiştirebileceğini ve yürütebileceğini belirler.
+
+Kabuk - Kullanıcı arayüzü ve komut yorumlayıcısı
+Kabuk, kullanıcı tarafından alfasayısal bir ortamda girilen komutları yorumlar ve kontrol eder.
+
+Programların yürütülmesi, üst düzey bir programlama diline benzer işlevselliğe sahip olan kabuk kontrol dili aracılığıyla kontrol edilebilir.
+
+Çok sayıda programlama dilinin mevcudiyeti
+Bilgisayarınızda hangi programlama dillerinin mevcut olduğu derleyicinin taşınmasına bağlıdır.
+
+Örneğin, Linux/Unix şunları çalıştırır: C, C++, Fortan, Java, Lisp, Pascal, Perl, Python ve çok daha fazlası.
+
+Ağ - iletişim
+Linux/Unix, bunun için mükemmel önkoşullar sunduğu için istemci-sunucu ortamında kendini kanıtlamıştır.
+
+Hem LAN hem de WAN için uygun donanım ve yazılım mevcuttur.
+
+Grafiksel Kullanıcı Arayüzü (GUI)
+CDE (Ortak Masaüstü Ortamı) çoğu Unix sisteminde kullanılır.
+Linux uygulamaları, grafik kullanıcı arabirimi olarak genellikle XFCE, GNOME veya KDE kullanır.
+ Yazılımı kurarken hangi kullanıcı arabiriminin seçildiğine bağlı olarak, kullanıcı oturum açarken oturum türü altında XFCE, KDE, GNOME veya diğerlerini seçebilir.
+
+Linux/Unix'i kimler kullanıyor?
+
+Bugün Linux, ister operasyonel, ister araştırma ister özel olsun, tüm alanlarda kullanılmaktadır.
+
+nasıl kayıt olunur
+
+Giriş yapmak için bir terminal/konsol, yani bir klavye ve bir ekrana ihtiyacınız var.
+
+Bu giriş aygıtı bilgisayara doğrudan veya ağ üzerinden bağlanabilir.
+
+Bir bağlantı programı, örneğin ssh (güvenli kabuk) veya Windows bilgisayardan, örneğin Putty, VNC, Anydesk ile; takım görüntüleyici vb.
+
+Bu genellikle olası bilgisayar bağlantılarını gösteren ek bir seçim menüsü aracılığıyla yapılır.
+
+Linux'un uygun kurulumu
+
+Farklı dağıtımların kurulumu
+ Ubuntu 20.04
+ Debian
+
+
+ISO'lar bilgisayarda veya TNFTP'dedir.
+
