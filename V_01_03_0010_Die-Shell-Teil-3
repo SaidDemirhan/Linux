@@ -1,0 +1,143 @@
+V_01_03_0010_Die-Shell-Teil-3
+Standart giriş ve çıkış yönlendirmesi
+Tipik bir program verileri okur (örneğin bir şirket çalışanlarının maaşları), bunları işler (örneğin bireysel maaşları toplar) ve nihai sonucu verir (burada tüm maaşların toplamı).
+
+Çoğu Linux/Unix programında, program "standart girdi"den okur ve sonucu "standart çıktı"ya yazar.
+
+Standart giriş ve standart çıkış, her kullanıcının terminalidir.
+
+Komutun yürütülmesine ilişkin hata mesajları da ekranda görüntülenir. Bu hata mesajları, örneğin bir dosyanın bulunmadığına dair bilgileri içerir.
+
+Yanlışlıkla ls yerine "sl"yi çağırırsanız, "sl bulunamadı" hata mesajını alırsınız. Giriş ve çıkış numaralandırılmıştır (0, 1, 2).
+
+Standart çıktıyı nasıl ve ne zaman yönlendirirsiniz?
+
+Kabuk altında, bir dosyaya bu yeniden yönlendirme, komuttan sonra yeniden yönlendirme karakteri ">" yazılarak elde edilir.
+
+Kommando > Datei oder Gerät
+Çıktı (geçerli dizinin içindekiler tablosu) ekrana değil, diskteki bir dosyaya yazılır.
+
+Ek bir yol adı belirtilmediği için dosya geçerli dizinde oluşturulur.
+
+cat komutunu hatırlıyor musun?
+Komutun temel işlevi bir dosya içeriğini görüntülemektir.
+
+Çıktı yeniden yönlendirmesini kullanarak nasıl dosya oluşturabilirsiniz?
+Dosya adı olmadan cat komutunu çağırırsınız, ardından terminal standart girdi olarak kabul edilir. Aynı zamanda çıktının bir dosyaya yönlendirilmesi gerektiğini belirtirsiniz:
+
+cat > datei
+
+Ctrl + D çıkışı durdurur
+
+Diğer herhangi bir komut aynı şekilde yeniden yönlendirilebilir, örneğin Tarih: date > datum dosyasına tarih çıktısı
+
+Yönlendirme çok basittir, ancak zaten var olan bir dosya adı belirtirseniz kötü sonuçlar doğurabilir.
+
+date > new komutunu çalıştırırsanız, sistem sizi uyarmadan önceki dosyaya girilen ve yeni dosyada bulunan metnin üzerine yazılır.
+
+
+
+Bir komutun sonucunu mevcut bir dosyaya eklemek için, yeniden yönlendirme olarak iki karakterden büyük karakter kullanılır:
+
+Kommando >> bestehende Datei
+>> çıktıyı bir dosyaya ekler!
+
+ls > inhalt ile oluşturulan dosyaya tarih komutu kullanılarak tarih eklenebilir, örneğin...
+
+Ve şimdi cat in anlamını da anlayacaksınız (birleştirmek – bağlanmak için):
+cat Dateiname1 Dateiname2 Dateiname3 >> Dateiname4
+cat - Dosyaları birleştirme komutu
+
+Dosyaadı1, dosyaadı2, dosyaadı3 dosyaları, dosya adı4'ün sonuna eklenir.
+
+Linux/Unix çok çevre dostudur 
+Çıktıyı nasıl atarsınız?
+
+/dev/null ile birlikte çıktı için yeniden yönlendirme karakteri (>) kullanılırsa, komut yürütülür ancak sonuç görüntülenmez ve atılır.
+
+Kommando > /dev/null
+> /dev/null komutun çıktısını atmak için
+
+Hata çıktısını nasıl yönlendirebilirsiniz?
+Giriş ve çıkış yeniden yönlendirilirken, ayrım büyüktür ">" ve küçüktür "<" işaretiyle ifade edilir.
+Hata mesajının çıktısı yeniden yönlendirilecekse, büyüktür işaretinin önüne 2 sayısı yerleştirilir:
+
+Kommando 2> Dateiname oder Gerät
+2> hata mesajlarını yönlendirmek için
+	
+Her iki çıkış da yönlendirilecekse, tercihen birinci varyant seçilir. 2'si tüm Linux dağıtımlarıyla çalışmaz:
+Kommando > /dev/null 2>&1
+Kommando 2>&1> /dev/null
+Standart girişi nasıl yönlendirirsiniz?
+Bir komutta daha az işaretini ve ardından bir dosyanın adını girerseniz, Linux/Unix terminalde herhangi bir girdi beklemez, ancak küçüktür işaretinden sonra belirtilen dosyadan bilgi alır.
+Kommando < Datei
+< standart girişi yönlendirmek için
+
+
+Standart giriş yönlendirmesini nasıl kullanabilirsiniz?
+Örneğin, dirk kullanıcısına bir mektup göndermek istiyorsanız ve metni zaten dirk.txt adlı bir dosyaya kaydettiyseniz, aşağıdaki komutu kullanabilirsiniz:
+
+Bu durumda terminalde harf girilmez, bunun yerine dirk.txt dosyası kullanılır.
+
+komutların zincirlenmesi
+Birkaç komutu arka arkaya çağırmak için, bunları bir satırda noktalı virgül »;« ile birleştirebilirsiniz.
+Kommando1; Kommando2; Kommando3
+; komutları zincirlemek
+
+Komutların zincirlenmesi / koşullu komut yürütme
+
+Zincirleme komutları için diğer seçenekler:
+
+&& - Komut, yalnızca önceki komut hatasız yürütülürse yürütülür. 
+(Exitcode == 0)
+
+|| - Önceki komut doğru şekilde yürütülmediyse komut yürütülür. 
+(Exitcode <> 0)
+
+Kabuk altındaki boru mekanizması
+boru nedir? Linux/Unix altında kafalar bazen sigara içse bile, piponun pipoyla hiçbir ilgisi yoktur. Boru burada bir boru hattı (boru hattı sistemi) olarak anlaşılmalıdır.
+Kommando1 | Kommando2
+| komutları bir boru aracılığıyla bağlamak için
+
+Komut1'in çıktısı, komut2'nin girdisidir.
+
+/bin dizininin içindekiler tablosu ekranda sayfa sayfa görüntülenecekse, bir programa ihtiyacınız var.
+
+ls /bin/ çıktısı more komutuna yönlendirilir ve bu nedenle disk belleği çıkarılır.
+
+Borunun daha fazla örneğini göstermek için wc komutunu kullanın.
+Bu komutla bir dosyada kaç satır, kelime ve karakter bulunduğunu sayabilirsiniz.
+
+Örneğin, /bin dizininin kaç dosya (veya komut) içerdiğini bilmek istiyorsanız, sonucu almak için boruyu kullanabilirsiniz:
+
+Bir borunun hangi özellikleri vardır?
+
+Geçici bir arabellek aracılığıyla iki komutu birbirine bağlar.
+Bu ara belleğe yazılan her şey hemen ikinci komuta iletilir.
+İşletim sistemi ve kabuk, verilerin iletilmesinin arabelleğe alınmasını ve senkronizasyonunu üstlenir.
+Bu, önceki komutun çıktısının daha fazla işlenmesine izin verir (giriş ve çıktı yeniden yönlendirmesinden daha hızlı işleme).
+Bir komut dizisinde herhangi bir sayıda boru görünebilir.
+
+Boruyu nasıl kullanabilirsiniz?
+
+Birkaç pratik örnek:
+
+ls içeren bir dizinin içeriği alfabetik sırayla görüntülenmeyebilir.
+
+Dizininiz büyük ve küçük harflerle başlayan dosya adları ve/veya alt dizinler içeriyorsa, önce büyük harf adları, ardından tüm küçük harf adları görüntülenebilir.
+
+ls komutunu bir boru ile bir sıralama programına bağlayın.
+Ardından, örneğin içindekiler tablosunun çıktısını, büyük ve küçük harflerin alfabetik olarak sıralanacağı şekilde sıralayabilirsiniz.
+sort [-frn] [Dateiname(n)]
+f = kat - küçük ve büyük harfler eşittir
+r = ters – Ters sırada sıralanır
+n = Satırın başında başlayan ve diğer karakterlerden boşluklarla ayrılan sayılar aritmetik düzende sıralanır.
+
+Dosyalardan veya komut sonuçlarından belirli sözcükleri veya karakter dizilerini filtrelemek için grep komutunu (anımsatıcı olarak: kapmak, arama) kullanabilirsiniz.
+grep „Muster“ [Dateiname(n)]
+grep - dosya içeriğindeki kalıpları aramak için komut
+
+Journalctl çıktısında "Intel ve Hyper-V" anahtar kelimeleri aranır.
+
+
+
