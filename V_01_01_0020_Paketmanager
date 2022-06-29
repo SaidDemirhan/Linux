@@ -1,0 +1,147 @@
+Paketmanager
+Linux'ta paket yöneticisi
+ Sistemin güncellenmesi ve yükseltilmesi
+ Yazılımın yüklenmesi
+ Paketlerin dpkg ile manuel kurulumu
+ Linux altında proxy kurulumu
+
+Tanım paket yöneticisi
+Paket yöneticisi, bir dağıtımın öncüsüdür.
+Görevleri şunları içerir:
+
+Paketlerin kurulumu
+tam kaldırma
+paketler arasındaki bağımlılıkları bilin (otomatik çözümleme için apt veya yum gibi ek programlara ihtiyacınız vardır) --> paket bağımlılıkları.
+Paketlerin doğrulanması (imza kontrolü)
+Paket yöneticisi veritabanını sorgulama (örneğin, "ne kurulu?")
+
+Paketleme yöneticisi
+Bir paket yöneticisi ile, yazılım komut satırından yüklenebilir/kaldırılabilir/güncellenebilir - yani idari çalışmanın büyük bir kısmı kolayca otomatikleştirilebilir.
+
+Tabii ki, özellikle yeni başlayanlar için ve aynı zamanda eski eller için çalışmayı kolaylaştırabilecek grafik ön yüzler de var.
+
+Ortak paket yöneticileri
+
+En iyi bilinen paket yöneticisi, "Red Hat Paket Yöneticisi" olan RPM'dir.
+
+Debian'ın paket yöneticileri (dpkg ve apt), ikinci büyük paket yöneticileri ailesini oluşturur.
+
+dpkg (uzantı .deb) elbette Debian, Ubuntu ve aynı zamanda Progeny ve Fink (MacOSX) tarafından kullanılır.
+
+Paket yöneticisi (grafik)
+
+Debian/Ubuntu  Synaptic / Ubuntu Yazılımı
+openSUSE  YaST
+CentOS  Paket Yöneticisi / Yumex
+
+Paket yöneticisi (konsol)
+
+Debian/Ubuntu  uygun / yetenek /dpkg
+openSUSE  zypper, yast
+CentOS  yum
+
+Yazılım, yazılımın hedefini ve bir bağımlılık listesi gibi ek bilgiler içeren meta verilerle ilişkili paketler aracılığıyla yayınlanır.
+
+Paketler, depo adı verilen paket kaynakları aracılığıyla ya yerel medya ya da çevrimiçi depolar olarak yayınlanır.
+
+Yükleme sırasında meta veriler, yazılım paketlerini yeniden bulmak için kullanılan yerel bir paket veritabanında saklanır.
+
+paket meta verileri
+Bir paket, yaygın olarak meta veri olarak adlandırılan diğer bilgileri içerir, örneğin:
+
+Özet
+bir tanım
+paketlerde bulunan dosyaların listesi
+Vb…
+
+Paket Bağımlılıkları
+örn. Örneğin Windows'ta paket yöneticileri, kurulacak yazılımın çalışması için hangi diğer yazılım paketlerinin gerekli olduğunu kurulumdan önce kontrol eder ve yalnızca gerekli olan ve halihazırda mevcut olmayan paketleri kurar.
+
+paket biçimleri
+Linux dünyasına özgü yazılımlar temel olarak üç paket biçiminde paketlenir:
+
+tgz (tar gzip dosyaları)
+rpm (RPM paketleri)
+deb (Debian) paketleri
+
+paket depoları
+Paketlerin kurulabilmesi için bir paket kaynağından, CD veya DVD gibi fiziksel ortamlardan veya İnternet üzerinden erişilebilir olmaları gerekir.
+
+dağıtım alanları
+Çeşitli dağıtım alanları, bireysel paketleri lisanslarına göre düzenler.
+
+Bu, sisteminizde kullanılan lisansların kontrolünü elinizde tutmanıza yardımcı olur.
+
+Debian'da yazılım paketleri aşağıdaki üç alana bölünmüştür:
+
+Ana: Debian Özgür Yazılım Yönergeleri'ne (DFSG) uyan özgür yazılım.
+katkı: Özgür olmayan yazılıma bağlı olan özgür yazılım
+özgür olmayan: Debian Özgür Yazılım Yönergeleri'ne (DFSG) uymayan ancak serbestçe yeniden dağıtılabilen yazılım.
+
+ayna
+Çoğu dağıtım, kullanıcılara arşivlere daha iyi erişim sağlamak için yansıtma sunucuları kullanılarak dünya çapında dağıtılır.
+
+sources.list'i anlama (Debian, Ubuntu)
+UNIX/Linux sistemlerinde her zaman olduğu gibi, /etc/apt/sources.list dosyası bir düz metin dosyasıdır.
+
+Girişler satır satır yapılır.
+
+Paket Yöneticisi Apt (Gelişmiş Paketleme Aracı)
+apt paketleri yönetmek için bir dizi komut kullanır
+(ör. paket arama ve göz atma)
+
+Komutun genel sözdizimi şöyledir: apt BEFEHL [OPTIONEN]
+
+
+Paketleri yönetmeye (yani yükleme, kaldırma vb.) ve düzenlemeye yönelik tüm komutlar, kök ayrıcalıkları gerektirir.
+
+(Gözat) komutları normal kullanıcı haklarıyla yürütülebilir.
+
+apt paket yönetimi komutları:
+Befehl	Beschreibung
+update	Paket listelerini yeniden okumak
+upgrade	Mümkünse kurulu paketleri geliştirilmiş bir sürüme güncelleyin. Değişen bağımlılıkları karşılamak için gerekirse yeni paketler de kurulur.
+full-upgrade	Yükseltme gibi, işlem sırasında yalnızca paketler de kaldırılabilir. Alternatif olarak, tam yükseltme yerine dist-upgrade komutu kullanılabilir. Sonuç aynıdır, ancak dist-upgrade, uygun yardım ve kılavuz sayfasında belgelenmemiştir.
+install PAKETNAME	PACKAGENAME paketini kurar
+install /PFAD/ZUM/PAKET	yerel bir paket ve bağımlılıklarını kurar
+remove PAKETNAME	PACKAGENAME paketini kaldırır
+purge PAKETNAME	Kaldır gibi, ancak tüm yapılandırma dosyaları da silinir
+autoremove	artık ihtiyaç duyulmayan ve artık diğer paketlere bağımlılığı olmayan otomatik olarak yüklenen tüm paketleri kaldırır
+search SUCHBEGRIFF	Adında veya açıklamasında SEARCH TERM olan tüm paketleri görüntüler. Normal bir ifade, arama terimi olarak da kullanılabilir.
+show PAKETNAME	PACKAGENAME paketiyle ilgili bilgileri görüntüler
+list SUCHMUSTER [OPTION]	Paket adı SEARCHPATTERN arama modeliyle eşleşen tüm paket adlarını listeler. Arama düzeni aynı zamanda bir küre düzeni de olabilir. Kullanılabilir seçenekler, örneğin --installed (yalnızca kurulu paketleri listeler) ve --upgradeable (yalnızca paket kaynaklarında geçerli bir sürümü bulunan paketleri listeler).
+
+Debian ile, güncellemeden önce CD-ROM kaynağı /etc/apt/sources.list'den kaldırılmalı veya yorumlanmalıdır.
+
+Sistemi şimdi güncellemek için paketlerle ilgili en son bilgilerin önce Debian sunucusundan alınması gerekir.
+Güncellemeleri gerçekleştirmek için doğru komut genellikle apt dist-upgrade'dir.
+
+Bu ayrıca, değişen paket bağımlılıkları nedeniyle gerekirse ek paketler yükleyecek veya mevcut paketleri kaldıracaktır.
+
+Bundan sonra, bu durumda ilk programınızı yükleyebilirsiniz:
+ 
+Bunu yükledikten sonra tekrar kaldırabiliriz:
+ 
+Paket adı bilinmiyorsa paketler de aranabilir:
+ 
+Sinaptik Paket Yöneticisi
+Paketler ayrıca Synpaptic paket yöneticisi aracılığıyla da yönetilebilir.
+
+Program az çok kendini açıklayıcıdır.
+
+Debian paket yönetimi (dpkg)
+
+Uygulamada, kurulu veya mevcut paketler hakkında bilgi almak için çoğunlukla dpkg kullanacaksınız.
+
+Nadiren dpkg, yerel olarak indirilen programları yüklemek için de kullanılır.
+Tablo, en önemli dpkg seçeneklerine genel bir bakış sunar.
+Befehl	Beschreibung
+dpkg --install datei.cab	Paketi kurun veya güncelleyin
+dpkg --configure  datei.deb	Paketi yapılandır
+dpkg --remove paketname	paketi kaldır
+
+dpkg -- purge paketname	Paketi tamamen kaldır (ayrıca değiştirilmiş veriler)
+dpkg --list	Tüm kurulu paketleri tanımlayın
+dpkg --list abc	Paket açıklaması abc içeren paketleri bulun
+dpkg --listfiles paketname	Paketteki tüm dosyaların listesini alın
+
