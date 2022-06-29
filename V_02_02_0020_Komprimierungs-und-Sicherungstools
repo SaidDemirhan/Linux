@@ -1,0 +1,263 @@
+V_02_02_0020_Komprimierungs-und-Sicherungstools
+Sıkıştırma ve Yedekleme Araçları
+ Sıkıştırma Tipleri
+ tar, zip, gzip, bzip, dd
+ Sabit sürücüleri dd ile yansıtma
+ dd ile resimler oluşturun
+ Yedeklemeler için depolama konumları
+
+Dosyaları arşivlere paketlemek ve sıkıştırma algoritmalarını kullanarak boyutlarını küçültmek, veri işlemede yaygın bir işlemdir.
+
+Arşivler ve sıkıştırılmış dosyalar arasında temel bir ayrım yapılır:
+
+Arşiv, dosyalar için sıkıştırılmamış bir kapsayıcıdır. Bu arşiv, sıkıştırma yöntemleri kullanılarak sıkıştırılabilir.
+
+Ancak, sıkıştırmayı da içeren birkaç biçim vardır.
+
+Mecazi olarak konuşursak, veri sıkıştırma biraz yastık sıkmak gibi çalışır.
+
+Yastık kılıfı ve tüyler arasındaki tüm havaya gerçekten ihtiyaç yoktur.
+
+Sıkarak, havayı çıkararak yastığı sıkıştırırsınız (mümkün olduğunca) - yastık eskisinden daha küçük, yani daha fazla sıkıştırılır.
+
+Durum veri sıkıştırma ile benzerdir. Burada da temel olmayan öğeler, bu durumda veriler kaldırılır ve kalan verilerin hala ihtiyaç duyduğu depolama alanı küçülür.
+
+Çeşitli kodlama sıkıştırma yöntemleri
+
+Kayıpsız Sıkıştırma
+genellikle yalnızca metin dosyalarıyla oluşur.
+Metin bir görüntü veya benzeri bir şey olarak değil de bir karakter dizisi olarak saklanıyorsa, örneğin depolama alanından tasarruf etmek için sözlük yöntemi kullanılabilir.
+
+Kayıplı sıkıştırma (MP3 formatı)
+Tabii ki, bu prosedür son derece yüksek sıkıştırma oranlarına neden olabilir.
+Ancak, bu alakasız bilgiler geri alınamaz bir şekilde silinecektir.
+Bu, sıkıştırmadan sonra orijinal durumun geri yüklenemeyeceği anlamına gelir.
+
+Burada yinelenen karakter dizisi bölümleri basitçe kısaltmalarla değiştirilir.
+
+Text: 		Hallo Welt. Hallo User.
+Kodierung: 	   x5   Welt.    X5   User. 
+
+Run Length Encoding (RLE) yardımıyla, bir satırda bulunan aynı metin bileşenleri yalnızca bir kez kaydedilir. Depolama alanından da bu şekilde tasarruf edilebilir.
+
+Text: 		Heute war es schön, schön, schön, und morgen wird es schöner.
+Kodierung: 	Heute war es           /3/schön,/         und morgen wird es schöner.
+
+Entropi kodlamada, örneğin Huffman kodunda veya aritmetik kodlamada olduğu gibi, metin öğeleri sıklıklarına göre ikili biçimde sıralanır ve kodlanır, en sık meydana gelen öğe en küçük ikili sayıyı alır.
+
+Bu sayılar kullanılarak metin öğeleri ayrı bir sözlükte saklanır.
+
+Text: 		WENN HINTER FLIEGEN FLIEGEN, FLIEGEN FLIEGEN FLIEGEN NACH. 
+Kodierung: 	   
+
+Kayıpsız ve kayıplı sıkıştırma arasındaki fark
+
+Kayıpsız kodlamanın faydası açıktır:
+Tüm "sıkıştırılmış" verilere erişilebilmesini ve sıkıştırılmış veri paketinden geri yüklenebilmesini sağlar.
+
+Kayıpsız sıkıştırmaya ek olarak, kayıplı sıkıştırma da vardır.
+Burada alakasız bilgiler kodlanmaz, doğrudan çıkarılır. Bu nedenle, bir ilgisizlik azalmasından söz edilir.
+
+Ne ve neye güvenilebilir?
+Yedeklemeleri ne zaman ve ne zaman yedekleneceklerine göre sınıflandırabiliriz, örneğin yedeklemek için:
+
+Dosyaların oluşturulması sırasındaki mevcut durum ve değiştirilmiş bir dosyanın önceki sürümü
+Belirli dosyalar, örneğin test programları, kitap metinleri vb.
+Bir kullanıcının veya bir kullanıcı grubunun veya tüm kullanıcıların (dosya ağacı) tüm dosyaları haftalık ve günlük olarak yalnızca değiştirilen dosyalar
+Genellikle belirli dizinler altında depolanan tüm kullanıcı programları (kullanıcı programları)
+Sistem yazılımı, tüm disk(ler), işletim sistemi, bilgisayar vb.
+
+Ne ve neye güvenilebilir?
+Neye Yedekleyebilirsiniz? konulu bir ankette, aşağıdaki yanıtlar toplandı:
+
+kağıtta
+diğer dosya adları arasında
+başka bir dizine
+başka bir disk alanına
+başka bir bilgisayarda (dosya sunucusu),
+tercihen başka bir yerde - en kolay ağ üzerinden (bulut)
+USB çubuğunda veya çıkarılabilir USB diskinde
+CD veya DVD'ye yaz
+manyetik bantlarda
+
+Çıkarılabilir medyanın entegrasyonu
+Çeşitli Linux/Unix bilgisayarları genellikle yedekleme ortamı için farklı atamalara sahiptir.
+
+Dijital görüntü verilerini sıklıkla kaydetmek isteyen kullanıcılar için hemen ek bir harici USB disk kullanılması tavsiye edilir.
+
+Daha az miktarda veri için bir USB çubuğu yeterlidir
+
+Cihazın nereye monte edildiğini ve üzerinde ne kadar boş alan olduğunu öğrenmek için df –h komutunu kullanabilirsiniz.
+
+Çıkarılabilir medyanın entegrasyonu
+Unix altında, genellikle mount komutunu kullanarak USB veri taşıyıcısını kendiniz bağlamanız gerekir. mount komutu "normal kullanıcılar" için yayınlanmamış olabileceğinden, bunun kök altında yapılması gerekebilir veya sistem yöneticisinin komutu sizin için serbest bırakması gerekebilir.
+
+
+mount /dev/Gerätename /Mountpunkt (Verzeichnis)
+
+Önemli: Mutlak depozito yol olarak belirtilir: ör. /mnt
+
+Yedekleme burada belirli dosyalar kopyalanarak yapılmıştır. Şimdi çubuğu tekrar çıkarabilir miyiz?
+
+Hayır, çubuk önce kapatılmalıdır (güvenli bir şekilde çıkarılmalıdır).
+
+umount /dev/Gerätename oder /Mountpunkt (Verzeichnis)
+Sökmek, kancadan çıkarmak(Abmontieren, aushängen)
+
+
+
+
+umount komutu, tüm dosya bilgilerinin düzgün bir şekilde geri yazılmasını sağlar.
+
+tar ile yedek oluşturma
+Dosyaları cp'de olduğu gibi tek tek kopyalamak yerine, verilerin disktekine benzer bir yapıda eşlendiği bir arşiv dosyası oluşturmak daha iyidir.
+
+Normalde, dosyaların aşağıdaki gibi orijinal özellikleri kalır:
+tarih
+erişim hakları
+vb. alındı.
+
+tar (bant arşivi) komutu aslında manyetik teybe veri yazmak için tasarlanmıştı, ki bu elbette hala mümkün olurdu, ancak günümüz medyası burada daha iyi seçenekler sunuyor.
+
+tar -c - tar arşivi oluşturma komutu
+
+tar -c[bhvzj]f Archivname Verzeichnis oder Dateiname(n)
+
+-c (oluştur) Tar arşivi oluştur
+-b (blok) engelleme faktörü (yedekleme manyetik teybe yazılmışsa)
+-h (sabit bağlantı) Tüm sembolik bağları takip eder ve orada bulunan dosyaları kopyalar
+-v (ayrıntılı) kopyalanan tüm dosyaları görüntüler
+-z oluşturulan arşiv dosyası gzip ile sıkıştırılır
+-j oluşturulan arşiv dosyası ayrıca bzip2 ile sıkıştırılır
+-f hemen ardından gelen kelime arşiv dosyasıdır, bu nedenle f her zaman en son belirtilir
+
+Köşeli parantez içindeki seçenekler isteğe bağlıdır.
+
+Dosyanın tar arşivi olduğunun hemen anlaşılması için .tar eki kullanılmalıdır.
+
+Dosya z veya j ile sıkıştırılmışsa, dosyaya .tar.gz veya .tar.bz2 eklenir. ...
+
+Dosyaları tar arşivinden çıkarma
+Dosyaları geri yüklerken, tar ile dosyaların her zaman geçerli dizine yedeklendiklerinde göreli yol adlarıyla görüntülendiği şekilde kopyalandığını bilmeniz önemlidir.
+
+
+tar -t[vzj]f Archivname [Dateiname(n)]
+
+-t (tablo) içindekiler tablosu
+-v (ayrıntılı) kopyalanan tüm dosyaları görüntüler
+-z oluşturulan arşiv dosyası gzip ile sıkıştırılmışsa
+-j oluşturulan arşiv dosyası ek olarak bzip2 ile sıkıştırılmışsa
+-f hemen ardından gelen kelime arşiv dosyasıdır, bu nedenle f her zaman en sonda gelir
+belirtildi
+
+Dosya adları belirtilirse, yalnızca bunlar aranır ve bulunanlar görüntülenir.
+
+Dosyaları tar arşivinden çıkarma
+Ancak bundan sonra verileri tekrar okumalı veya arşivden veri çıkarmalısınız. (Ancak bu, dosyaların arşivden silindiği anlamına gelmez. Sadece geri kopyalanırlar, arşiv dosyasında kalırlar.)
+
+tar -x[mvzj]f Archivname [Dateiname(n)]
+
+-x (özüt) Dosyaları ve/veya dizinleri ayıkla
+-m (değişiklik tarihi) Orijinal tarihi kabul et
+-v (ayrıntılı) kopyalanan tüm dosyaları görüntüler
+-z oluşturulan arşiv dosyası gzip ile sıkıştırılmışsa
+-j oluşturulan arşiv dosyası ek olarak bzip2 ile sıkıştırılmışsa
+-f hemen ardından gelen kelime arşiv dosyasıdır, bu nedenle f her zaman en son verilir
+
+Dosyaları tar arşivinden çıkarma
+Testi/ klasörünü yanlışlıkla sildiyseniz, aşağıdaki şekilde geri yüklenebilir: ...
+
+Dosyaları sıkıştır
+tar ile dosyayı -z veya -j ile sıkıştırabilirsiniz. Ancak bu, sonradan da mümkündür. Dosyaları sıkıştırmak için şu komutlar vardır:
+
+gzip [-vdt]Dateiname(n)
+
+-v ayrıntılı mod
+-d Arşivi çıkarır
+-t Arşivin bütünlüğünü test eder
+
+Herhangi bir seçenek belirtilmezse, belirtilen arşiv sıkıştırılacaktır.
+
+Dosyaları sıkıştır
+Örneğimizde, test.gz yedeğini gzip ile sıkıştıralım. Orijinal dosya silinecek ve yalnızca .gz sıkıştırılmış dosyası kalacaktır.
+Orijinal dosya gunzip ile geri yüklenir: ...
+
+Daha yeni, daha hızlı, daha iyi: "bzip2"
+Farklı bir sıkıştırma algoritması kullanır ve bu nedenle çoğu dosyayı çok daha iyi küçültür.
+
+Bzip2'nin kurtarma modu da vardır: sıkıştırırken, araç dosyaları ayrı bloklara ayırır.
+
+Bir dosya zarar görmüşse, bozulmamış alanlardaki verileri kurtarmak yine de mümkün olabilir - bunu yapmak için hasarsız parçaları Bzip2recover ile ambalajından çıkarın.
+
+Ne zaman ve ne sıklıkla yedekleme yapmalısınız?
+Burada, dosyalarda olası bir hatayı veya belirli dosyaların yokluğunu her zaman hemen fark etmediğinizi unutmamalısınız.
+
+Zaman ve yer nedeniyle, büyük bir veritabanınız varsa, tüm dosyaların her gün değil, yalnızca son yedeklemeden sonra değişen veya yeni oluşturulanların yedeğini almanız önerilir. Sigortayı dikkatlice alın.
+
+Sadece zaman zaman yedekleme yaparak kazanabileceğiniz zaman size pahalıya mal olabilir. Yedekleme günlük bir rutin haline gelmelidir. Yapılacak en iyi şey bir yedekleme planı oluşturmaktır.
+
+Ne zaman ve ne sıklıkla yedekleme yapmalısınız?
+İdeal bir çözüm, örneğin geceleri ağ üzerinden otomatik olarak ayrı bir bilgisayarda (dosya sunucusu) yedekleme yapmak olabilir. Linux/Unix altında, komutların belirli zamanlarda başlatılması gereken komutlar vardır. Ayrıca şunları içerir:
+
+at Zeitangabe [Kommando]
+
+Yürütülecek komutlar kendi satırlarında belirtilebilir. Ctrl+d ile bitir
+
+Zaman, aşağıdaki model kullanılarak belirtilir: HHMM (4 haneli)
+Örneğin. B. 2330 (aynı gün saat 23:30'da)
+
+İşler aşağıdaki günlerde de yürütülebilir, bununla ilgili daha fazla bilgi: man at
+
+Ne zaman ve ne sıklıkla yedekleme yapmalısınız?
+at komutu, tüm kullanıcılar için tüm sistemlerde mevcut değildir. Yine de, şekildeki bir örnekte at'ın işlevlerine kısaca bakalım: ...
+
+Ne zaman ve ne sıklıkla yedekleme yapmalısınız?
+Halihazırda başlamış olan işler daha sonra kontrol edilebilir veya tekrar silinebilir. Bunu yapmak için, at komutu seçeneklerle belirtilir:
+
+at [-r Jobnummer] [-ld Jobnummer]
+
+-r (kaldır) belirtilen işi siler
+-l (liste) kalan tüm işleri gösterir
+-d (ekran) işin içeriğini görüntüler
+
+Depolama yeri:
+
+Genel olarak, veri taşıyıcılarındaki yedeklemeler toz, kir, nem, yangın ve manyetik etkilerden korunmalı ve yalnızca sistem yöneticileri veya belirli kişiler tarafından erişilebilir olmalıdır - yani iyi kilitli, örneğin bir dolapta saklanmalıdır.
+
+Önemli dosyalar için, yedekleme ortamını bile bir kasaya koymanız önerilir.
+
+Kendi ürünleriniz (yazılım, dokümantasyon vb.) için bir banka kasası bunları saklamak için kötü bir yer olmayacaktır.
+
+Genel:
+
+Yedeklemenizi nasıl kurduğunuz şüphesiz veri stoğunun önemine ve değişim sıklığına bağlıdır.
+
+Ancak yedeklemeyi hafife almayın, şirketinizin veya departman bilgisayarlarınızın yedekleme konseptinin nasıl olduğunu sorun.
+
+dd—disk dökümü
+dd, sabit disklerin, bölümlerin veya dosyaların bit hassasiyetli kopyalanması için kullanılır.
+
+"Bit-precise" kopyalama, içeriği ve doluluğu ne olursa olsun, veri taşıyıcının bit-bit veya byte-byte okunup yazıldığı anlamına gelir.
+
+dd temelde Ubuntu / Linux'un erişebildiği tüm dosya sistemleriyle çalışır (örn. ext2/3, reiserfs, vfat, ntfs vb.).
+
+CD/DVD dosya sistemleriyle de çalışır, ancak yalnızca veri CD'leri/DVD'leri için.
+
+dd—disk dökümü
+Ayna diskleri / bölümleri
+
+dd if=Quelle of=Ziel [Optionen]
+
+Örnek bölüm:
+
+dd if=/dev/sda1 of=/dev/sdb1
+
+dd—disk dökümü
+Disklerin / bölümlerin görüntülerini oluşturun:
+
+dd if=Quelle of=Ziel.img [Optionen]
+
+Örnek bölüm:
+
+dd if=/dev/sda1 of=/data/backup.img
+
