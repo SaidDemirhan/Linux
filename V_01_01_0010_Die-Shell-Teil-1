@@ -1,0 +1,183 @@
+V_01_01_0010_Die-Shell-Teil-1
+Kabuk nedir?
+"Kabuk"un çınlama veya çınlama ile hiçbir ilgisi yoktur, ancak kabuk İngilizce'den gelir ve kabuk veya kase anlamına gelir.
+
+İşletim sistemi çekirdeğini bir kabuk gibi sarar ve kullanıcının bir iletişim kutusunda Linux/Unix'e talimat vermesini sağlar.
+
+Kabuk, esas olarak, programları başlatmak için komutlarınızı ve komutlarınızı girdiğiniz programdır.
+
+Örneğin, X programını başlatmak istiyorsanız, kabuğa bunu yapması için komut verin.
+
+Kabuk komutu yorumlar ve gerekirse çekirdeğe iletir (örneğin bir programı çalıştırmak için).
+
+oturum açma kabuğu
+Başarılı bir oturum açma işleminden sonra, bir kullanıcının oturum açma kabuğu başlatılır. Çalışma oturumundaki tüm programlar bu kabuktan başlatılır, ancak alt kabuklar da alt süreçler olarak oluşturulur.
+
+Oturum açma kabuğundan çıkmak, sistemden çıkış yapmanızı sağlar. Çalışmaya devam etmek için oturum açma programı aracılığıyla tekrar kayıt olmalısınız.
+
+Login Shell'e karşı NoLogin Shell
+Bir kabuğu çağırırken, Unix bir oturum açma kabuğu ile oturum açma gerektirmeyen bir kabuk arasında ayrım yapar. Fark basit:
+
+Oturum açma kabuğu, oturum açma sırasında oturum açma programı tarafından başlatılan kabuktur. Oturum açma kabuğundan çağrılan herhangi bir ek kabuk, oturum açma gerektirmeyen bir kabuktur.
+
+Bu ayrımın nedeni, daha sonra daha detaylı anlatacağımız konfigürasyon dosyaları sorunudur.
+
+Oturum açma kabuğu yapılandırılmalıdır, başladığında birçok değişken alır ve sonraki kabuklara iletir.
+
+kabuktaki komutlar
+Kabuk, girilen satırın 1. kelimesini komut olarak alır ve belirtilen »arama yollarında« ilişkili programı arar.
+
+Kabuk, satırın geri kalanını bir talimat olarak program çağrısına iletir.
+- ile başlamayan tüm parametreler ls tarafından dosya adı veya dizin olarak değerlendirilir.
+
+Kabuk ls programını nerede bulur? Komut bile var mı?
+Kabuk, verilen ada sahip "yürütülebilir" dosyalar için belirli dizinleri arar.
+
+Her kullanıcı için dizin adlarını içeren bir PATH (arama yolu) ayarlanır.
+
+PATH altında genellikle belirtilen dizinler şunlardır:
+/bin /usr/bin
+»Normal« kullanıcı için komutlar bu dizinler altında saklanır.
+Linux/Unix sistemi bir diyalog sistemi olarak tasarlanmıştır.
+yani her kullanıcı doğrudan iş yerinden (terminal) komutları çağırabilir ve sonuç genellikle onun ekranında görüntülenir.
+
+Standart giriş ve çıkış, kullanıcı terminalidir.
+
+Giriş ve çıkış, kabuktaki basit kontrol karakterleri kullanılarak yeniden yönlendirilebilir. Büyüktür işareti > »yönlendir« anlamına gelir, küçüktür işareti < »yönlendir« anlamına gelir. Ama bunun hakkında daha sonra.
+
+Kabuk standart giriş ve standart çıkış
+Kabuk görevlerini düzgün bir şekilde tamamlar tamamlamaz, daha fazla sipariş almaya hazır olduğunu hemen ekranınıza bildirecektir.
+
+Programa ve kullanıcıya bağlı olarak ekranda bir hazır işareti (istenti de denir) belirir.
+Zeichen	Bedeutung
+$ 
+%	Bereitzeichen für den normalen Benutzer
+(unter der Bash name@rechner:aktuelles Directory)
+In der C-Shell
+#	Bereitzeichen für den Systemverwalter
+>	Kennzeichen, dass die Shell weitere Eingaben für einen Kommandoaufruf erwartet
+Bazı kabuk programları
+Name der Shell	Aufruf	Kurze Beschreibung	Charakteristisch
+Korn-Shell in etwas gleich mit Posix-Shell	/bin/ksh
+Oft auch
+/bin/sh	Kompatibel zur Bourne-Shell mit wesentlichen Ergänzungen u.a. Historie-Mechanismus, Alias, Befehlszeilen-Editor	Komfortabel und mächtig
+Bash (born again shell)	/bin/bash	Unter Linux eingesetzte frei verfügbare Shell (GNU) wird mehr auch unter Unix-Derivaten verwendet.	Noch komfortabler als die Posix-Shell
+C-Shell	/bin/csh
+Oder
+/bin/tcsh	Ähnlichkeit zur Programmiersprache C – ebenso Historie, Alias, Editor – aber nicht kompatibel zur Bash	Wird gerne von Entwicklern genutzt
+
+Bourne Yeniden Kabuk
+İngilizce bir kelime oyunudur: Bash, bu nedenle, Korn kabuğu ve C kabuğu ile birlikte üç klasik Unix kabuğundan biri olan reenkarne Bourne kabuğudur.
+
+Üç kabuğun tümü ve birkaç tane daha Linux altında mevcuttur, ancak bash genellikle varsayılan olarak kurulur
+
+Temel komutlar, sadece birkaçı..
+
+1. clear: Giriş penceresini temizle
+2. whoami: - ben kimim - ve kim
+3. pwd: Neredeyim?
+4. df: Dosya sistemini ve disk alanını göster
+5. passwd: Şifreyi değiştir
+6. ls: dizini göster
+7. cd: dizini değiştir
+8. cp: kopyala ve yeniden adlandır
+9. rm: dosyaları sil
+10. cat: Bir metin dosyasını hızla görüntüleyin veya oluşturun
+11. echo: çıktı metni
+12. mkdir /rmdir: klasörler oluşturun veya silin
+
+tarih göstergesi
+Linux/Unix'te doğru tarihle çalışmak önemlidir
+
+örneğin, program dosyaları için yedeklemeler ve güncellemeler için.
+
+Çevrimiçi kılavuzu okuma
+Komutların açıklamaları (manuel sayfaları), bölümlerle (man1 - man8) ayrılmış olarak /usr/man dizininde saklanır.
+
+Bu sayfaları man komutu ile ekranda görüntüleyebilirsiniz.
+
+Dosya içeriğinin görüntülenmesi
+Bir dosyanın içeriğini görmek için cat komutu kullanılır.
+
+Bir dosyanın içeriğine göz atma
+Bir dosyanın içeriğini ekranda her seferinde bir sayfa olarak görüntülemek için birbirine çok benzer iki komut vardır:
+
+Sistemde kimler çalışıyor?
+Sistemde sizden başka kimlerin çalıştığını öğrenmek için who komutunu kullanın.
+
+Sisteme giriş yapan kişinin adını, çalıştığı terminali ve giriş saatini görebilirsiniz.
+
+Kullanıcı kimliğiniz (oturum açtığınız ad), üzerinde çalıştığınız terminalin adı ve oturum açtığınız tarih ve saat (whoami)
+
+Terminal adının görüntülenmesi
+Terminalinizle ilgili sorunlarınız varsa ve aniden daha fazla giriş yapamıyorsanız veya oturum açmak için oturum açamıyorsanız, o zaman sistem yöneticisinin terminalinizin adını bilmesi, sistem yöneticisi için bir avantajdır.(tty)
+
+Find ile Linux altında arama
+örn. B. tam dosya adı hala bilinen belirli bir dosya, aşağıdaki örnek denemeye değer:
+
+find .-name tux.jpg
+
+Bu örnekte, tux.jpg dosyası aranmaktadır. Nokta, mevcut olandan itibaren tüm dizinlerin aranmasına neden olur.
+
+Find ile Linux altında arama
+Elbette, varsayılan dizini doğrudan belirterek aramayı biraz kontrol edebilirsiniz:
+
+find /home/dirk/ -name tux.jpg
+
+veya kesilmemiş sürümü seçebilirsiniz:
+
+find / -name tux.jpg
+
+/ öğesinin, find öğesinin kök dizinde başladığını gösterdiği yer.
+
+Önemli!
+Yukarıdaki örneklerde, arama büyük/küçük harf duyarlıdır, yani find büyük/küçük harf duyarlıdır. Bunu önlemek istiyorsanız, -iname argümanı ile bunu önleyebilirsiniz.
+
+Yani mesela:
+find / -iname tux.jpg
+Linux'ta metin editörleri
+
+ed
+ vi / vim
+ nano
+ daha fazla..
+
+vi hala en güçlü editörlerden biri
+Linux/Unix'te mevcuttur. Ancak vi'nin avantajı, her Unix/Linux bilgisayarında mevcut olması ve bir grafik kullanıcı arabirimi ile veya bu arabirim olmadan çalışmasıdır.
+
+Ancak imleç tuşları giriş modunda kullanılamaz (istisna: Linux »vim« altındaki vi. Burada imleç tuşlarına giriş modunda da izin verilir).
+
+komut modu, giriş modu ed benzeri bir mod (eski mod).
+
+vi
+Metin eklemek için önce ilgili komutu kullanarak giriş moduna geçmelisiniz. Metin girişi aşağıdaki komutlarla açılabilir:
+
+
+Kommando	Ableitung von	Bedeutung
+A, a	append	Satırın sonuna veya imleçten sonra ekleyin
+I, i	Insert	Satırın başına veya imlecin önüne ekle
+R	replace	İmleçten değiştir
+O, o	Open	Geçerli satırın üstüne veya altına yeni bir satır ekleyin.
+Giriş modu, Escape fonksiyon tuşu ile sonlandırılır.
+
+Yapılan tüm değişiklikler bir yedekleme komutu kullanılarak orijinal dosyaya geri yazılmalıdır. Kaydetme (yalnızca komut modunda) ve vi'den çıkma komutları aşağıda listelenmiştir.
+Kommando	Ableitung von	Bedeutung / Funktion
+:w	write	Çalışma arabelleğini diske geri yazma.
+:q	quit	Henüz bir şey yazılmamışsa uyarı vererek vi'den çıkın.
+:q!	quit	vi uyarı vermeden çıkın.
+:wq	write & quit	Çalışma arabelleğini geri yazma ve vi'den çıkma.
+
+nano
+nano veya pico, komut aralığında mütevazıdır, ancak kullanımı kolaydır.
+Mevcut dağıtımların çoğunda yalnızca nano yüklüdür.
+
+Alt alanda, olası eylemlere ilişkin küçük bir genel bakış vardır:
+
+
+^, [CTRL]+ aşağıdaki harfleri temsil eder - örnekler:
+ [STRG]+O ile dosyayı kaydedebilirsiniz
+ [STRG]+X ile editör penceresini kapatabilirsiniz
+ [STRG]+W ile bir aramaya ulaşılabilir
+ [CTRL]+C, imlecin geçerli konumunu gösterir (satır, sütun)
+ vb.
+
