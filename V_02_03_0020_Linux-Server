@@ -1,0 +1,208 @@
+V_02_03_0020_Linux-Server
+Linux Server
+ Webserver
+ DNS-Server
+ Fileserver
+ DHCP-Server
+ Mail-Server
+sunucu nedir?
+"Sunucu" terimi (İngilizce hizmetçi için) bilgisayar bilimlerinde iki anlamda kullanılır.
+
+Sunucu, hem kaynakları bir ağ üzerinden kullanılabilir hale getiren bir bilgisayar hem de o bilgisayarda çalışan programdır.
+
+Buna göre iki farklı sunucu tanımı bulunmaktadır:
+
+Tanım sunucusu (donanım):
+Donanım tabanlı sunucu, işletim sistemine ek olarak bir veya daha fazla yazılım tabanlı sunucunun çalıştığı bir bilgisayar ağına entegre edilmiş fiziksel bir makinedir.
+
+Donanım tabanlı bir sunucu için alternatif bir ad "ana bilgisayar"dır (ana bilgisayar, ana bilgisayar için İngilizce).
+
+Tanım sunucusu (yazılım):
+Yazılım tabanlı bir sunucu, istemci adı verilen diğer programlar tarafından yerel olarak veya bir ağ üzerinden erişilebilen özel bir hizmet sunan bir programdır.
+
+Hangi hizmetin mevcut olduğu, sunucu yazılımının türüne bağlıdır.
+İletişim, istemci-sunucu modeline dayanmaktadır. Veri alışverişi için hizmete özel iletim protokolleri kullanılır.
+Prensip olarak, sunucu yazılımına sahip herhangi bir bilgisayar ana bilgisayar olarak kullanılabilir.
+
+Bir sunucu nasıl çalışır?
+Bir bilgisayar ağı aracılığıyla sunucu hizmetlerinin sağlanması, istemci-sunucu modeline dayanmaktadır.
+
+Bu konsept, görevleri farklı bilgisayarlara dağıtmayı ve birbirinden bağımsız olarak birkaç son kullanıcı tarafından erişilebilir hale getirmeyi mümkün kılar.
+
+Bir ağ üzerinden kullanılabilen her hizmet, sürekli olarak beklemede olan bir sunucu (yazılım) tarafından sunulur.
+
+Web sunucusu:
+Bir web sunucusunun birincil görevi, web sayfalarını depolamak ve hazırlamak ve bunları web tarayıcıları veya arama motoru tarayıcıları gibi istemcilere teslim etmektir.
+
+Sunucu (yazılım) ve istemci arasındaki iletişim, Köprü Metni Aktarım Protokolü'ne (HTTP) veya onun şifreli varyantı HTTPS'ye dayanır.
+
+Kural olarak, HTML belgeleri ve bunlara gömülü olan resimler, stil sayfaları veya komut dosyaları gibi öğeler aktarılır.
+
+Linux altındaki yaygın web sunucuları Apache ve Nginx'tir.
+
+Apaçi
+İnternette en çok kullanılan web sunucusudur. Çok sayıda modül kullanılarak esnek bir şekilde yapılandırılabilir ve genişletilebilir.
+
+MySQL ve PHP veya Perl veya Python ile birlikte birinden söz edilir:
+LAMP sunucuları (Linux, Apache, MySQL ve PHP, Perl veya Python gibi P).
+
+Debian/Ubuntu'da Kurulum:
+sudo apt apache2'yi kurun
+
+Web sitelerini saklayın ve çağırın, sunucunun içeriği "belge kökü" adlı bir dizinde saklanır: /var/www/html/
+
+Apache Sanal Konakları
+Her web sitesi için ayrı bir web sunucusu (her ana bilgisayar için) – mevcut bilgisayarların performansı göz önüne alındığında, bu kaynak israfı olur! Apache ile sanal ana bilgisayarlar sayesinde hemen hemen her sayıda web sitesini paralel olarak kurabilirsiniz.
+
+Ad tabanlı sanal ana bilgisayarlar:
+Apache, HTTP başlığında bulunan ana bilgisayar adına göre istenen web sitesini tanır.
+
+IP tabanlı sanal ana bilgisayarlar:
+Apache, istenen web sitesini başlıktaki IP adresine göre tanır.
+
+Bağlantı noktası tabanlı sanal ana bilgisayarlar:
+Apache, istenen web sitesini bağlantı noktası numarasına göre tanır. Port numarasının web adresinin bir parçası olarak belirtilmesi gerektiğinden, bu değişken pratikte olağandışıdır.
+
+Apache Sanal Konakları
+Her web sitesi için ayrı bir web sunucusu (her ana bilgisayar için) – mevcut bilgisayarların performansı göz önüne alındığında, bu kaynak israfı olur! Apache ile sanal ana bilgisayarlar sayesinde hemen hemen her sayıda web sitesini paralel olarak kurabilirsiniz.
+
+Ad tabanlı sanal ana bilgisayarlar:
+Apache, HTTP başlığında bulunan ana bilgisayar adına göre istenen web sitesini tanır.
+
+IP tabanlı sanal ana bilgisayarlar:
+Apache, istenen web sitesini başlıktaki IP adresine göre tanır.
+
+Bağlantı noktası tabanlı sanal ana bilgisayarlar:
+Apache, istenen web sitesini bağlantı noktası numarasına göre tanır. Port numarasının web adresinin bir parçası olarak belirtilmesi gerektiğinden, bu değişken pratikte olağandışıdır.
+
+DNS Sunucusu BAĞLAMASI
+BIND, orta ve büyük ağlarda yaygın olarak kullanılan Berkeley Üniversitesi (ABD) tarafından geliştirilen bir DNS sunucusudur. Açık kaynak olarak mevcuttur ve hemen hemen her işletim sistemine taşınmıştır.
+
+Bugüne kadar BIND, DNS sunucuları arasında "referans" olarak kabul edilir ve günümüz internetinin temelini oluşturur.
+Debian/Ubuntu'da Kurulum:
+sudo apt yükleme bind9
+BIND sunucusu, dizin aracılığıyla yapılandırılır:
+ /etc/bağlama
+
+Bir etki alanı için 2 arama bölgesi gereklidir:
+
+İleriye doğru arama geriye doğru arama
+
+Dinamik Ana Bilgisayar Yapılandırma Protokolü (DHCP) sunucusu
+DHCP, yerel ağda IP adreslerinin atanmasını kolaylaştırır. Ağda bir DHCP sunucusu varsa, bu yalnızca istemciler için IP adreslerini atamakla kalmaz, aynı zamanda onlara yönlendiricinin IP adresini, bir ad sunucusunu vb. verir.
+
+Linux'taki en iyi bilinen DHCP sunucularından biri: ISC-DHCPD
+
+
+
+dnsmasq, daha küçük (ev) ağlar için alternatif bir DHCP sunucusu olarak da mevcuttur ve yapılandırılması özellikle kolaydır.
+
+DHCP Sunucusu ISC DHCPD
+ISC DHCP, bir IP ağına bağlanmak için Dinamik Ana Bilgisayar Yapılandırma Protokolünü uygulayan açık kaynaklı yazılımdır. Küçük yerel alan ağlarının yanı sıra büyük şirketler için DHCP sunucuları, aktarma aracıları ve istemcileri uygulamak için eksiksiz bir çözüm sunar.
+
+Debian/Ubuntu'da Kurulum:
+sudo apt kurulum isc-dhcp-server
+
+Yapılandırma şurada gerçekleşir:
+/etc/dhcp/dhcpd.conf
+
+posta sunucusu:
+Bir posta sunucusu, etkileşimi e-postaların alınmasını, gönderilmesini, iletilmesini ve geri alınmasını sağlayan birkaç yazılım modülünden oluşur.
+Linux genellikle aşağıdaki kombinasyona sahiptir:
+
+Dovecot, yaygın olarak kullanılan bir MDA (Mail Delivery Agent) ve IMAP sunucusudur. Gelen e-postaları ilgili alıcının posta kutusuna sıralar ve posta kutusunu (IMAP) almak için bir arayüz sağlar.
+
+Postfix popüler MTA (Mail Transfer Agent) e-postanın taşınmasıyla ilgili her şeyi halleder: E-posta istemcisinden kendi posta sunucunuza ve oradan da ilgili hedef sunucuya.
+
+Rspamd, Postfix ile entegre olan ve gelen e-postaları tarayan bir spam filtresidir. İstenmeyen postalar, Rspamd tarafından tanınır ve kullanıcıya teslim edilmez veya sıralanmaz.
+
+Filtre dili Elek
+Elek, kullanıcıların posta sunucularında posta filtrelerini yapılandırması için tasarlanmış, alana özgü bir dildir.
+
+Kullanıcıların kendi e-posta filtreleme kurallarını kolayca tanımlamalarına izin verecek şekilde belirtilmiştir.
+
+
+
+Veritabanı sunucusu:
+Veritabanı sunucusu, diğer programların bir ağ üzerinden bir veya daha fazla veritabanı sistemine erişmesine izin veren bir bilgisayar programıdır. Veritabanı sunucuları genellikle veri depolama ve teslim etmede web sunucularını destekler.
+
+Linux'taki bazı yazılım çözümleri şunlardır:
+Oracle, MySQL, Mariadb, PostgreSQL ve DB2, Microsoft SQL Server 2017.
+
+SQL, ilişkisel veritabanlarında veri yapılarını tanımlamak ve bunlara dayalı olarak veri stoklarını düzenlemek (eklemek, değiştirmek, silmek) ve sorgulamak için bir veritabanı dilidir.
+
+MySQL
+güçlü bir veritabanı sunucusu uygulamasıdır. Linux'a ek olarak MySQL, Windows, MacOS, FreeBSD, Solaris ve diğer işletim sistemleri için de mevcuttur.
+
+Debian/Ubuntu'da MySQL kurulumu:
+sudo apt mysql sunucusunu kurun
+
+MySQL, dosya aracılığıyla yapılandırılır:
+/etc/mysql/mysql.conf.d/mysqld.cnf
+
+MySQL, veritabanlarını aşağıdakiler altında saklar:
+/var/lib/mysql
+
+Proxy sunucu:
+Proxy sunucusu, bilgisayar ağlarında bir iletişim arabirimi görevi görür. Aracı bir varlık olarak, proxy sunucusu ağdan gelen istekleri kabul eder ve bunları kendi IP adresi aracılığıyla iletir.
+
+Proxy sunucuları, iletişimi filtrelemek, bant genişliğini kontrol etmek, yük dengeleme yoluyla kullanılabilirliği artırmak veya verileri geçici olarak depolamak (önbelleğe alma) için kullanılır.
+
+Linux'ta en iyi bilinen proxy sunucusu: Squid
+
+Proxy Sunucu Kalamar
+Squid, açık kaynaklı bir proxy sunucusudur. Örneğin, internetten veri isteniyorsa, Squid bunu yerel olarak bir önbelleğe kaydeder ve gerekirse önbellekten yükler.
+
+Debian/Ubuntu'da Squid Kurulumu:
+sudo apt squid3'ü kurun
+
+Yapılandırma şu şekilde yapılır:
+/etc/squid/squid.conf
+
+Proxy Sunucu Kalamar
+Squid, çok küçük ağlar (5-10 kullanıcı) için ve ayrıca birkaç yüz bin kullanıcılı geniş alan ağlarında çok büyük proxy ağları için kullanılabilecek şekilde yapılandırılabilir.
+
+Dosya sunucusu:
+Bir ağ üzerinden çeşitli istemciler tarafından erişilebilir hale getirilecek dosyaların merkezi olarak depolanması için kullanılır. Şirketler, birden fazla çalışma grubuna aynı dosyalara erişim sağlamak için bu tür dosya yönetimine güvenir.
+
+Bir dosya sunucusu, farklı yerel dosya sürümlerinden kaynaklanan çakışmaları ortadan kaldırır, dosyaların otomatik olarak sürümlendirilmesini ve tüm şirket verilerinin merkezi olarak yedeklenmesini sağlar.
+
+Linux'ta Samba sunucusu sıklıkla kullanılır.
+
+Strateji
+Teorik olarak, aynı fiziksel makinede farklı sunucu türleri barındırılabilir.
+
+Ancak, her sunucunun ayrı bir bilgisayarda barındırıldığı veya hatta birkaç bilgisayara dağıtıldığı bir uygulama olağandır.
+
+Bu, diğer hizmetlerin performansını etkileyen bir hizmetin donanım kullanımını önler.
+
+Strateji
+Teorik olarak, aynı fiziksel makinede farklı sunucu türleri barındırılabilir.
+
+Ancak, her sunucunun ayrı bir bilgisayarda barındırıldığı veya hatta birkaç bilgisayara dağıtıldığı bir uygulama olağandır.
+
+Bu, diğer hizmetlerin performansını etkileyen bir hizmetin donanım kullanımını önler.
+
+Linux sunucusu
+İlgili işletim sistemlerinin sunucu versiyonunda, Libre-Office gibi kullanıcı programlarını içeren grafiksel kullanıcı arayüzü kaldırılmıştır.
+
+Bu sunucular başsız olarak da bilinir. Linux sunucuları genellikle SSH üzerinden yönetilir ve grafiksel bir arayüz burada kaynak israfı olur.
+
+Sunucu sürümleri, örneğin yalnızca belirli bir hizmeti barındırıyorlarsa yalnızca çok az bellek kullanacakları şekilde daha da kısaltılabilir. (ör. bir bağlama sunucusu yaklaşık 40MB)
+
+Ubuntu Sunucu Kurulumu 16.04 LTS
+Ubuntu Sunucusunu kurmak, esasen Ubuntu'yu kurmakla aynıdır. ...
+
+Burada grafik arayüz bulunmadığı için kurulum metin tabanlıdır.
+
+Ubuntu Sunucu Kurulumu 16.04 LTS
+Ancak Ubuntu'nun normal sürümünün özelliği, kurulum ile aynı anda istediğiniz sunucu hizmetlerini kurabilmenizdir. ...
+
+OpenSSH sunucusu, sunucunun uzaktan yönetilebilmesi için ideal olarak aynı anda kurulmalıdır.
+
+Ubuntu sunucu kurulumu
+Kurulumdan sonra, tüm sunucu işletim sistemlerinde olduğu gibi, tamamen güncellenmeli ve ayrıca statik bir IP yapılandırması ve sabit bir ana bilgisayar adı verilmelidir.
+
+Verimli bir şekilde kullanılacaksa, ancak bu tamamen güncellendiğinde uygun amaç için yapılandırmaya başlamalısınız!
+
+Bir Linux sunucusunun bir sürümünü yükseltirken, mutlaka önceden bir yedek oluşturulmalıdır! Genel olarak, sunucular için bir sürüm yükseltmesi önerilmez!
