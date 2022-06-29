@@ -1,0 +1,237 @@
+V_02_01_0020_Dateisysteme-2
+disk
+ Linux dosya sistemleri
+ Veri taşıyıcılarının bölümlenmesi
+ Dosya sistemleri oluşturma
+ Dosya sistemlerinin montajı
+
+Dosya sistemi:
+Bilgisayarda bulunan. Dosyaları kopyalama veya yedekleme oluşturma komutları, dosya erişim haklarıyla ilgili arka plan bilgileri vb.
+
+Ağ dosya sistemleri:
+Linux, diğer bilgisayarlardan dizinleri dizin ağacınıza entegre etmenize olanak tanır.
+
+Disk kotaları:
+Bu, bireysel kullanıcıların sabit sürücüde ne kadar yer kaplayabileceğini kontrol eden bir sistemdir. Sınır aşılırsa, daha fazla yeni dosya oluşturulamaz.
+
+Küme dosya sistemleri:
+Küme dosya sistemleri veya global dosya sistemleri, birden çok bilgisayardan gelen verileri bir sanal dosya sisteminde birleştirir. Bu, çok sayıda bilgisayar tarafından paralel olarak büyük veri belleklerinin oluşturulmasına ve kullanılmasına izin verir.
+
+Linux dosya sistemleri
+Linux kurulumu ve Linux işletimi için uygundur. Dosya sistemleri, temel olarak ileri düzey kullanıcılar veya sunucu kullanımı için ilginç olan özellikler bakımından farklılık gösterir:
+
+Çok büyük dosyaları veya çok sayıda oldukça küçük dosyaları işlerken hız
+Yazma ve okuma işlemlerinde verimlilik
+CPU yükü
+vb. (Ders notunda daha fazla örnek)
+
+Minix dosya sistemi
+eski öğretim işletim sistemi Minix'in dosya sistemidir. Bir Minix dosya sistemi altı bölümden oluşur:
+
+Önyükleme sektörü (her zaman ilk bloğa yerleştirilir. Önyükleyiciyi içerir)
+Süper blok (dosya sistemiyle ilgili verileri içerir)
+Düğüm bit eşlemi (tüm düğümlerin durumunun basit bir temsilidir.)
+Küme bit eşlemi (inode bit eşlemi ile aynıdır ancak kümelerin durumunu temsil eder.)
+İnode alanı (her dosya ve dizin en az bir inode ile temsil edilir)
+Veri alanı (Dosyaların ve dizinlerin gerçek içeriğinin depolandığı yer burasıdır.)
+
+ext2: Uzun yıllar boyunca, sağlam ext2, Linux altında standart dosya sistemiydi. Prensip olarak, haleflerinden daha hızlıdır. Ancak, önemli bir dezavantajı vardır: dosya sistemi testi son derece zaman alıcıdır.
+
+ext3: Günlük kaydı işlevinin tanıtılması nedeniyle, dosya sisteminin uzun süreli kontrolleri artık gerekli değildir. Az ana belleğe sahip eski sistemlerde bu hala mantıklıdır.
+
+ext4: Öncekilere kıyasla avantajlar, özellikle arabellek mekanizmaları (önbellek) aracılığıyla ana belleğin daha agresif kullanımı ve çok daha hızlı dosya sistemi kontrolleridir.
+btrfs
+Bu dosya sistemi, bir yazma üzerine kopyalama sistemi ve yeni bir veri/meta yönetimi türü içerir.
+
+Tanınmış çekirdek geliştiricilerine göre btrfs, geleceğin Linux dosya sistemidir. Dosya sistemi, aygıt eşleyici, anlık görüntü ve RAID içerir.
+Ne yazık ki, btrfs henüz tam olarak olgunlaşmadı.
+Linux için geliştirildi ve 2016'dan beri WinBtrfs adı altında Windows (Windows 7'den itibaren) ve ReactOS için daha da geliştirildi.
+
+Gelecekte, bugüne kadar Linux ortamında baskın olan ext3 ve ext4 dosya sistemlerinin sınırlamalarıyla (dosya boyutu ve genel dosya sistemi boyutu) değiştirilmesi amaçlanmaktadır. Btrfs dosya sistemi, diğerlerinin yanı sıra aşağıdaki özellikler için tasarlanmıştır:
+
+genişletilmiş dosya depolama (2^64 bayta kadar dosya boyutu)
+küçük dosyaların daha verimli depolanması
+dizin yapılarının daha verimli yönetimi
+
+ve daha fazlası (bildiriler)
+
+Günlük Tutma Özellikleri
+Tüm yaygın Linux dosya sistemleri, günlük tutma işlevlerini destekler. En basit haliyle, günlük kaydı, her dosya işleminin başlangıcı ve bitişinin özel bir dosyada günlüğe kaydedilmesi anlamına gelir.
+ 
+Log sayesinde daha sonra belirli bir dosya işleminin tamamlanıp tamamlanmadığı kontrol edilebilir.
+Şimdi, bir dosya işlemi tam olarak tamamlanamazsa, bu, günlükte görünecektir.
+
+boyut sınırları
+Geçmişte, maksimum dosya boyutu sorusu tekrar tekrar gündeme geldi. Cevap, kullandığınız çekirdeğe, CPU mimarisine, glibc kitaplığına ve dosya sistemine bağlıdır.
+Dateisystem	Maximale Dateigröße	Maximale Dateisystemgröße
+btrfs	16.777.216 Tbyte	16.777.216 Tbyte
+ext3	2 Tbyte	32 Tbyte ( bei 8 kbyte Blockgröße)
+ext4	16 Tbyte	1.048.576 Tbyte = 1 Exabyte
+xfs	9.437.184 Tbyte	9.437.184 Tbyte
+zfs	16.777.216 Tbyte	16.777.216 Tbyte
+
+Mantıksal Hacim Yöneticisi (LVM)
+Mantıksal Birim Yöneticisi, dosya sistemi ile sabit disk bölümleri arasına mantıksal bir katman koyar. İlk bakışta çok soyut görünen şeyin pratikte somut avantajları vardır:
+
+LVM tarafından yönetilen sabit disk alanı kapsamında, çalışma sırasında bilgisayarı yeniden başlatmadan bölümler oluşturabilir, büyütebilir ve küçültebilirsiniz. Ek bir sabit disk takarak mevcut LVM depolama havuzunu istediğiniz zaman büyütebilirsiniz.
+
+LVM sayesinde, birkaç sabit diskin bölümlerini tek, devasa bir sanal bölümde birleştirebilirsiniz.
+
+Bir dosya sisteminin sözde anlık görüntüsünü çok kolay bir şekilde oluşturabilirsiniz. Bu, anında yedeklemeler için idealdir.
+
+LVM çok hızlıdır. Böylece, gözle görülür şekilde azaltılmış bir hızda daha yüksek esneklik için ödeme yapmazsınız. Bir sabit disk bölümünün doğrudan adreslenmesiyle karşılaştırıldığında hızdaki fark pek ölçülemez. CPU yükü sadece biraz daha yüksektir.
+
+Mantıksal Hacim Yöneticisi (LVM)
+
+Fiziksel Birim (PV): Bir PV, genellikle sabit diskte LVM tarafından yönetilen bir bölümdür. Ayrıca tüm bir sabit disk veya bir RAID aygıtı olabilir.
+
+Hacim Grubu (VG): Bir veya daha fazla fiziksel hacim bir grup halinde birleştirilebilir.
+
+Mantıksal Birim (LV): Mantıksal bir birim, birim grubunun bir parçasıdır. Kullanıcı için mantıksal bir birim, sanal bir bölüm gibi davranır.
+
+Mantıksal Hacim Yöneticisi (LVM)
+Örnek, yukarıda tanımlanan terimleri göstermektedir: Bir sistemde, /dev/sda3 ve /dev/sdb1 bölümleri, bir LVM sisteminin bir birim grubu için fiziksel birimler olarak hizmet eder. /dev/sda3 400 GB, /dev/sdb1 900 GB'dir. ...
+
+LVM depolama havuzu (yani birim grubu) bu nedenle 1,3 TB boyutundadır. Artık çeşitli mantıksal hacimler içeriyor:
+
+Sistem bölümü ile LV1 (50 GB)
+/var bölümü ile LV2 (200 GB)
+/var/lib/mysql bölümüyle LV3 (200 GB)
+/home bölümü ile LV4 (400 GB)
+
+Kısaca takas alanı (veya takas belleği)
+çalışan belleğin kapasitesini artıran bir dosya veya bölümdür. Bu depolama alanı, kapasite yeterince büyükse, diski askıya alma moduna geçmeyi de mümkün kılar.
+
+Bu belleği artırma yöntemine sayfalama denir. Fiziksel bellek azaldığında, bellek sayfaları diske değiştirilir.
+
+
+
+
+
+Örneğin Oracle, mevcut RAM'e bağlı olarak veritabanı sunucusu için takas boyutunu hesaplamak için farklı faktörler önerir:
+
+
+
+Arbeitsspeicher	Swap-Speicher
+Bis 2 GB	Faktor 1,5
+2 bis 16 GB	Faktor 1
+Mehr als 16 GB	16 GB oder deaktiviert
+
+Fstab (dosya sistemleri tablosu)
+fstab dosyası, veri ortamını Linux altında bağlamak için kullanılır; merkezi /etc/fstab dosyasında bulunur. Başlarken otomatik olarak monte etmek istediğiniz veya daha sonra kısaltılmış bir bağlama komutu ile monte etmek istediğiniz veri taşıyıcıları vardır.
+
+Bilgisayar her yeniden başlatıldığında fstab okunur.
+Kendi Linux bölümleriniz fstab'da bulunmalıdır, aksi takdirde Linux açılmayacaktır.
+DVD veya CD sürücüsü gibi diğer veri taşıyıcılarının mutlaka girilmesi gerekmez.
+
+Otomatik olarak monte et veya etme: fstab'da, bilgisayar başlatıldığında sürücülerin otomatik olarak mı yoksa manuel olarak mı monte edileceğini belirtebilirsiniz. İkinci varyant için parametreyi "noauto" olarak ayarlayın.
+
+Ağ sürücüleri: Ağ sürücüleri de fstab'da listelenebilir.fstab'da lan komutlarına sahip olduğunuzda, ağı otomatik olarak entegre edebilirsiniz veya örneğin "bilgisayar adı:/dizin" gibi kısa bir bağlama komutu yeterlidir.
+
+fstab güncelleniyor: mount ile tamamen yeni bir dosya sistemi bağlarsanız, fstab otomatik olarak değişmez.
+
+Aşağıdaki komutla fstab'ı makinenizde görüntüleyebilirsiniz:
+
+kedi /etc/fstab ...
+
+dosya sistemi
+Cihaz dosyası burada belirtilir.
+
+/dev/hda1 - İlk bölüme sahip ilk sabit sürücü.
+/dev/sda1 - İlk disk, ilk bölüm (SATA, SCSI)
+/dev/fd0 - Disket
+Disk UUID'si
+
+bağlama noktası
+Veri ortamının entegre edileceği dizin burada belirtilir.
+
+/mnt/hdd-fat - Sabit sürücüler için varsayılan bağlama noktası
+/mnt/dvd-rom - ROM sürücüleri için varsayılan bağlama noktası
+/mnt/floppy0 - Disketler için varsayılan bağlama noktası
+
+Tür (fs_vfstype)
+Dosya sistemi burada belirtilir
+
+ext2 - ext2 dosya sistemi için
+ext3 - ext3 dosya sistemi için
+...
+
+Seçenekler (fs_mntops)
+
+auto - Otomatik olarak monte et
+acl - dosyalara ilişkin kullanıcı haklarını daha hassas bir şekilde kontrol etmek için erişim kontrol listesini etkinleştirir.
+sw—takas
+...
+
+dökümü (fs_freq)
+Döküm programıyla ilgili bilgiler buraya dahil edilmiştir, ancak döküm programı artık mevcut olmadığından artık yok sayılır.
+
+0 - Tüm sistem dışı bölümler için.
+1 - Genellikle sistem bölümlerini temsil eder.
+
+geçmek (fs_passno)
+Sistem başlangıcında gerçekleştirilen dosya sistemlerinin kontrol sırası burada belirlenir.
+
+0 - Dosya sistemi kontrol edilmedi!
+1 - önce kontrol edildi, kök dosya sistemi '/' için önerilir.
+2 - en son kontrol edilir.
+
+fstab değişiklikleri
+fstab herhangi bir düzenleyiciyle düzenlenebilir (fstab düzenleme için GUI uygulamaları da vardır, ancak bunu yapmak için kök ayrıcalıklarına ihtiyacınız vardır.
+
+Ancak, orijinal dosyayı değiştirmeden önce bir yedek kopya oluşturmak en iyisidir.
+
+fstab değişiklikleri yalnızca bilgisayarı yeniden başlattıktan sonra veya mount -a yazıldığında etkili olur
+
+sabit diskin bölümlenmesi
+Linux kurulumu sırasında en önemli adımlardan biri yeni Linux bölümleri oluşturmaktır. Tüm yaygın kurulum programları, bu amaç için kullanımı kolay bölümleme yardımcıları içerir...
+
+sabit diskin bölümlenmesi
+Ayrıca grafik arayüzün altında işinizi kolaylaştıran programlar bulacaksınız, örneğin GParted ...
+
+sabit diskin bölümlenmesi
+Her Linux kurulumu bir sistem bölümü gerektirir. Ek olarak, bir takas bölümü şiddetle tavsiye edilir.
+Ek bölümlerin ayarlanması isteğe bağlıdır, büyük ölçüde Linux'un kullanım amacına bağlıdır ve aynı zamanda bir zevk meselesidir.
+
+
+
+
+Verzeichnis	Verwendung
+/boot/efi	EFI-Partitionen (Bei EFI-Systemen, ca. 200 MB)
+/boot	BIOS-GRUB-Partition (1MB, nur für die Kombination BIOS + GPT)
+Swap	Swap-Partition (etwas größer als Ram am besten)
+/	Systempartition (mindestens 20 GB)
+/home	Datenpartition (Größe je nach voraussichtlicher Nutzung)
+fdisk (sabit disk)
+Geçmişten bir kalıntı. fdisk, parted'e alternatif olarak hala popüler.
+
+Ancak fdisk yalnızca MBR bölümleri olan veri taşıyıcıları için uygun olduğundan, parted veya alternatif olarak gdisk ile çalışıyoruz.
+fdisk /dev/GERÄT
+fdisk /dev/sda
+cfdisk (ncurses sabit disk)
+Kabuktaki bir sabit diski biçimlendirmenin uygun bir yolu cfdisk'tir.
+Bu program yalnızca kök ayrıcalıklarıyla çalıştırılabilir.
+
+Cfdisk bölümleri oluşturabilir, yönetebilir ve dosya sistemi (biçimlendirebilir) oluşturabilir. ...
+
+Bir veri taşıyıcı "biçimlendirildiğinde", bir dosya sistemi ile sağlanır.
+
+Böylece verilerin hangi yapı ile saklandığı belirlenir.
+
+Biçimlendirmeden önce, genellikle daha sonra biçimlendirilecek bir bölüm oluşturmanız gerekir.
+
+mkfs (dosya sistemi oluştur)
+Her dosya sisteminin kendi biçimlendirme komutu vardır. Ancak, komutların tümü aynı şemaya göre adlandırılır:
+
+mkfs.ext3 OPTIONEN DEVICE
+mkfs.ext3 /dev/sda2
+
+ext3 elbette diğer dosya sistemleriyle de değiştirilebilir. CİHAZ'ın teknik özellikleri zorunludur.
+
+mount
+Biçimlendirdikten sonra, sistem başladığında otomatik olarak monte edilmesi için bölümü fstab'a girmelisiniz.
+
+Bunları manuel olarak da monte edebilirsiniz, bunları komut satırına monte etmek için kullanılan yardımcı programa Mount denir.
+mount /dev/sdc1 /media/usb
+mount /dev/sdd1 /mnt/speicher
+
