@@ -1,0 +1,235 @@
+V_01_02_0020_Die-Shell-Teil-2
+Belirli bir kalıp (kelime) ararken geçerli dizinin tüm dosya adlarını yazmak zorunda kalmamak için başka bir kabuk aracı kullanabilirsiniz: dosya adlarını meta karakterlerle değiştirmek.
+
+Ama meta karakterler nedir?
+Kabuk, meta karakterleri içeren dosya adlarını, ilgili dizindeki varsayılanla eşleşen tüm dosya adlarıyla değiştirir.
+
+Hangi meta karakterler var?
+root# find [abc]
+
+G/Ç yeniden yönlendirmesi ( >, >>, <, 2> ) meta karakter dosya adı genişletmesi yapmaz.
+
+Çıktı veya hata yeniden yönlendirmesi ile meta karakterler dosya adları olarak oluşturulacak ve bu da hatalara yol açacaktır.
+Metazeichen	Ersetzung
+*	Yıldız işareti herhangi bir karakter dizisiyle eşleşir
+(veya işaret yok)
+
+?	Soru işareti herhangi bir karakterle eşleşir (ancak hiçbir karakterle eşleşmez)
+
+[ … ]	parantez ile, parantez içinde belirtilen bir karakterle değiştirilir:
+[abc], a, b veya c ile değiştirilir
+
+[!...]	Ünlem işaretli parantez, parantez içinde belirtilmeyen herhangi bir m karakteri ile değiştirilir:
+[!abc] herhangi bir karakterle değiştirilir, ancak a, b veya c ile değiştirilmez
+
+\	Bu eğik çizgi, sonraki meta karakterin (kaçış sembolü) değiştirme mekanizmasını geçersiz kılar:
+\? Soru işareti herhangi bir karakterle değiştirilmez, soru işareti olarak kabul edilir.
+
+Meta karakterleri kullanarak dosya adı genişletme örnekleri
+Geçerli dizindeki hangi dosyada "posta" kelimesinin geçtiğini belirlemek için aşağıdaki komutu girebilirsiniz:
+
+Veya /bin dizininde hangi iki basamaklı komutların olduğunu ve kaç tane olduğunu bilmek ister misiniz?
+
+/dev dizini altında tty1 – tty7 terminal tanımları var mı?
+Bu, köşeli parantezlerle kolayca sorgulanabilir.
+Ancak, bir seferde yalnızca bir karakterin değiştirilebileceğini lütfen unutmayın.
+(el notunda daha fazla örnek)
+
+Metakarakterleri kullanarak kendinizi çok fazla yazma zahmetinden kurtarabilirsiniz.
+Tarih dosyasının içeriğini görüntülemek istiyorsanız, adı "D" ile başlayan tek bir dosya olması koşuluyla, cat D*'yi çağırmanız yeterlidir.
+Birkaç dosya "D" ile başlıyorsa, hepsi sırayla görüntülenecektir.
+
+"Yeni" dosyasının sonuna tarihi koymak istediğinizde ve çıktıyı yeniden yönlendirirken yalnızca D* belirttiğinizde ne olacağını düşünüyorsunuz?
+Ubuntu 16.04'teki mevcut sürümle çalışır. Ama geçmişte işe yaramadı, bu yüzden kullanmaktan kaçınırdım!
+
+uygulama örneği
+Yanlış oluşturulan dosya tekrar nasıl silinebilir?
+Dosyaları silme komutu rm (kaldır) bu amaçla kullanılabilir. Linux/Unix üzerindeki en tehlikeli komut olarak bilinir. Bu komutla dosyalar geri alınamayacak şekilde silinir!
+
+
+
+
+
+Linux hataları affetmez! Bu yüzden root ve rm ile çalışırken dikkatli düşünün!
+
+Örneğimizde yanlışlıkla oluşturulan "D*" dosyasını silmek için rm D* girilirse ne olur?
+
+Örneğimizde D* dosyasını silmek için, sadece »D*« dosyasını belirtmek için kaçış karakterini (meta karakterlerin ortadan kaldırılması) »\« da kullanabiliriz.
+Kaçış karakterleri olmadan (kaçış dizisi) ve kaçış karakterleriyle:
+
+Örneğin, bir komut satırına girerseniz ve ekran tüm bilgileri bir satıra yazacak kadar büyük değilse, ters eğik çizgiyi kullanarak enter tuşunun anlamını kaldırabilir ve sonraki satırda yazmaya devam edebilirsiniz.
+
+Belirli özel karakterleri (*, ? [ ], boşluklar vb.) iletmek için tırnak işaretleri içine alınırlar (yani komut çağrıldığında kabuk tarafından dosya adlarıyla değiştirilmemeleri gerekir)
+
+Aşağıdaki örnekte, belirtilen tüm dosyaların içeriğinde Dont ve Drink kelimeleri aranmıştır.
+
+Her iki kelime de bulundu çünkü tırnak işareti de boşluktan geçiyor.
+
+Tırnak işaretini atlarsanız, ikinci "içecek" kelimesi artık kalıba atanmaz, bir seçenek olarak yorumlanır:
+
+Kommando	Funktion
+?	Tam olarak herhangi bir karakter
+*	Herhangi bir sayı (sıfır dahil) herhangi bir karakter (aber keine .*-Dateien!)
+**	Tüm alt dizinler dahil tüm dosyalar ve dizinler
+ (ab bash 4.0 mit shopt –s globstar
+[abc]	Belirtilen karakterlerden biri
+[a-f]	Belirtilen karakterden bir karakter
+[!abc]	Belirtilen karakterlerden hiçbiri
+
+[^abc]	Yukarıdaki gibi
+~	Ev dizini için kısaltma
+
+Kommando	Funktion
+.	Geçerli dizin
+..	Ana Dizin
+ab{1, 2, 3}	ab1 ab2 ab3 döndürür
+a{1..4}	a1 a2 a3 a4 döndürür
+$[3*4]	Aritmetik Hesaplamalar
+`kommando`	Komutu sonucuyla değiştirir.
+$(kommando)	Yukarıdaki gibi, alternatif yazım
+Kommando „Zeichen“	$ hariç tüm özel karakterlerin değerlendirilmesini engeller
+Kommando ‚Zeichen‘	Yukarıdaki gibi ancak daha kısıtlayıcı olmadan (değişken ikamesi yok)
+
+düzenli ifadeler
+Bu ifadeler – bu arada konuyla ilgili bütün kitaplar var – metin dosyası gibi bir girdiden karakter dizilerini filtrelemek için kabukta kullanılır.
+
+Gördüğünüz gibi, aslında sadece "a" karakterini içeren satırlar yazdırıldı. Bunu herhangi bir karakterle ve hatta tüm dizelerle yapabilirsiniz.
+
+Ancak, bu normal ifadeler yalnızca "port" gibi açıkça belirtilen dizeleri filtrelemek için kullanılamaz.
+Böylece "hafen"in bir satırın sonunda veya başında gelebileceğini, ikinci karakterin "a" ve aynı zamanda "x" olabileceğini belirtebilirsiniz.
+son karakterin küçük harf veya büyük harf olabileceği vb.
+Örneğin, "n" veya "g" ile biten tüm satırlar yazdırılacaksa, [ng]$ normal ifadesi kullanılabilir:
+
+İfade şöyle okunacaktı:
+
+Satırın son karakteri ($) "n" veya "g" ([ng]) olabilir. Düzenli ifadeler, bu tür birkaç modelden oluşabilir.
+
+Örneğin, bir satırın son karakterinden önce gelen karakteri de belirtebilirsiniz, vb.
+
+
+El notunda daha fazla örnek ve olası kombinasyonlar!
+
+Kabuk Değişkenleri nedir?
+Değişkenler adından da anlaşılacağı gibi değişken olabilir, yani değişen değerler içerebilir.
+
+Kabuk altında, bir adla adreslenen değişkenlere bir değer atayabilirsiniz.
+
+Bu değeri daha sonra sorgulayabilirsiniz.
+Name=Wert	Değer atayarak değişken tanımlama
+
+Boşluk bırakmadan giriniz!
+$Name	"Ad" değişkenini atanan değerle değiştirme
+
+= - Kabuk altında değişkenlerin atanması
+Beispiel: k=kursteilnehmer
+
+Kabuk Değişkenleri nedir?
+Bir dizi kısayol oluşturmak için değişkenleri kullanabilirsiniz. Bir değişkenin değerini almak için, tanımlayıcı olarak adın önüne bir dolar işareti "$" yerleştirilir.
+
+"echo merhaba $k" yazarsanız, kabuk bunun "k" harfi değil, "k" değişkeni olduğunu anlar ve "$k" yerine atanan "merhaba öğrenci" değeriyle değiştirir.
+
+Değişkenler geçicidir ve kabuk sonlandırılana kadar kalır (oturumu sonlandır - yeni oturum).
+
+Yeni dosya adları oluşturmak için değişkenin değerini kullanın; örneğin, ikame adın yalnızca bir parçası olduğunda, değişken adı küme parantezleriyle sınırlandırılır:
+
+${Name}
+
+Örneğin, prosedürü arayan kişinin ilgili oturum açma adıyla dosyalar oluşturmak ve ayrıca bir numara eklemek istiyorsanız, şunu girin: > ${LOGNAME}1 veya ${LOGNAME}1'e dokunun. $USER değişkeni benzer şekilde çalışır.
+
+Değişkenler yeni bir değer atanarak değiştirilebilir.
+Kabuk değişkenleri yalnızca mevcut kabuk için geçerlidir; alt programlara (alt süreçler) de uygulanacaklarsa, dışa aktarılmaları gerekir.
+
+Export Name der Variablen
+Önceden tanımlanmış kabuk değişkeni
+PATH'i genişletmek için öncelikle sizin için belirtilen arama yoluna hangi dizinlerin girildiğinden emin olmalısınız.
+
+echo $PATH komutu size şunu söyler:
+
+Önceden tanımlanmış kabuk değişkeni
+PATH değişkeni, kabuk tarafından komutları aramak için kullanılır. Oluşturduğunuz komutların Linux/Unix komutlarına göre önceliği olacaksa, PATH değişkenini öncelikli olarak ele alınacak dizin başında olacak şekilde atamanız gerekir, örn.:
+
+PATH="~/Befehle:$PATH"; export PATH veya
+export PATH="~/Befehle:$PATH"
+
+Önceden tanımlanmış kabuk değişkeni
+set komutu ile mevcut programda ayarlanan değişkenler
+
+env ile dışa aktarılan değişkenler görüntülenir.
+
+Önceden tanımlanmış kabuk değişkeni
+Değişkenler sadece program süresince geçerlidir.
+Kabuğunuzu başlattığınızda (oturum açma sırasında) önceden tanımlanmış değişkenler atanır.
+Oturumu kapattığınızda veya kendi kabuğu ile yeni bir terminal açtığınız anda geçerliliklerini kaybederler. Bu nedenle, her seferinde PATH uzantısını yeniden yapmanız gerekir.
+Kabuk ortamınızı size uygulamak istediğiniz değişkenlerle otomatik olarak doldurmak için ana dizininizdeki .profile dosyasını değiştirebilirsiniz.
+
+Örneğin, nano düzenleyiciyi kullanarak aşağıdaki içeriği bash.bashrc dosyasına ekleyin:
+
+Şimdi yeni bir terminal açtıktan sonra aşağıdakileri yapın:
+
+Bir komutun sonucuyla değiştir
+Komutların sonucunu parametre olarak (komut değiştirme) iletmek için özel karakterleri $( cmd ) veya eski gösterimi (vurgu mezarı) kullanabilirsiniz.
+
+Örnek Vurgu Mezarı:
+
+Kabuk değişkenleriyle ilgili temel bilgileri özetleyelim:
+
+Kabuk değişkenleri bir değer atanarak oluşturulur
+
+Bir değerde boşluk varsa, ifadenin tamamı tırnak içine alınmalıdır, örn. PS1="Tamam" . Ad, eşittir işareti ve değer arasında boşluk bırakılamaz.
+
+$Name, Name değişkenine atanan değerle değiştirilir
+
+Bir kabuğun çağrılması
+Prensip olarak, çalışma sırasında bir kabuk çağrılabilir.
+Ancak, çağrı yalnızca bir sonraki yeniden başlatmaya kadar geçerlidir.
+
+"sh" kabuğunu çağırmak, ör.
+
+root# sh
+root # bash
+root # zsh
+
+Bir kabuğun kalıcı değişimi
+Yeniden başlattığınızda farklı bir kabuğa sahip olmak için chsh komutunu kullanabilirsiniz. Seçilen kabuk daha sonra her yeni oturum açma işleminde yürütülür.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bash çağırma seçenekleri
+Bizim durumumuzda "bash" olan kabuk farklı modlarda başlatılabilir. Bir "giriş kabuğu" olarak başlayan birini zaten tanıdınız. Başkaları var, işte ana olanlar.
+-c	Bir komut/komut dosyası geçirme
+-i	etkileşimli kabuk
+-l	Giriş Kabuğu
+-v	Yürütülen komutları "bash" tarafından alındıkları şekliyle gösterir.
+-r	Kısıtlı mod
+-x	Komutları yürütüldükçe gösterir
+
+Bir komut/komut dosyası geçirme
+Ayrıca hemen "bash" komutuna iletebilirsiniz.
+"bash" başlayacak ve sadece komutu çalıştıracaktır.
+Yalnızca yürütülen komut için "bash" a dallanır.
+Yürütmeden sonra, çağrı kabuğuna geri dönersiniz.
+
+etkileşimli kabuk
+"Etkileşimli kabuk" bir terminale bağlanır.
+
+Bir "terminal/konsol"a bağlıysa, bizim durumumuzda bir "sanal konsol" girişi kabul edebilir.
+
+Kısıtlı mod
+"Kısıtlayıcı modda" "bash" kısıtlanır.
+
+Örneğin, bir klasörü değiştirmek mümkün değildir.
+
+Dükkan
+"Bash seçenekleri" ayarları için daha fazla seçenek sunar.
+
