@@ -1,0 +1,335 @@
+V_02_02_0010_Dateiberechtigungen
+Dosya İzinleri Komutları
+ chown
+ chgrp
+ chmod
+ umask
+ ACL (Erişim Kontrol Listesi) (Access Control List)
+bir dosyanın özellikleri
+Bir dosya, dosyanın belirli özelliklerinin girildiği bir dosya başlığından ve gerçek dosya içeriğinden oluşur. ls -l ile bir dosya veya dizine bakarsak, şu özelliklerden bazılarını elde ederiz:
+
+Dosya türü – (dizin, normal dosya veya aygıt dosyası, sembolik bağlantı),
+Erişim Hakları – (okuma, yazma, yürütme – okuma, yazma ve yürütme izni)
+sahibi, grubu ve diğer kullanıcılar için),
+Referans sayısı - (atanan dosya adlarının sayısı),
+kullanıcı adı ve grup
+Bayt cinsinden boyut
+dosyanın son değiştirilme tarihi ve adı.
+
+Örnek: Ek dosya özniteliklerine sahip dosyaların gösterimi (ls -lis)
+
+iNode-Nr.	Blockanzahl	Zugriffsrechte	Referenz-Zähler	Benutzer	Gruppe	Größe in Bytes	Datum der letzten Änderung	Dateiname
+3932460	0	-rw-r--r--	1	sb	sb	243	Apr 16	1.txt
+3932461	0	-rw-r--r--	1	sb	sb	1024	Apr 16	2.sh
+3932462	0	-rw-r--r--	1	sb	sb	8192	Apr 16	3.txt
+3932463	0	-rw-r--r--	1	sb	sb	1234	Apr 16	4.text.txt
+3932257	4	-rw-rw-r--	2	sb	sb	12	Apr 17	adressen
+3932513	4	-rw-rw-r--	1	sb	sb	12	Apr 17	adressen_alphabetisch
+3932232	4	drwxr-xr-x	1	sb	sb	4096	Apr 14	Bilder
+
+
+Örnekler: erişim hakları
+Gerätedatei
+Typ	Besitzer	Gruppe	Andere
+c	rw-	---	---
+Aynı grubun kullanıcılarının ve diğerlerinin bu cihazda yazmalarına veya okumalarına izin verilmez.
+
+Verzeichnis
+Typ	Besitzer	Gruppe	Andere
+d	rwx	rwx	r-x
+Herkes cd (x) ile bu dizine geçebilir ve dosyaları (r) okuyabilir. Yalnızca aynı grubun sahibi ve kullanıcılarının yeni dosyalar oluşturmasına ve değiştirmesine (w) izin verilir.
+
+Dateien
+Typ	Besitzer	Gruppe	Andere
+-	rw-	rw-	r--
+Bu dosya herkes tarafından okunabilir. Yalnızca sahibi veya aynı gruptaki kullanıcılar tarafından değiştirilebilir.
+-	rwx	rwx	r-x
+Bu dosya herkes tarafından okunabilir ve yürütülebilir. Yalnızca aynı grubun sahibi ve kullanıcılarının değişiklik yapmasına izin verilir.
+
+chmod
+Erişim haklarını yalnızca bir dosyanın veya dizinin sahibiyseniz değiştirebilirsiniz. Bunun için chmod (mod değiştir) komutu kullanılır.
+
+Bu komutu farklı şekillerde çalıştırabilirsiniz:
+ 
+chmod komutuyla, aşağıdakileri belirtmeniz gereken dosyaların erişim haklarını değiştirirsiniz:
+Für wen	Besitzer (user)
+Benutzer der gleichen Gruppe (group)
+Alle anderen (other)
+Hiçbir şey belirtilmemişse, değişiklik herkes için geçerlidir!
+wie	Sollen die Zugriffsrechte
+Hinzugefügt (+) werden?
+Oder sollen die Zugriffsrechte entzogen (-) werden?
+Yoksa erişim hakları iptal mi edilmeli (-)?
+Eine von beiden Optionen muss angegeben werden!
+İki seçenekten biri belirtilmelidir!
+was	Welche Rechte sollen geändert werden?
+Lesen (read)
+Schreiben (write)
+Ausführen (execute)
+Eine von beiden Optionen muss angegeben werden!
+
+Örneğin, tüm üyelerin yazmasına izin verilmesi gerekiyorsa, komut şudur:
+chmod g+w Dateiname
+Örnek: sembolik belirtimle erişim haklarını değiştirme –
+chmod ugo+rwx
+Örnekten go ve wx kombinasyonlarına izin verildiğini görebilirsiniz. Kimin için, nasıl ve neyin değiştirileceğini belirlerken tek tek semboller arasında boşluk olmaması önemlidir. ...
+
+chmod'u sayısal (sekizlik) değerlerle çalıştırma
+Bireysel haklar için aşağıdaki değerler atanır:
+chmod [777] Dateiname oder Verzeichnis
+r	read	Lesen	4
+w	write	Schreiben	2
+x	execute	Ausführen	1
+
+Tüm haklar bir dosyada ayarlanmışsa, değer 777'dir.
+
+Örnek: Bir dosyanın tüm hakları ayarlandı
+Haklar değiştirilecekse, üç alt bölüm sahibi grubundan sonra, tahsis edilen hakların ilgili toplamı eklenir.
+
+Örneğin, sahibin okuma, yazma ve yürütme izni varsa, grup yalnızca okur ve yürütür ve diğerleri yalnızca okursa, sekizli sayı aşağıdaki gibi hesaplanır.
+
+Zugriffsrechte (Modus) eingeteilt nach:
+Besitzer (user)	Gruppe (group)	Andere (other)
+read	write	execute	read	write	execute	read	write	execute
+4	2	1	4	0	1	4	0	0
+7	5	4
+
+Örnek: Sekizli sayı ile erişim haklarını değiştirme
+
+Sekizli sayı şu şekilde hesaplanır:
+
+Besitzer	Gruppe	Andere
+rwx	r-x	---
+4+2+1	4+0+1	0+0+0
+= 7	= 5	= 0
+
+Dosyanın sahibi, dosyalarından birini başka bir kullanıcının dizinine kopyalayacaksa, kopyalanan dosyanın sahibi olarak kalır.
+
+Kopyalama işine nereden başladığı önemli değil.
+
+Kombinationsmöglichkeiten von Besitzer und Gruppe
+Kombination	Bedeutung
+besitzer_name:gruppen_name	Kullanıcı ve grup aynı anda ayarlanır.
+                        :gruppen_name	Grup, sahibi değişmeden kalırken ayarlanır.
+besitzer_name:	Sahip, sahibi_adı - ve grup, oturum açmış kullanıcının varsayılan grubuna ayarlanır.
+besitzer_name	Sadece sahibi belirlenir.
+Bu şu anlama gelir: Dosyanın sahibi önce diğer kullanıcının dizinine geçse ve sonra onu kopyalasa bile, kopyalanan dosyanın tek sahibi olmaya devam eder.
+
+chown değişiklik sahibi anlamına gelir ve sahip kullanıcıyı ve/veya dosya sahibi grubunu değiştirmeye izin verir.
+Ancak, bu yalnızca UNIX dosya izinlerini destekleyen dosya sistemlerinde çalışır (örn.
+
+Genel sözdizimi aşağıdaki gibidir:
+
+chown [-R] Besitzer:Gruppe Dateiname(n) oder Verzeichnis(se)
+
+-R seçeneği isteğe bağlıdır ve alt dizinlerin ve bunların dosyalarının eklenmesine izin verir.
+Kopyalanan dosyayı tux'a yeniden yazmak ve ona sahipliğini vermek için yöneticinin şunu yazması gerekir: ...
+
+chown diğerleri arasında aşağıdaki seçenekleri tanır:
+Optionen von chown
+Option	Beschreibung
+-c oder --changes	(Yalnızca) sahibi gerçekten değiştirilmiş olan dosyalar görüntülenir.
+-f oder --force	Başarısız değiştirme girişimleriyle ilgili hata mesajları bastırılır
+-v oder --verbose	Tüm eylemler görüntülenir
+-R oder --recursive	Alt dizinlerdeki tüm dosyaların sahipliği de değiştirilir
+Aşağıda, chown tarafından kabul edilen tüm olası sahip ve grup kombinasyonları verilmiştir:
+
+chgrp
+değişiklik grubu anlamına gelir ve dosya ve klasörlerin grup üyeliğini değiştirir. Bu komutu yalnızca dosyanın sahibi veya süper kullanıcısıysanız kullanabilirsiniz. Yalnızca ait olduğunuz gruplar mevcuttur.
+
+Genel sözdizimi aşağıdaki gibidir:
+chgrp [Option(en)] Gruppe Dateiname(n) oder Verzeichnis(se)
+chgrp, diğerleri arasında aşağıdaki seçenekleri tanır:
+Optionen von chgrp
+Option	Beschreibung
+-c oder --changes	Bu seçenek, değiştirilecek dosyaları görüntüler.
+-f oder --force	Hata mesajları bastırılır.
+-v oder --verbose	Bu seçenek chgrp'nin yaptığı her şeyi gösterir.
+-R oder --recursive	Bu seçenek, dizinleri yinelemeli olarak değiştirmeye izin verir.
+
+Bir kullanıcı müzik grubundadır ve /opt/music/ dizininin grup atamasını ve tüm içeriğini müzik olarak değiştirir:
+chgrp -c -R musik /opt/musik/
+özel haklar
+Özel uygulamalar için özel dosya hakları da vardır. Bunların kullanımı, yalnızca tam olarak ne yaptığınızı biliyorsanız tavsiye edilir, çünkü bu güvenlik sorunlarına yol açabilir.
+Sonderrechte
+Zeichen	Bedeutung	Beschreibung
+s	Set-UID-Recht (SUID-Bit)	Set UID hakkı ("Set User ID" veya "Set user ID"), yürütme haklarına sahip bir dosyanın her zaman dosya sahibinin haklarıyla çalışmasını sağlar. Bu bitin klasörler için bir anlamı yoktur.
+s (S)	Set-GID-Recht (SUID-Bit)	Set GID hakkı ("Grup Kimliğini Ayarla" veya "Grup tanımlayıcısını ayarla"), yürütme haklarına sahip bir dosyanın her zaman dosya grubunun haklarıyla çalışmasını sağlar. Bir klasör için, grubun o klasörde yeni oluşturulan alt klasörler ve dosyalar tarafından devralınmasına neden olur.
+t (T)	Sticky-Bit	Yapışkan bitin ("yapışkan") modern sistemlerde yalnızca bir işlevi vardır: Bir klasöre uygulanırsa, içinde oluşturulan dosyalar veya dizinler yalnızca dosya sahibi tarafından silinebilir veya yeniden adlandırılabilir. Bu, örneğin /tmp için kullanılır.
+
+Uzman bilgisi:
+Tüm haklar, uygun şekilde ayarlanmış bitlerle temsil edilir. Sekizlik değer daha sonra istenen bitlerin önemine göre hesaplanabilir.
+Recht	Wert
+Lesen	4
+Schreiben	2
+Ausführen	1
+Recht	Wert
+Set-UID	4
+Set-GID	2
+Sticky	1
+ Tehlike!
+Her şeyden önce, "UID'yi doğru ayarla" yalnızca çok dikkatli kullanılmalıdır!
+
+Kökün sahip olduğu dosyalar için SUID biti ayarlamak özellikle tehlikelidir, çünkü o zaman yönetici haklarına sahip herkes onları başlatabilir. İlgili programdaki güvenlik açıkları daha sonra tüm sisteme tam kök erişimi sağlamak için kullanılabilir. Bu bit yalnızca bunun için tasarlanmış birkaç programda ayarlanır (örneğin sudo veya su).
+
+Varsayılan ayar ve maskeleme
+Her Linux sisteminde, yeni oluşturulan klasörler ve dosyalar için erişim hakları için varsayılan değerler vardır. Bunlar umask komutu kullanılarak bir terminalde sorgulanabilir.
+Befehl	Ausgabe	Beschreibung
+umask	0002	Sekizli formda temsil. İlk hane özel hakkı temsil eder, diğer üçü "sahip", "grup" ve "tüm diğerleri" anlamına gelir.
+umask -s	u=rwx, g=rwx, o=rx	Sembolik formda temsil. u= kullanıcı, g= gruplar ve o= diğer anlamına gelir. İlgili haklar eşittir işaretini takip eder.
+Sekizli formda (parametresiz umask)
+bu haklar, maskelenmiş, yani ayarlanmamış olarak görüntülenir. Sembolik formda ise maskelemeden sonra kalan haklar gösterilir.
+
+Buradaki varsayılan değer 0002 şu anlama gelir:
+Rechte	Beschreibung
+S = ---	Keine Sonderrechte gesetzt
+U = rwx	Eigentümer darf lesen, schreiben und ausführen
+G = rwx	Die Gruppe darf lesen, schreiben und ausführen
+O = r-x	Alle anderen dürfen nur lesen und ausführen
+
+Değeri değiştirmek istiyorsanız, istediğiniz değeri veya hakları parametre olarak girin: ...
+
+Bu şekilde girilen umask değerleri sadece ilgili oturum için geçerlidir.
+
+Daha önce /etc/profile dosyasındaki bir girişle yapılan umask'ın sistem genelindeki ayarı, şimdi /etc/login.defs dosyası aracılığıyla pam_umask PAM modülü tarafından gerçekleştirilir.
+
+~/.profile içindeki bir girişle bireysel kullanıcılar için farklı ayarlar tanımlanabilir.
+
+Değişiklikler yalnızca yeniden başlatma veya yeni bir oturum açma işleminden sonra etkili olur.
+
+Maskenin hesaplanması
+Maske, istenen erişim haklarının tersidir.
+
+Maskeyi belirlemenin en kolay yolu, her durumda 7'den istenen sekizlik değerleri çıkarmaktır.
+Differenz zu 777
+Ausgangswert	7	7	7
+Maske	1	3	7
+Effektive Rechte	6	4	0
+Örnek kullanılarak umask hesaplanması:
+Zugriffsrechte
+	Benutzer	Gruppe	Andere
+symbolisch	r	w	-	r	-	-	-	-	-
+oktal einzeln	4	2	0	4	0	0	0	0	0
+oktal	6	4	0
+Maske
+	Benutzer	Gruppe	Andere
+oktal 	1	3	7
+oktal einzeln	0	0	1	0	2	1	4	2	1
+symbolisch	-	-	x	-	w	x	r	w	x
+Erişim Kontrol Listeleri (kısaca ACL)
+Erişim Kontrol Listeleri (kısaca ACL) yardımıyla, bireysel kullanıcılar (veya gruplar) için bireysel dosyalara belirli haklar vermek veya geri çekmek mümkündür.
+ACL'ler böylece Linux'un normal hak yönetimini tamamlar. Ek olarak, ACL'ler, bir dizin ağacında yeni oluşturulan dosyalar için tek tip haklar atamasını zorlamak için kullanılabilir.
+
+Bu, özellikle daha büyük çok kullanıcılı sistemlerde faydalı olabilir. Bir veya iki kullanıcılı "normal" masaüstü sistemlerinde, ACL'lerin kullanımı genellikle mantıklı değildir.
+
+Ayrıca, ACL'yi yok sayan ve sorunlara neden olabilen birçok kabuk komutu vardır.
+
+Dosya sisteminde etkinleştir
+
+ACL'ler, JFS ve XFS dosya sistemleri için varsayılan olarak ayarlanabilir.
+
+Linux'ta yaygın olarak kullanılan ext3, ext4 ve Reiserfs dosya sistemlerinde, ACL'ler önce açık bir şekilde etkinleştirilmelidir. Bu, bölümü monte ederken veya doğrudan /etc/fstab içinde -o acl seçeneği kullanılarak yapılır. ...
+
+Ubuntu 12.04'ten beri acl, ext3 ve ext4 dosya sistemleri için varsayılan seçeneklerden biri olmuştur ve bu nedenle artık bunlar için de açıkça etkinleştirilmesine gerek yoktur.
+
+EKL'leri düzenleme
+ACL yönetimi iki program aracılığıyla çalışır:
+
+Setfacl ACL'leri ayarlamak ve silmek için kullanılır
+Getfacl ACL'yi okumak için kullanılır
+
+Klasik UNIX haklarında olduğu gibi, bir dosyanın ACL'leri diğer kullanıcılar tarafından değil, yalnızca ilgili dosyanın sahibi tarafından ayarlanabilir. Ek olarak, ls ve chmod komutları biraz değiştirilmiş olsa da hala çalışır.
+
+Klasik Unix izinleri yalnızca sahip, sahip olan grup ve diğerleri ("diğer") için erişim izinlerinin farklılaşmasına izin verir.
+
+Bir dosyaya tam olarak bir kişiye haklar vermek istiyorsanız, tam olarak haklara sahip olması gereken kullanıcıları içeren bir grup oluşturmanız gerekir.
+
+Bu nedenle, istenen her kullanıcı kombinasyonu için pratik olmayan ayrı bir gruba ihtiyacınız var.
+
+Bir ACL'nin Yapısı
+ACL'ler, herhangi bir başka kişiye veya gruba erişim hakları (okuma, yazma, yürütme veya rwx) vererek sorunu çözer. ACL'ler hakların aşağıdaki taraflara atanmasına izin verir:
+
+tam olarak bir sahip, adlı kullanıcı
+tam olarak bir sahiplik grubu, adlı grup
+Başka
+
+Sahip, sahip olan grup ve diğerleri, klasik Unix ayrıcalıklarıyla aynıdır. Yok, bir veya daha fazla adlandırılmış kullanıcı ve adlandırılmış grup yeni.
+
+ACL'leri ayarlama ve silme
+Kullanıcılar ve gruplar için hakları ayarlama
+
+setfacl -m u:Benutzer:-,g:Gruppe:RECHTE,… DATEI …
+
+Birden çok iznin virgülle ayrılmış olarak listelenebileceğini unutmayın. ACL'deki bireysel girişleri kaldırma:
+
+setfacl -x u:BENUTZER,g:GRUPPE,... DATEI ...
+
+Bir ACL'nin bireysel girişlerini silerken, maske yeniden hesaplanır.
+
+İstenmeden adlandırılmış kullanıcılara ve gruplara haklar atanabilir. -n seçeneği ile maskenin yeniden hesaplanması engellenebilir.
+
+Yalnızca klasik Unix izinlerini bırakarak tüm ACL'yi kaldırın:
+
+setfacl -b DATEI ...
+
+örnek
+Kullanıcı Anton, dosyalar oluşturur ve Writers grubundaki meslektaşlarının bunları okumasına izin verir. ACL'si yoktur, ancak erişim haklarını ACL formunda alabilirsiniz: ...
+
+Hiçbir ACL ayarlanmadığından (henüz), çıktı temelde yukarıda gösterilen ls -l ile aynıdır, sadece farklı bir gösterimle. Anton, kendisi de grupta yazar olan patronunun dosyayı okumasını engellemek ister. Aynı zamanda editörlere dosyasını düzeltme fırsatı vermek istiyor.
+
+öncelikler
+Aşağıdaki kurallar, erişim hakları için hangi girişin belirleyici olduğunu belirler:
+ACL yukarıdan aşağıya işlenir.
+İlk uygulanabilir kural geçerlidir.
+Örnek:
+
+# file:	roman .txt 
+# owner:	anton 
+# group:	schreiber 
+user: : rw- 
+user: chef: ---
+user : anton: r-- 
+group: : r-- 
+group: lektoren : rw- 
+mask: : rw-
+other: : r-- 
+
+Anton, dosyanın sahibidir. Sahip kullanıcının hakları::rw- bunun için geçerlidir. user:anton:r-- girişi daha sonra gelir ve bu nedenle yok sayılır.
+
+Patronun, okumasına izin verilen sahiplik grubuna yazmasına izin verin (grup::r--). Bununla birlikte, patronun hiçbir erişimi yoktur çünkü yukarıda, hakları olmayan bir adlandırılmış kullanıcı olarak girilmiştir (user:chef:---).
+
+maske
+Maske, sahip veya grup dışındaki bir kullanıcının sahip olabileceği maksimum hakları tanımlar. Bu, bir girdi bir gruba okuma ve yazma izinleri veriyorsa, ancak maske yalnızca okuma izinleri sağlıyorsa, bu grubun yalnızca okuma izinlerine sahip olduğu anlamına gelir. Bir örnek:
+
+# file	roman .txt 
+# owner:	anton 
+# group:	schreiber
+user: : rw- 
+user : chef : rw-		#effective : r-- 
+group: : rwx			#effective : r-x
+group: lektoren: -wx		#effective : --x 
+mask: : r-x
+other : : ---
+
+Getfacl komutu, haklar maske tarafından kısıtlanmışsa etkin hakları verir. Maske 4 farklı şekilde hesaplanabilir veya ayarlanabilir:
+
+Befehl	Option	Bedeutung
+setfacl	-m RECHTELISTE …	Otomatik olarak hesapla
+setfacl	-n -m RECHTELISTE …	değiştirme
+setfacl	-m m::MASKE,RECHTELISTE …	Manuel olarak ayarla
+chmod	g=MASKE	Manuel olarak ayarla
+
+
+
+
+Aksi belirtilmedikçe, ACL değiştirildiğinde, ACL, yeni girişlerin haklarını kısıtlamayacak şekilde otomatik olarak ayarlanır.
+
+ACL'yi kaldır
+ACL tamamen kaldırılırsa, grup izinleri, sahip olan grubun etkin izinlerine eşit olarak ayarlanır, yani maske, sahip olan grubun izinleriyle kesişir.
+
+Anlamak için:
+
+ Bu yapının nedeni eski programların uyumluluğudur.
+ Bazı programlar, tek tek dosyalara tüm yabancı erişimi kısaca engellemeli ve bunun için chmod kullanmalıdır.
+
+
