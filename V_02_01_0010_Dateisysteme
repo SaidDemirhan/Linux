@@ -1,0 +1,251 @@
+V_02_01_0010_Dateisysteme
+ Dosya sistemi hiyerarşisi
+ Dosya Türleri
+ Sistem dizinleri
+
+ls
+
+- Dosyaları görüntüle
+- Geçerli dizin simgesi
+- Üst dizin simgesi
+- Dosya türlerini göster
+- İnode numarasını göster
+
+Yabancı bir şehirde olduğunuzu hayal edin.
+Kaybolmamak için ne yaparsınız? Bir şehir haritası satın alıyorsunuz. Ancak nerede olduğunuzu biliyorsanız ancak bir şehir haritası ile yolunuzu bulabilirsiniz.
+
+Linux/Unix sistemimizde de durum aynıdır.
+
+Giriş yaptıktan sonra, sistem bizi sistemimizin dosya ağacında bir yere yerleştirdi - sözde »ana dizinimiz«.
+
+pwd komutu, sistemin büyük dosya ağacında nerede olduğunuzu söyler.
+
+pwd - Geçerli dizini görüntüleme komutu
+
+Örnek:
+Şimdi belirli bir sorumluluk sigortası sözleşmesi aramak istiyorsanız, bu klasörün tam olarak nerede olduğunu ve hangi kaydın açılacağını bilirsiniz.
+
+Yolunuz: Ofis  Sigorta klasörü  Sorumluluk kaydı
+
+Bunu bir Linux/Unix dosya sistemine aktarmak şöyle görünebilir: ...
+
+Linux/Unix dosya sistemindeki bireysel dizinler aracılığıyla istenen dosyaya giden yolumuza yol denir.
+
+Bu kök ile başlar. Kök, dizin olarak "/" adına sahiptir.
+
+Yol adının başındaki eğik çizgi her zaman yolun kök dizinde başladığı anlamına gelir. Eğik çizgi, diğer dizinler arasında ayırıcı olarak kullanılır.
+
+Kısa format ls -FR ile çıktı şöyle görünür: ...
+
+Mutlak yol belirtimi
+Mutlak bir yol, çalışma dizininden bağımsız olarak bir dosya sistemindeki tam olarak tek bir konuma benzersiz bir şekilde işaret eder. ...
+
+Mutlak yolu belirtirken, dosya her zaman dosya sistemi ağacının "/" kökünden belirtilir.
+
+Göreli yol belirtimi
+Göreceli yol, kullanıcının veya uygulamanın geçerli çalışma dizinine göredir. Bu çalışma dizini içinde hareket etmek için artık tam yolların belirtilmesi gerekmez. ...
+
+Göreceli yolu belirtirken, dosya her zaman işlemin geçerli çalışma dizinine göre belirtilir.
+ls komutu bize dosyaların içeriğini göstermez, sadece dosyaların isimlerini listeler.
+
+Dosyalar, mutlak yol adları olarak adlandırılan (kök dizinden başlayarak) tam yol adlarıyla adreslenebilir.
+
+Veya ilgili ada sahip geçerli dizinden. ...
+
+Bir uyarı:
+
+Yolları basitçe adreslemek için bir dizi kısayol vardır. Aşağıdaki tablo en önemli kısaltmaları göstermektedir:
+Kürzel	Beschreibung
+.	Geçerli çalışma dizinini ifade eder.
+..	Geçerli çalışma dizininden bir sonraki üst dizine atıfta bulunur.
+~	Oturum açmış kullanıcının ana dizinini ifade eder.
+-	En son ziyaret edilen dizini ifade eder.
+
+Uzun yol adları ile yazım hatası yapmak kolaydır ve çok fazla yazmanız gerekir. Bu nedenle, mevcut dizinden göreceli olarak çevreleyen dosya ve dizinleri adresleyebilmek için kabuğun altında aşağıdaki özel karakterler mevcuttur:
+Bir nokta . bizim durumumuzda geçerli dizin anlamına gelir /home/monika
+İki nokta .. üstteki dizini ifade eder, burada /home. ...
+
+Örnek: Göreli (../../usr/man) ve mutlak yol belirtimi (/usr/man) ...
+
+Normal dosyalar
+ikili, yürütülebilir veya düz metin dosyalarıdır. Bunlar, temeldeki dosya sisteminde normal veri bloklarını kullanır ve dolayısıyla ilgili ortamda depolama alanını işgal eder. ...
+
+dizinler
+diğer dosyaları içerebilen özel dosyalardır. Bunlar ayrıca depolama alanı kaplar. ...
+
+Cihaz dosyaları
+uygulamaların bir aygıtla veya daha doğrusu aygıt sürücüsüyle iletişim kurmasını sağlayan özel dosyalardır. Ana numara aracılığıyla sürücüyle ilişkilendirilen blok ve karakter aygıt dosyaları arasında bir ayrım yapılır. Cihaz, küçük numara ile tanımlanır. ...
+
+prizler
+iletişim uygulamaları için kullanılan özel dosyalardır. İnternet bağlantıları için TCP/IP Soketleri kullanılır. Yalnızca yerel olarak iletişim kuran uygulamalar UNIX etki alanı yuvalarını da kullanabilir. ...
+
+adlandırılmış borular
+uygulamalar arasında tek yönlü veri aktarımına izin veren özel dosyalardır. ...
+
+Ayrıldı
+diğer dosyalara atıfta bulunan özel dosyalardır.
+Sembolik bağlar ile "sert" olarak adlandırılan bağlantılar arasında bir ayrım yapılır. ...
+
+Yumuşak bağlantılar:
+Yumuşak bağlantı, bir dizine veya dosyaya yapılan bir referanstır. Bu dosyayı taşır veya silersek, yazılım bağlantısı artık kullanılamaz ve bir hata üretir. ...
+
+Her şey kabaca Windows'taki bir kısayolla karşılaştırılabilir.
+
+Sabit bağlantılar:
+Sabit bağlantı hakkında söylenecek ilk şey, onu yalnızca dosyalar için kullanabilmenizdir. Bunun nedeni, bir sabit bağlantının dosyaya doğrudan başvuruda bulunmasıdır. Bu dosyayı taşırsak ve hatta silersek, yine de erişilebilir durumda kalır. ...
+
+Hedef dosya silinirse dosyanın içeriği korunur ve yine de okunabilir.
+
+Standart Dosya Sistemi Hiyerarşisi (FHS)
+Sistem yöneticisinin ve kullanıcıların sunulan kaynakları daha kolay bulabilmesi için makul bir dosya sistemi düzeni gereklidir.
+
+Günümüzde çoğu GNU/Linux dağıtımı ve ticari UNIX satıcısı, Dosya Sistemi Hiyerarşi Standardını (FHS) aşağı yukarı uygulamaktadır. Bu, UNIX System V Sürüm 4'e dayanmaktadır.
+
+http://www.pathname.com/fhs/
+
+Paylaşılabilir
+Aynı anda birden fazla ana bilgisayar tarafından kullanılabilen veriler. Buna kullanıcı verileri, e-postalar, metin dosyaları ve uygulamalar dahildir.
+
+/ev
+/var/mail
+/usr /opt
+
+paylaşılamaz
+Yalnızca belirli bir ana bilgisayarla ilgili veriler. Bu, yapılandırmaları, çekirdek görüntülerini ve işlem durumlarını içerir.
+
+/Vb
+/bot
+/var/çalıştır
+/var/lock
+
+Kök dosya sistemi "/"
+Dosya sisteminin en üstünde, üst dizini yoktur. Kök dosya sistemi, bir sistemin başlatılması, kurtarılması veya onarılması için gerekli tüm verileri içermelidir.
+
+/usr, /opt ve /var, kök dosya sisteminden farklı dosya sistemlerinde olabilecek şekilde tasarlanmıştır.
+
+Kök dosya sistemi mümkün olduğunca küçük olmalıdır. (küçük ortam, ağ bilgisayarı, disk hatası)
+
+bin/, boot/, dev/, etc/, lib/, mnt/, opt/, sbin/, tmp/, usr/, var/ gereklidir, home/, lib/ ve root/ isteğe bağlıdır.
+
+Önyükleme dizini "/boot"
+Çekirdek dahil, önyükleyicinin statik dosyaları. Sistem başlangıcında mevcut olmalıdır; Önyükleme için gerekli dosyaları içerir. Örnekler:
+
+çekirdek:
+"vmlinuz-versionsnummer-jenerik" (fiziksel sistemler için)
+"vmlinuz-versionnumber-virtual" (sanal makineler için)
+ilk ramdisk
+"initrd.img-version-number-generic"/"-server"/"-sanal"
+Hafıza testi için program
+memtest86.bin
+Alt dizin(ler):
+/boot/grub: GRUB 2 ve GRUB önyükleyicilerinden gelen dosyaları içerir
+/boot/efi: EFI programlarını içerir - yalnızca EFI kuruluysa ve aktif olarak kullanılıyorsa
+
+Aygıt dosyası - "/ dev" dizini
+/dev dizini, donanıma bağlantıyı temsil eden aygıt dosyalarını içerir.
+
+Aygıt sürücüleri bu dizinde değil, normalde /lib/modules/kernel-version'da olmalıdır.
+
+Gönderen: cihazlar; sistem başlangıcında mevcut olmalıdır; İşletim sırasında donanımın adreslendiği tüm cihaz dosyalarını içerir
+
+Çalışırken takılabilir sistemler için cihaz dosyaları (ör. USB, IEEE1394) udev tarafından oluşturulur
+
+Yapılandırma dizini "/etc"
+From: et cetera ("diğer her şey"), sistem başlangıcında mevcut olmalıdır; temel sistemin yapılandırma ve bilgi dosyalarını içerir.
+
+Örnekler:
+fstab, ana bilgisayarlar, lsb sürümü, blkid.tab; burada bulunan yapılandırma dosyaları, ana dizindeki aynı ada sahip yapılandırma dosyalarıyla üst üste getirilebilir. Örnek: bash.bashrc
+
+Alt dizinler, diğerleri arasında:
+/etc/grub: Grub için betikler içerir
+/etc/opt: /opt içindeki programlar için dizinler ve yapılandırma dosyaları
+/etc/X11: XServer dizinleri ve yapılandırma dosyaları; Örnek: xorg.conf
+/etc/network: ağın dizinleri ve yapılandırma dosyaları: örnek arayüzler
+
+ev dizini / ev
+Ev dizini, ilgili kullanıcının ev bölümü içindeki dizinidir. Kullanıcı ör. otto, dizin mantıksal olarak /home/otto olarak adlandırılır.
+
+Genellikle /home için ayrı bir bölüm seçersiniz. Bu sayede, yeni bir kurulum sırasında ayarlar ve kişisel dosyalar kaybolmaz ve önceden kapsamlı bir şekilde yedeklenmesi gerekmez.
+
+Boyut açısından, mümkün olduğunca büyük / ev yapmalısınız. Tüm özel veriler burada saklanır.
+
+Kütüphane dizini "/lib"
+Kimden: kütüphaneler (kütüphaneler); sistem başlangıcında mevcut olmalıdır; önyükleme için vazgeçilmez kitaplıkları ve temel sistemin dinamik olarak bağlantılı programlarını içerir; Minimum gerekli dosyalar veya sembolik bağlantılar: libc.so.* (C kitaplıkları), ld* (kütüphane verileri: sürümler, erişim yolları,...)
+
+Alt dizinler, diğerleri arasında:
+/lib/modules: çekirdek modülleri
+/lib/udev: udev için kitaplıklar ve programlar
+/lib/linux-restricted-modules: Kısıtlı sürücüler için depolama konumu (örn. grafik kartı)
+
+Dizin: kayıp+bulundu
+(kayıp ve bulundu), bozuk bir dosya sistemini onarmaya çalışırken kalan dosyalar ve dosya parçaları.
+
+Otomatik dosya sistemi onarımından sonra hala kaydedilebilecek dosyalar içerebilir (başarı garantisi yoktur!)
+
+Dizin, reiserfs veya xfs ile bölümlerde mevcut değil
+
+/medya dizini
+(Depolama) medyası için. Harici sabit sürücüler, USB çubuklar, CD-ROM'lar, DVD'ler ve diğer veri taşıyıcıları gibi taşınabilir ortamlar için bağlama veya bağlama noktaları görevi gören alt dizinleri içerir.
+
+Alt dizinler şunları içerir:
+/media/usb: USB aygıtları için bağlama noktası
+/media/cdrom0: CD-ROM'lar için bağlama noktası
+
+Ubuntu 12.10 ile başlayarak, kullanıcı adının kullanımı tanıtıldı.
+/media/USERNAME/usb: USB cihazları için bağlama noktası
+/media/USERNAME/cdrom0: CD-ROM'lar için bağlama noktası
+
+Geçici bağlama noktası "/mnt"
+Gönderen: mount (takılı); genellikle boş; geçici olarak monte edilmiş bölümler için kullanılabilir.
+
+/media'nın aksine, buraya monte edilen veri taşıyıcıları için masaüstünde hiçbir bağlantı oluşturulmaz (yalnızca GNOME için geçerlidir).
+
+dizin /opt
+/opt/ dizini (isteğe bağlı olarak), ücretsiz bir lisans altında olmayan veya kullanıcının kasıtlı olarak paket yönetimini atlaması gereken tüm ek programların yüklendiği bir klasördür.
+
+Kendi ana dizininizdeki bir kuruluma kıyasla ana avantajı, orada kurulu programlara sistem genelinde (bilgisayardaki tüm kullanıcılar tarafından) erişebilme olasılığıdır.
+
+/proc dizini
+Gönderen: (devam eden programlar); sistem başlangıcında mevcut olmalıdır; o anda yüklü olan çekirdeğe ve prosedürlerine yönelik süreç arayüzlerini içerir; Dosyalar cat kullanılarak okunabilir
+
+Örnekler: sürüm (çekirdek sürümü), takaslar (takas bilgileri), işlemci bilgisi, vb...
+
+Alt dizinler, diğerleri arasında:
+/proc/numbers: Dizin adı olarak işlem numarası olan herhangi bir program; içinde işlem hakkında bilgi sağlayan dosya durumu (program adı, numarası, bellek kullanımı,...)
+
+/sbin dizini
+Gönderen: sistem ikili dosyaları (sistem programları); sistem başlangıcında mevcut olmalıdır; temel sistem yönetimi görevleri için tüm programları içerir.
+
+Programlar yalnızca sistem yöneticisi (kök) veya süper kullanıcı haklarıyla çalıştırılabilir.
+
+Örnekler:
+
+kapat
+make2fs
+lsmod (çekirdek modülleri)
+
+/srv dizini
+Gönderen: hizmetler; dizin yapısı henüz belirlenmedi; hizmetlerin verilerini içerecektir; Ubuntu altında genellikle boş.
+
+/sys dizini
+/sys aslında bir dizin değil, /proc gibi yalnızca çekirdek prosedürlerine yönelik arabirimler içeren "sysfs" türünde özel bir sanal dosya sistemidir.
+
+/tmp dizini
+Gönderen: geçici (geçici); programların geçici dosyalarını içerir;
+
+FHS'ye göre, önyükleme sırasında dizin boşaltılmalıdır.
+
+/usr dizini
+Gönderen: Unix Sistem Kaynakları (önceden Kullanıcı); sistem araçlarının, kitaplıkların ve kurulu programların çoğunu içerir; isim tarihseldir - daha önce, /home olmadığında, kullanıcı dizinleri de burada bulunuyordu
+
+"Kullanıcı ve programcının rolleri ayrıldığında, bir noktada /home tanıtıldı ve bazı akıllılar, gelecekte "Unix Sistem Kaynakları" ile /usr bildirme fikrini ortaya attı"
+
+/var dizini
+Değişkenden; yalnızca dizinleri içerir; Dizinlerdeki dosyalar gerektiğinde programlar tarafından değiştirilir (/etc'den farklı olarak); Örnekler: günlük dosyaları, puanlar, yazıcı kuyruğu
+
+Alt dizinler, diğerleri arasında:
+/var/log : Sistem programlarının tüm günlük dosyaları
+/var/games : Çok sayıda Linux oyunu
+/var/tmp : Yeniden başlatma sırasında önbelleğe alınması gereken veriler
+/var/www/html/ : FHS'de mevcut değil, Ubuntu'da Apache web sunucusunun "belge kökü"
+
