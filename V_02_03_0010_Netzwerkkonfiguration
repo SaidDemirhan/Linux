@@ -1,0 +1,201 @@
+V_02_03_0010_Netzwerkkonfiguration
+ağ yapılandırması
+ Yapılandırma dosyaları
+ Yapılandırma komutları
+ Ağ yönetimi için komutlar
+
+Ağ Yöneticisi
+yalnızca programın önkoşul arabirimleri üzerinde denetimi varsa çalışır. Tüm yaygın dağıtımlar, varsayılan olarak karşılık gelen bir yapılandırma gerçekleştirmelidir.
+
+Debian için, /etc/network/interfaces öğesinin yalnızca geri döngü arabirimi ayarlarını içerdiğinden emin olun. NetworkManager tarafından kontrol edilecek arabirimler (tipik olarak eth0 ve wlan0) bu dosya kullanılarak yapılandırılmamalıdır!
+
+Ağ Yöneticisi
+En yaygın dağıtımlarda, menü çubuğundaki veya paneldeki bir simge mevcut ağ durumunu gösterir.
+
+Bu simge, etkin bağlantıyı ve tüm kullanılabilir veya önceden yapılandırılmış ağları listeleyen bir menüye götürür...
+
+Ağ temelleri biraz tekrar..
+TCP/IP protokolü, yerel ağlardaki ve İnternet'teki veri trafiğinin çoğundan sorumludur. Ağ verileri nispeten küçük paketler halinde taşınır.
+
+Abkürzung	Bedeutung	Funktion
+IP 	Internet Protocol	Bağlantısız protokol, TCP ve UDP için temel
+TCP	Transmission Controll Protocol	2 cihaz arasında uçtan uca bağlantı
+UDP	User Datagram Protocol	Minimal, bağlantısız protokol
+ICMP	Internet Control Message Protocol	IP durumu ve hata mesajlarının değişimi
+PPP	Point to Point Protocol	Çevirmeli hatlar üzerinden IP bağlantı kurulumu. Örneğin ADSL ve UMTS.
+
+Ağ temelleri biraz tekrar..
+IP adresleri bilgisayarlar için uygun olabilir, ancak insanlar IP adreslerini hatırlamakta zorlanırlar. Bu nedenle, ağdaki bilgisayarlar, ana bilgisayar ve etki alanı adlarının bir kombinasyonu ile tanımlanır.
+
+Yerel ağlardaki bilgisayarların adlandırılması
+Ana bilgisayar adı, bilgisayar üreticisinin, sahibinin veya mevcut projenin adı olmamalıdır; bunların tümü kafa karışıklığına neden olabilir.
+Kısa ve akılda kalıcı isimler kullanın.
+
+
+Manuel LAN ve WLAN yapılandırması
+Ağ arayüzleri, dağıtıma bağlı olarak farklı adlara sahiptir. Bazı dağıtımlar hala eth0, eth1, vb. arabirim adlarını kullanır, ancak giderek daha fazla dağıtım enp0s3 veya p5p1 gibi aygıt adlarını kullanır.
+
+Komut, bilgisayarınızda bulunan tüm ağ arabirimlerinin bir listesini döndürür: ...
+
+Arayüz devre dışı bırakılırsa, aşağıdaki şekilde etkinleştirebilirsiniz: ...
+
+Artık yerel veya harici ağdaki diğer bilgisayarlarla iletişim kurup kuramayacağınızı kontrol etmek için ping kullanabilirsiniz. ...
+
+-c4 seçeneği, tam olarak dört ping paketinin gönderilmesine neden olur
+
+Şu anda paketler yalnızca yerel ağ içinde gönderilebilir. İnternette bir temasın mümkün olması için, bilgisayarın bu tür paketleri nereye yönlendireceğini bilmesi gerekir. ...
+
+Bunun için ağınızın internet ağ geçidinin ip route ile adresini belirtmeniz gerekir.
+
+ip ile IPv6 yapılandırması ...
+
+DHCP bilgilerini alın
+Ağda bir DHCP sunucusu varsa, yapılandırma için kullanabilirsiniz. Arabirimi ip link set enp4s0 up ile etkinleştirdikten sonra, çoğu dağıtımda dhclient komutunu çalıştırın:
+
+/etc/hostlar
+Bilinen IP adreslerinin bir listesini ve bunlara atanan adları içerir. Her durumda, dosya geri döngü arabiriminin verilerini içermelidir.
+
+Ubuntu altındaki varsayılan ayarlar: ...
+
+/etc/hostlar
+Yerel ağdaki diğer bilgisayarları adlarıyla adreslemek istiyorsanız ve yerel ad sunucusu yoksa, adlarını /etc/hosts dizinine de girmelisiniz. ...
+
+Yerel ağdaki tüm bilgisayarların /etc/hosts dosyalarında benzer girişler gereklidir. Yerel ağda ne kadar çok bilgisayar varsa, /etc/hosts dosyalarının yönetimi o kadar sıkıcı olur.
+
+/etc/hosts.conf
+Aşağıdaki örnek dosya, önce /etc/hosts dosyasının değerlendirileceğini (hosts anahtar sözcüğü) ve ardından /etc/resolv.conf içinde belirtilen ad sunucusunun sorgulanacağını (bind) belirler. ...
+
+İkinci satır, ana bilgisayar adlarının birden çok IP adresiyle eşlenmesine izin verir.
+
+/etc/ağ/arayüzler
+Statik bir konfigürasyonda, dağıtıma bağlı olarak farklı dosyalar sorumludur.
+ Debian'da /etc/network/interfaces, tüm ağ arayüzlerini tanımlar.
+ Statik olarak yapılandırılmış arabirimler için ağ geçidi, ağ geçidi anahtar sözcüğü tarafından belirlenir. ...
+
+DNS yapılandırması resolv.conf
+Bilinmeyen ana bilgisayar adları için IP adreslerinin nasıl belirlendiğini kontrol eder.
+
+"Bilinmeyen", adların /etc/hosts içinde tanımlanmadığı anlamına gelir.
+
+Birçok dağıtımda resolv.conf dinamik olarak oluşturulur:
+Yerel ağ bağlantınız (LAN, WLAN) DHCP ile yapılandırılmışsa, bağlantı kurma komut dosyası veya NetworkManager, DHCP sunucusu tarafından iletilen ad sunucusu adreslerini girer.
+
+PPP (ADSL, UMTS, VPN) üzerinden bir İnternet bağlantısı kurulursa, bağlantı kurma komut dosyası otomatik olarak İnternet sağlayıcınızın ad sunucusu adreslerini /etc/resolv.conf içine girer.
+
+12.04 sürümünden itibaren Ubuntu, varsayılan olarak bir yerel ad sunucusu kurar.
+
+Ad sunucusunu manuel olarak kurmak istiyorsanız, adresini /etc/network/interfaces dns-nameservers anahtar sözcüğüyle belirtmeniz gerekir: ...
+
+ana bilgisayar adı
+Mevcut ana bilgisayar adı, ana bilgisayar adı komutuyla belirlenebilir. Ana bilgisayar adı DHCP tarafından ayarlanmadıysa, yapılandırma farklı dosyalar kullanılarak yapılır.
+
+Distribution	Datei
+Die meisten aktuellen Distributionen	/etc/hostname
+CentOS 6 / RHEL 6	/etc/sysconfig/network
+Alte SUSE Distributionen	/etc/HOSTNAME
+
+Bu dosya, makinenin ana bilgisayar adını içeren bir satır içeriyorsa, /etc/hosts öğesini de ayarlamayı unutmayın.
+
+Ağ yöneticisini devre dışı bırak
+Elbette masaüstü sistemlerini aşağıdaki talimatlara göre de yapılandırabilirsiniz. Ancak, önce NetworkManager'ı kesinlikle devre dışı bırakmalı veya kaldırmalısınız. Dağıtıma bağlı olarak aşağıdaki komutlardan birini çalıştırın: ...
+
+Ubuntu'da aynı zamanda resolvconf paketini de kaldırmalısınız. ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Karşılaştırma tablosu ip ile ifconfig
+Zweck	iproute2 Kommando	iproute2 Kommando Kurzversion	net-tools Kommando
+Linkstatus anzeigen	ip link show	ip l	ifconfig
+Linkstatus	ip -statistics link show	ip -s l	ifconfig
+IP-Adresse anzeigen	ip addr show	ip a	ifconfig -a
+IP-Adresse setzen	ip addr add IP/NETMASK dev DEVICE	ip a a IP/NETMASK dev DEVICE	ifconfig DEVICE IP/NETMASK
+IP-Adresse entfernen	ip addr del IP/NETMASK dev DEVICE	ip a d IP/NETMASK dev DEVICE	
+IP-Adresse entfernen	ip addr flush dev DEVICE	ip a f dev DEVICE	
+Routingtabelle anzeigen	ip route show	ip r	route -n
+Standardgateway setzen	ip route add default via IP	ip r a default via IP	route add default gw IP DEVICE
+ARP-Cache anzeigen	ip neigh show	ip n	arp -na
+Verbindungen anzeigen	ss --tcp --all --processes --extended --numeric	ss -tapen	netstat -tapen
+
+ping - (herhangi bir) ağ üzerinden diğer bilgisayarların veya cihazların erişilebilirliğini kontrol etmeye yönelik bir program/komuttur.
+Optionen	Bedeutung	Beschreibung
+-c	Anzahl	COUNT, kaç tane ping isteği gönderilmesi gerektiğini belirtir ve sonrasında ping otomatik olarak durur
+-w	Ende	END saniye cinsinden belirtilir. Bu süreden sonra, kaç istek cevaplanmış (un) olursa olsun, ping sonlandırılır.
+-W	Auszeit	TIMEOUT, saniye cinsinden verilir ve ping'in otomatik olarak durmadan önce bir yanıt için ne kadar bekleyeceğini gösterir.
+-i	Intervall	INTERVAL saniye cinsinden belirtilir ve ping isteklerinin gönderildiği aralıkları belirtir. Varsayılan bir saniyedir.
+-I	Schnittstelle	ping isteklerinin hangi arayüz üzerinden gönderileceğini belirler
+iftop
+en iyi programa benzer IP tablosu durum girişleri için bir ekrandır.
+
+En basit durumda, iftop başka parametre olmadan çağrılır.
+
+Bu size en üst düzeyde etkileşimli bir ekran sunar. ...
+
+traceroute ile Linux ağ analizi
+Traceroute, Ubuntu'da varsayılan olarak kurulu değildir, bu nedenle apt install traceroute komutu kullanılarak kurulmalıdır.
+
+işlevsellik:
+Traceroute, ağ paketlerinin yolunu belirli bir ana bilgisayara kadar izler. Bunu yapmak için traceroute, IP protokolünün yaşam süresi (TTL) alanını değiştirir. Küçük TTL değerleriyle traceroute ICMP TIME_EXCEEDED, ayrı yönlendiricilerden yanıt almaya çalışır. Mevcut bilgisayardan istenen ana bilgisayara giden yolda bireysel atlamaları (yönlendiricileri) kaydetmek için traceroute aşağıdaki gibi ilerler:
+
+Önce TTL=1 olan bir IP paketi gönderir. İlk yönlendirici (varsayılan ağ geçidi) daha sonra paketi atar ve bir ICMP TIME_EXCEEDED yanıtı gönderir.
+
+Traceroute şimdi daha fazla paket gönderir ve TTL'yi art arda 1 artırır. İkinci paketle (TTL=2), paket ilk önce varsayılan ağ geçidi üzerinden ana bilgisayara giderken bir sonraki yönlendiriciye gider. Varsayılan ağ geçidi, paketi iletirken TTL'yi 1 azalttığından, paket ikinci yönlendiriciye TTL=1 ile ulaşır. Bu, paketi atar ve orijinal ana bilgisayara bir ICMP TIME_EXCEEDED yanıtı döndürür. Daha sonra üçüncü yönlendiricide TTL=3, dördüncü yönlendiricide TTL=4 vb. ile benzer şekilde çalışır.
+
+Yeterince yüksek TTL'ye sahip bir IP paketi sonunda hedef ana bilgisayara ulaşırsa, ICMP "port ulaşılamaz" mesajıyla yanıt verir.
+
+traceroute ile Linux ağ analizi
+Gönderilen IP test paketleri için farklı protokoller kullanılabilir.
+
+UDP (varsayılan)
+Varsayılan konfigürasyonda, UDP datagramları IP test paketleri olarak kullanılır.
+ICMP (-I)
+Bu yöntem, test için ICMP yankı isteklerini ('ping') kullanır.
+TCP (-T)
+Bu yöntem sabit bir TCP bağlantı noktası kullanır (varsayılan bağlantı noktası 80'dir).
+
+mtr ile Linux ağ analizi
+Ağ tanılama aracı mtr (My Traceroute), iki traceroute ve ping aracının işlevselliğini tek bir programda birleştirir.
+
+Metin tabanlı bir ncurses programı veya grafiksel bir GTK+ programı olarak kullanılabilir.
+
+Program, parametre olarak bir ana bilgisayarla birlikte komut satırında çağrılır.
+
+Ana bilgisayar olarak mevcut bilgisayardan bağlantıyı kontrol etmek istediğiniz ana bilgisayar adını veya IP'yi girin: mtr www.google.com
+
+Aşağıdaki çıktı, mtr google.de'ye yapılan çağrıyı gösterir. ...
+
+
+mtr ile Linux ağ analizi
+Daha uzaktaki siteler için, denizaltı kablo bağlantılarının (örneğin Atlantik boyunca) hangi atlamalar (yönlendiriciler) arasında olduğunu belirlemek için ilgili gidiş-dönüş süresini kullanabilirsiniz. www.areca.com.tw ile olan bağlantı analiz edildiğinde şu görülebilir: ...
+
+Bu sorgu, açık bir şekilde, ortalama ping sürelerindeki (Ort) yüksek farklarla tanınabilen, deniz yoluyla daha uzun bir deniz kablosu bağlantısı aracılığıyla aşağıdaki yönlendiriciler arasındadır:
+
+atlama 1 (0,3 ms) ile 9 (153,6 ms) arasında
+atlama 11 (314.5 ms) ile 18 (347.5 ms) arasında
+
+iperf ile TCP ve UDP ağ performansını ölçün
+Açık kaynak aracı iperf, maksimum TCP ve UDP ağ bant genişliğinin ölçülmesine izin verir.
+
+Kurulum
+Iperf, Debian ve Ubuntu deposuna zaten dahil edilmiştir, yani apt-get install iperf aracılığıyla kolayca kurulabilir.
+
+kullanmak
+Iperf, istemci-sunucu modelinde çalışır. Bu, önce bir sunucuda iperf arka plan programını başlatmanız ve ardından iperf istemcisine bağlanmanız anlamına gelir. Uygun bir şekilde, istemci ve sunucu aynı ikili dosyada bulunur.
+
+TCP performansını ölçün
+Bu durumda bir sanal ağ kartının TCP performansı ölçülür.
+
+
+---------------------------------------------------------------------------
+
