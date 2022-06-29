@@ -1,0 +1,152 @@
+V_01_04_0020_Fernwartung
+Diğer Linux makinelerinde çalışma
+ SSH
+ SCP /SFTP
+ Curl
+ Vnc
+Diğer bilgisayarlarla iletişim kurabilmek için donanım ve IP numaralarına ek olarak uygun yazılım paketlerine de ihtiyacımız var.
+
+ssh (güvenli kabuk), ağdaki uzak bir bilgisayarda başka programları çalıştırmak veya uzak bir bilgisayarda oturum açmak için bir kabuk başlatmanın güvenli yöntemi.
+
+rsh (uzak kabuk), rlogin (uzaktan oturum açma) veya telnet (telekomünikasyon ağ yazılımı) daha eski, güvenli olmayan komutlardır ve parolayı uygun "dinleme yazılımı tarafından ele geçirilebilecek şekilde ilettikleri için artık kullanılmamalıdırlar. ".
+
+Fiziksel olarak önünüzde olmayan sunucular sadece bir ağ bağlantısı üzerinden yönetilebilir.
+
+Bunun için tercih edilen araç SSH'dir (Secure Shell). Güvenli bir ağ bağlantısı aracılığıyla hem komutların basit bir şekilde yürütülmesini hem de grafik programların çalıştırılmasını sağlar.
+
+Tek gereksinim, sunucunun kurulu bir SSH sunucusuna sahip olmasıdır.
+
+ssh ile çalışmak
+Uzaktaki bir bilgisayara ssh* üzerinden bağlanabilmemiz için orada geçerli bir kullanıcı adı ve şifre bilmemiz gerekiyor.
+
+Ek olarak, iki bilgisayar arasında ilk kez onaylanması gereken bir "parmak izi" değiş tokuş edilir.
+ssh [Optionen] [Name@]Rechnername
+
+ssh - ağ genelinde şifreli çalışma komutu
+
+yapılandırma ve koruma
+sshd yapılandırma dosyaları /etc/ssh dizininde bulunur. sshd_config, sunucu yapılandırmasından sorumludur.
+
+Normalde bu dosya değişmeden kalabilir, i. yani SSH sunucusu hemen çalışmalıdır.
+
+Varsayılan olarak, iletişim IP bağlantı noktası 22 üzerinden gerçekleşir.
+
+Temel olarak, SSH sunucusu herhangi bir yapılandırma çalışması yapmadan hemen çalışır. Ancak bu, hafife alınmaması gereken bir güvenlik riskidir:
+
+Cracker'lar, İnternet'teki sunucuları arayan ve bunlara giriş yapmaya çalışan otomatik araçlar kullanır.
+
+(örneğin, standart kullanıcı ve parola değiştirilmediği ve yönlendiricideki 22 numaralı bağlantı noktası serbest bırakıldığı için Raspberry Pi genellikle etkilenir.)
+
+Aşağıdaki önlemlerin her biri, SSH sunucunuza bir crack saldırısı olasılığını azaltır.
+
+Tek tek veya kombinasyon halinde kullanılabilirler.
+
+yapılandırma ve koruma
+Saldırgan kök ayrıcalıkları elde etmek ister ve bunu yapmanın en kolay yolu elbette bir kök oturum açma işlemidir.
+
+Sadece bir parametre (kök şifresi) tahmin edilmelidir. SSH aracılığıyla doğrudan root girişini yasaklamak çok daha güvenlidir.
+
+Değişikliğin yürürlüğe girmesi için sshd'ye yapılandırma dosyalarını yeniden okumasını söylemeniz gerekir:
+
+# systemctl reload sshd
+
+Saldırgan için bu, şu anda iki parametrenin bilinmediği sonucunu doğurur:
+oturum açma adı ve şifre
+
+Varsayılan olarak, SSH sunucusu 22 numaralı bağlantı noktası üzerinden iletişim kurar. Bağlantı noktası hattıyla farklı, şu anda kullanılmayan bir bağlantı noktasını kolayca ayarlayabilirsiniz.
+
+Birçok otomatik kırma aracı yalnızca 22 numaralı bağlantı noktasını dikkate aldığından, bir çırpıda birçok güvenlik sorununu önlersiniz.
+
+Fail2Ban
+bir anlamda DenyHosts'un modern bir halefidir ve DenyHosts'tan iki şekilde farklıdır:
+
+Bir yandan, program SSH'ye ek olarak diğer çeşitli ağ hizmetlerini de izleyebilir ve gerekirse bunları ayrı ana bilgisayarlar için engelleyebilir.
+
+Öte yandan, engelleme /etc/denyhosts.conf dosyasındaki girişler aracılığıyla değil, güvenlik duvarı kuralları aracılığıyla gerçekleşir.
+
+fail2ban paketini kurduktan sonra, /etc/fail2ban dizininde jail.local adıyla varsayılan jail.conf yapılandırma dosyasının bir kopyasını oluşturun.
+
+Diğer tüm değişiklikleri orada yapın. Bu değişiklikler artık jail.conf'daki temel ayarlara göre önceliklidir.
+
+Fail2Ban, izlenecek bir hizmeti »jail« olarak tanımlar.
+/etc/fail2ban içindeki sağlanan yapılandırma dosyaları, tüm olası hizmetler (hapishaneler) için kurallar içerir; ancak bunların tümü varsayılan olarak devre dışıdır.
+
+SSH kurallarını barkodlamak için jail.local'da [sshd] bölümüne bakın:
+
+Fail2Ban'in varsayılan yapılandırması, bir ana bilgisayarın on dakika içinde beş başarısız SSH oturum açma girişiminden sonra on dakika süreyle bloke edilmesini sağlar.
+
+SSH ile güvenlik, diğer seçenekler şunlardır:
+
+Anahtarlarla kimlik doğrulama
+Kendinizi bir Anahtar oluştur parolasıyla değil, bir anahtarla doğrularsanız, SSH sunucusunu kullanmak en güvenlidir.
+
+Google Authenticator ile giriş yapın
+Başka bir değişken, iki faktörlü kimlik doğrulamayı ayarlamaktır.
+
+Her oturum açtığınızda, normal parolaya ek olarak yalnızca kısa bir süre için geçerli olan bir kerelik bir kod girmelisiniz. Bu kod bir akıllı telefon uygulaması tarafından oluşturulur.
+
+Ağdaki dosyaları kopyalama
+scp ile de, karşılık gelen bilgisayarlar, onaylanması gereken sözde parmak izlerini önceden değiş tokuş etmelidir. Değişim zaten ssh aracılığıyla gerçekleştirilmişse, başka bir değişim gerekli değildir.
+
+scp Quelle[Rechnername:]/Pfad/Datei Ziel[Rechnername:]/Pfad/Datei oder Verzeichnis
+cURL
+Kullanıcı etkileşimi olmadan dosyaların bir sunucuya veya sunucudan aktarılmasına izin veren bir programdır.
+
+Program, HTTP'ye ek olarak, aşağıdakiler gibi çeşitli diğer ağ protokollerini de destekler:
+FTP, FTPS, HTTPS, GOPHER, TELNET, DICT, DOSYA ve LDAP.
+
+Kontrol, program çağrıldığında belirtilen komut satırı parametreleri aracılığıyla yapılır.
+
+Uygulamalar - 1. Web sitelerini okuyun
+Bu komutla index.html dosyası okunur ve standart çıktı üzerinde çıktısı alınır.
+curl http://example.com/index.html
+
+Dosyayı savepage.html adı altında kaydetmek istiyorsak aşağıdaki komutu kullanıyoruz:
+curl –o savedpage.html http://example.com/index.html
+
+Bir web sitesi HTTP kimlik doğrulama mekanizması aracılığıyla oturum açmayı gerektiriyorsa, kullanıcı adı ve parola cURL aracılığıyla da aktarılabilir.
+curl –u username:password http://example.com/index.html
+Uygulamalar - 2. URL'yi değişken GET parametreleriyle okuyun
+cURL, normal bir ifadenin GET parametresi olarak iletilmesine izin verir. Bir web sitesinin bir CMS aracılığıyla işletildiğini ve aşağıdaki şemaya göre tek tek belgeleri URL'ler aracılığıyla sunduğunu varsayalım.
+http://example.com/pages.php?id=1
+http://example.com/pages.php?id=14
+http://example.com/pages.php?=78
+
+
+Tüm kimlikleri ve dolayısıyla belirli bir alandaki belgeleri kaydetmek için id parametresi cURL'ye normal bir ifade olarak geçirilebilir.
+curl –o pages#1.html http://example.com/pages.php?id=[1-99]
+
+VNC, Sanal Ağ Hesaplama anlamına gelir
+Ekran içeriğini yerel bir ağ üzerinden iletmek ve başka bir bilgisayardan kontrol etmek için kullanılan yazılımdır.
+
+
+VNC, yalnızca X veya Linux altında değil, Microsoft Windows dahil olmak üzere diğer çoğu işletim sistemi için de kullanılabilir.
+
+VNC oturumu: Windows 10'dan Raspberry Pi'ye
+
+ekran paylaşımı
+Program çalıştığı sürece, mevcut masaüstü artık ana bilgisayar adı:5900 adresindeki bir VNC istemcisi ile uzaktan kontrol edilebilir.
+
+user$ x11vnc –usepw –forever –display :0
+Enter VNC password: ******
+Veryfy password:    ******
+Write password to .vnc/passwd?  y
+
+Bağlantıyı kurarken, x11vnc'yi ilk kez başlattığınızda iki kez girmeniz gereken aynı şifre gereklidir.
+
+VNC sunucusu
+Geleneksel şekilde, VNC sunucusu 5900 numaralı TCP bağlantı noktasını dinler. Orada 0 ekranını sunar. Ek portlar aracılığıyla ek ekranlar sunulabilir.
+
+Bunlar çoğunlukla 590n'dir, burada n, görüntülenen sayıdır. Ana bilgisayara bir güvenlik duvarının (örneğin bir donanım yönlendiricisi) arkasından erişilebilir olması gerekiyorsa, uygun TCP bağlantı noktasına iletilmesi gerekir.
+
+Dışarıdan (= İnternet üzerinden) erişilebilen bilgisayarlar söz konusu olduğunda, bu, şifreli bir bağlantı olmadan büyük ölçüde ihmalkarlık olur. Bu nedenle bu yöntem basit kullanıcı desteği için önerilmez.
+
+Bir uyarı:
+
+VNC, veriler şifrelenmeden iletildiği için eski ve güvensiz bir yöntemdir.
+
+Daha fazla güvenliğe değer veriyorsanız, VNC veri akışını şifreli bir tünel üzerinden yönlendirmeniz veya yerleşik şifreleme ile VNC uygulamalarını kullanmanız gerekir.
+
+İlk varyant karmaşık değildir:
+VNC sunucusunu, yalnızca yerel bilgisayardan (localhost) bağlantılara izin verecek şekilde yapılandırırsınız.
+
