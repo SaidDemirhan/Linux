@@ -1,0 +1,313 @@
+15.06.2022 Linux Bausteinprüfung
+
+1. Jedes Mal, wenn Sie versuchen eine Datei mit dem rm-Kommando zu löschen, fordert Sie das System zur Bestätigung auf. Sie wissen, das ist nicht das übliche Verhalten beim rm-Kommando. Was läuft falsch?
+Dies ist bei den älteren Versionen von rm normal. 
+Die installierte Version von rm auf dem System ist fehlerhaft. 
+rm hat einen Alias auf rm -i #
+Es ist ein inkorrekter Link in Ihrem System vorhanden. 
+
+rm komutu ile her dosya silmeye çalıştığınızda sistem sizden onay ister. Bildiğiniz gibi, bu rm komutuyla olağan davranış değildir. Sorun nedir?
+
+Bu, rm'nin eski sürümlerinde normaldir.
+Sistemde kurulu rm sürümü bozuk.
+rm, rm -i olarak adlandırılmıştır
+Sisteminizde yanlış bir bağlantı var.
+
+2. Carla befindet sich im Verzeichnis /var/spool/lpd/lpj und muss in ihr Home-Verzeichnis wechseln. 
+Was ist der schnellste Weg, dies zu tun?
+
+Carla, /var/spool/lpd/lpj dizininde ve ana dizinine geçmesi gerekiyor.
+Bunu yapmanın en hızlı yolu nedir?
+
+chdir 
+cd #
+cd /clb 
+chdir /home/clb 
+
+3. Was bewirken die folgenden Befehle?
+Cat	ls	sl
+Zeigt eine (Dampf-)Lok an
+Zeigt den Inhalt eines Verzeichnisses an.
+Zeigt den Inhalt einer Datei an
+
+Aşağıdaki komutlar ne işe yarar?
+Bir (buharlı) lokomotifi gösterir SL
+Bir dizinin içeriğini görüntüler. LS
+Bir dosyanın içeriğini görüntüler CAT
+
+4. Welche Aussage, bezogen auf das folgende Wildcard, ist korrekt? [A-Z]\* 
+a) Alle Dateien, beginnend mit einem Großbuchstaben, gefolgt von * #
+b) Alle Dateien die nicht mit einer Ziffer beginnen 
+c) Alle Dateien, beginnend mit einem Großbuchstaben, gefolgt von einem \ 
+d) Alle Dateien ohne Ziffer im Namen 
+e) Alle Dateien, beginnend mit einem Zeichen A, Z oder - 
+
+Aşağıdaki joker karakterle ilgili hangi ifade doğrudur? [A-Z]\* 
+a) Büyük harfle başlayan ve ardından * gelen tüm dosyalar 
+b) Bir sayı ile başlamayan tüm dosyalar 
+c) Büyük harfle başlayan ve ardından \ ile başlayan tüm dosyalar 
+d) Adında numarası olmayan tüm dosyalar 
+e) A, Z veya - karakteriyle başlayan tüm dosyalar
+5. Bewerten Sie diesen Kommentar: Das Konto "root" unterliegt keinen Sicherheitseinschränkungen. 
+Bu yorumu değerlendirin: "root" hesabı herhangi bir güvenlik kısıtlamasına tabi değildir. 
+a) wahr #
+b) falsch 
+ 
+6. Mit welchen der folgenden Tools können Sie Textdateien, ohne verwendung eines interaktiven Editors, nach einer bestimmten Zeichenfolge durchsuchen?
+Wählen Sie zwei Antworten.
+Bitte wählen Sie 2 von 6 Antworten!
+
+Etkileşimli bir düzenleyici kullanmadan belirli bir karakter dizisi için metin dosyalarını aramak için aşağıdaki araçlardan hangisini kullanabilirsiniz?
+
+vi 
+grep #
+sed #
+find 
+ed 
+nano 
+
+7. Mit welchem Kommando sehen Sie, wie viel Speicherplatz an allen gemounteten Partitionen zur Verfügung steht?
+Tüm takılı bölümlerde ne kadar alan olduğunu görmek için hangi komutu kullanıyorsunuz?
+fdisk 
+df –free_space 
+du 
+free 
+df #
+	
+8. Wie kann man die Funktionsweise des folgenden Kommandos beschreiben? 
+foo < bar > foobar 
+a) Das Kommando bar bezieht seine Eingabe vom Kommando foo und schreibt seine Ausgabe in die Datei foobar 
+b) Das Kommando foo bezieht seine Eingabe aus der Datei bar und schreibt seine Ausgabe an das Kommando foobar 
+c) Das Kommando bar schreibt seine Ausgabe in die Dateien foo und foobar 
+d) Das Kommando foo bezieht seine Eingabe aus der Datei bar und schreibt seine Ausgabe in die Datei foobar #
+e) Dies ist kein gültiges Kommando 
+
+Aşağıdaki komutun nasıl çalıştığını nasıl açıklayabilirsiniz? 
+foo < bar > foobar 
+a) bar komutu girdisini foo komutundan alır ve çıktısını foobar dosyasına yazar 
+b) foo komutu girdisini bar dosyasından alır ve çıktısını foobar komutuna yazar 
+c) bar komutu çıktısını foo ve foobar dosyalarına yazar 
+d) foo komutu girdisini bar dosyasından alır ve çıktısını foobar dosyasına yazar 
+e) Bu geçerli bir komut değil
+9. Nach der Eingabe eines neuen Kommandos und drücken der Taste <enter>, wird eine Fehlermeldung ausgegeben, die eine inkorrekte Syntax anzeigt.
+Diese Fehlermeldung ist erzeugt von:
+
+Yeni bir komut girip <enter> tuşuna bastıktan sonra, yanlış sözdizimi belirten bir hata mesajı görüntülenir.
+Bu hata mesajı tarafından oluşturulur:
+
+dem Kommando 
+der Shell #
+dem Betriebssystem 
+dem Kernel 
+
+10. Welcher der folgenden Benutzer-Namen ist ungültig?
+thadden 
+TheresaH 
+T.H. 
+Theresa Hadden #
+
+11. Sie wollen sich den Wert der Variable PS1 anzeigen lassen, wie lautet das Kommando?
+PS1 değişkeninin değerini görüntülemek istiyorsanız, komut nedir?
+echo PS1 
+show PS1 
+ls PS1 
+echo $PS1 #
+
+12. Welches Kommando filtert die Ausgabe der Datei named.conf so, dass nur die Zeilen, die nicht mit einer Raute (#) enden, auf stdout ausgegeben werden?
+grep $# /etc/named.conf 
+grep #$ /etc/named.conf 
+grep -v $# /etc/named.conf 
+grep -v "#$" /etc/named.conf 
+
+Hangi komut, yalnızca karma (#) ile bitmeyen satırların stdout'a yazılması için adlandırılmış.conf dosyasının çıktısını filtreler?
+
+grep $# /etc/named.conf
+grep #$ /etc/named.conf
+grep -v $# /etc/named.conf
+grep -v "#$" /etc/named.conf #
+
+13. Was bewirkt folgende Eingabe? 
+foo && foobar
+Bitte wählen Sie 2 von 4 Antworten!
+foobar muß auf die Ausgabe von foo warten #
+foo und foobar werden gleichzeitig ausgeführt 
+foobar wird nur ausgeführt, wenn die Ausführung von foo nicht erfolgreich war 
+foobar wird nur ausgeführt, wenn die Ausführung von foo erfolgreich war #
+
+Aşağıdaki girdi ne işe yarar?
+foo && foobar
+foobar, foo'nun yazdırılmasını beklemeli
+foo ve foobar aynı anda çalışır
+foobar, yalnızca foo'nun yürütülmesi başarısız olduğunda yürütülür
+foobar, yalnızca foo'nun yürütülmesi başarılı olduğunda yürütülür
+14. Was bewirkt das folgende Kommando?
+export PATH=$PATH:$APPLICATIONS
+erweitert die Pfadvariable um das Applikationsverzeichnis 
+Aktualisierung der Pfadvariablen mit dem Inhalt der Variablen APPLICATIONS #
+eine Änderung der Pfadvariablen auf das Applikationsverzeichnis 
+alle NFS Benutzer können das Applikationsverzeichnis direkt mounten 
+
+Aşağıdaki komut ne işe yarar?
+export PATH=$PATH:$APPLICATIONS
+uygulama dizinini yol değişkenine ekler
+UYGULAMALAR değişkeninin içeriğiyle yol değişkenini güncelleme
+yol değişkenini uygulama dizinine değiştirme
+tüm NFS kullanıcıları uygulama dizinini doğrudan bağlayabilir
+
+15. Welches Kommando entfernt rekursiv alle Unterverzeichnisse in /tmp, unabhängig davon, ob sie existieren oder gerade in Gebrauch sind? 
+Hangi komut, /tmp içindeki tüm alt dizinleri, var olmalarına veya kullanımda olmalarına bakılmaksızın, yinelemeli olarak kaldırır? 
+a) del /tmp/* 
+b) rm -rf /tmp 
+c) rm -Ra /tmp/* 
+d) rm -rf /tmp/* #
+e) delete /tmp/*,* 
+
+16. Mit welchem Befehl wird die zentrale Dateidatenbank für locate neu erstellt?
+Hangi komut, bulmak için merkezi dosya veritabanını yeniden oluşturur?
+updatefiledb 
+updatedb #
+mklocatedb 
+mkindex 
+makedb 
+
+17. Mit welchem Kommando wechseln man am schnellsten in das eigene Homeverzeichnis?
+Kendi ana dizininize geçmek için en hızlı komut hangisidir?
+cd
+
+18. Welches Kommando verschiebt das gesamte Verzeichnis, inclusive Unterverzeichnisse, von /home/foo nach /home/bar
+Hangi komut, alt dizinler dahil tüm dizini /home/foo konumundan /home/bar konumuna taşır
+
+mv /home/foo /home/bar #
+mv -r /home/foo /home/bar 
+move /home/foo /home/bar 
+cp -rm /home/foo /home/bar 
+
+
+
+
+
+
+
+
+
+19. Was bewirkt folgende Eingabe: foo || foobar? 
+Wählen Sie zwei Antworten. 
+
+a) foo und foobar werden gleichzeitig ausgeführt 
+b) foobar muß auf die Ausgabe von foo warten #
+c) foobar wird nur ausgeführt, wenn die Ausführung von foo erfolgreich war 
+d) foobar wird nur ausgeführt, wenn die Ausführung von foo nicht erfolgreich war #
+
+Aşağıdaki girdi ne işe yarar: foo || foobar? 
+a) foo ve foobar aynı anda yürütülür 
+b) foobar, foo'dan çıktıyı beklemelidir 
+c) foobar, yalnızca foo'nun yürütülmesi başarılı olduğunda yürütülür 
+d) foobar yalnızca foo'nun yürütülmesi başarısız olduğunda yürütülür
+
+20. Sie wollen die Ausgabe des Kommandos foo in die Dateien bar1, bar2, bar3 und bar4 schreiben. Welche zwei Kommandos lösen das Problem? 
+
+foo komutunun çıktısını bar1, bar2, bar3 ve bar4 dosyalarına yazmak istiyorsunuz. Hangi iki komut sorunu çözüyor? 
+
+a) foo >> bar {1,2,3,4} 
+b) foo | tee bar1 | tee bar2 | tee bar3 >bar4 #
+c) foo | xargs cp bar1 bar2 bar3 bar4 
+d) foo | tee bar1 bar2 bar3 bar4 #
+
+21. Welche Aussage beschreibt das folgende Kommando?
+kill 9 1234
+
+Das TERM-Signal wird an die Prozesse 9 und 1234 gesendet #
+Der Prozess 1234 empfängt neunmal das TERM-Signal 
+Die Prozesse mit der PID 9 und 1234 sind beendet 
+Das KILL-Signal wird an den Prozess 1234 gesendet 
+Alle Prozesse des Users mit der UID 1234 sind beendet 
+
+Aşağıdaki komutu açıklayan ifade hangisidir?
+kill 9 1234 
+
+TERM sinyali 9 ve 1234 süreçlerine gönderilir
+İşlem 1234, TERM sinyalini dokuz kez alır
+PID 9 ve 1234 ile işlemler sona erdi
+KILL sinyali işleme 1234'e gönderilir
+UID 1234 ile kullanıcının tüm işlemleri sonlandırılır
+
+22. Welche der folgenden Dateien im aktuellen Verzeichnis werden bei der Eingabe von ls ?t.c* angezeigt? Bitte wählen Sie 2 von 5 Antworten!
+ls ?t.c* yazarken geçerli dizinde aşağıdaki dosyalardan hangisi görüntülenir? 
+
+Tt.c #
+Test.c 
+Ttt.cpp 
+Test.cpp 
+Tt.cpp #
+
+23. Sie geben das Kommando
+     cat MyFile | sort > DirList &
+ein und erhalten die Systemmeldung
+     [4] 3499
+Was bedeutet diese Meldung?
+Die Jobnummer ist 4 und die PID von diesem Job ist 3499 
+Die Jobnummer 4 und die PID 3499 vom Kommando sort #
+Die Jobnummer ist 4 und die PID vom Kommando cat ist 3499 
+Die Jobnummer ist 3499 und die PID vom Kommando cat ist 4 
+
+Verdiginiz komuttan [4] 3499 cevabi aldiniz
+Bu mesajın anlamı nedir?
+
+İş numarası 4 ve bu işin PID'si 3499
+Sıralama komutundan 4 numaralı iş ve PID 3499
+İş numarası 4 ve cat komutunun PID'si 3499
+İş numarası 3499 ve cat komutunun PID'si 4
+
+24. Cary hat 5 Dateien, benannt test0, test1, test2, test3, test4. 
+Wie kann Sie diese Dateien löschen? 
+
+Cary'de test0, test1, test2, test3, test4 adında 5 dosya var.
+Bu dosyaları nasıl silebilirsin?
+a) del test? 
+b) rm test? 
+c) del test* 
+d) erase test? 
+e) rm test* #
+
+25. Wie können Sie den Account des Superuser im System identifizieren?
+Durch seine UID, diese ist immer 0 
+Durch das Datum und die Zeit der Erstellung des 1. Accounts 
+Durch seinen Namen root 
+Durch sein Passwort 
+
+Sistemdeki süper kullanıcı hesabını nasıl tanımlayabilirsiniz?
+
+UID'si ile bu her zaman 0'dır.
+1. hesabın oluşturulduğu tarih ve saate göre
+Adına göre kök
+onun şifresiyle
+
+26. Welche Kommandos zeigen LIVE eine Prozessliste an (vergleichbar mit einen Taskmanager innerhalb der Shell)? 
+Wählen Sie zwei Antworten.
+Bitte wählen Sie 2 von 6 Antworten!
+Hangi komutlar bir LIVE işlem listesini görüntüler (kabuk içindeki bir görev yöneticisiyle karşılaştırılabilir)?
+İki cevap seçin.
+proclist 
+htop #
+top #
+renice 
+ps 
+kill 
+
+27. Was bewirkt das folgende Kommando?
+cp $(find . -size -12k) /tmp
+
+Alle Dateien des aktuellen Verzeichnisses, und aller Unterverzeichnisse, die kleiner als 12 KByte sind, werden nach /tmp kopiert #
+Alle Dateien des aktuellen Verzeichnisses, die kleiner als 12 KByte sind, werden nach /tmp kopiert 
+Alle Dateien des aktuellen Verzeichnisses, und aller Unterverzeichnisse, die kleiner als 12 KByte sind, werden nach /tmp kopiert. Die Verzeichnisstruktur wird mitkopiert. 
+Die Datei, deren Namen in der Variable "find . -size -12k" gespeichert ist, wird nach /tmp kopiert 
+
+Aşağıdaki komut ne işe yarar?
+
+cp $(find . -size -12k) /tmp
+
+Geçerli dizindeki tüm dosyalar ve 12 KB'den küçük tüm alt dizinler /tmp dizinine kopyalanır.
+Geçerli dizindeki 12 KB'den küçük tüm dosyalar /tmp dizinine kopyalanır.
+Geçerli dizindeki tüm dosyalar ve 12 KB'den küçük tüm alt dizinler /tmp'ye kopyalanır. Dizin yapısı da kopyalanır.
+Adı "find . -size -12k" değişkeninde saklanan dosya /tmp dizinine kopyalanır.
+
