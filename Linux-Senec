@@ -1,0 +1,127 @@
+LINUX
+
+Öncelikle bilgisayara VirtualBox programini https://www.virtualbox.org/wiki/Downloads sayfasindan, VirtualBox 7.0.8 platform packages kategorisinden, Windows hosts secenegini secerek indiriyoruz.
+
+ 
+
+Ayrica “VirtualBox 7.0.8 Oracle VM VirtualBox Extension Pack” basligi altindaki  “All supported platforms” paketini de indirelim. Bu eklentiyi sanal makineyi daha esnek kullanabilmek icin indiriyoruz. Icinde bazi driverlar da mevcut.
+
+ 
+
+Ubuntu’yu Donanim problemi olarak en problemsizi ve debian tabanli oldugu icin tercih ettik. “ https://ubuntu.com/#download” adresinden masaüstü versiyonunu indirelim.(uzun sürebilir.)
+
+ 
+
+Önce indirdigimiz vm yi kuralim.
+
+Yeni
+
+sanal makinenin ismini gir (Linux Ubuntu)
+
+version olarak Ubuntu 64 bit secelim
+
+ram ini en az 4 GB sec
+
+Hard disk i simdi olustur secili olsun
+
+Olustur
+
+Kayit yeri olarak default kalabilir.
+
+VMDK hard disk dosya tipi olarak secili olsun
+
+File size olarak 10 GB ama dinamik olmali
+
+Olustur dedigimizde vm olustu.
+
+ 
+
+Olusan icon daki kisma tiklayip calistir diyoruz.
+
+ 
+
+Artik isletim sistemimizi kurabiliriz.
+
+Host fiziksel makinamiz gast ise vm oluyor her zaman.
+
+Indirdigimiz ISO dosyasinin yolunu göstermemiz gerkiyor.
+
+Eger hata vermis ise ya yol yanlistir ya iso datei bozuktur.
+
+Kurdugumuz makinenin üzerine tiklayarak ayyarlar secenegini aciyoruz.
+
+Storage kisminda
+
+Eger aktif degil ise sanal makine tamamen kapatilmamistir!
+
+Makineyi tekrar acip sa üsttteki pecerak kapatma x ikonuna basip
+
+Power oft he Machine secenegini secip ok diyelim.
+
+Artik degistirebiliriz.
+
+Seceneklerdeki storage kisminda:
+
+Optical drive denilen kisim aslinda bizim cdroom umumuz.
+
+Yanindaki cd isaretine basarak indirdigimiz ISO Ubuntu dosyamizi secmeliyiz.
+
+ 
+
+Ayarlari kapatip vm yeniden start diyelim
+
+Sistem aciliyor…
+
+ 
+
+Artik kurulum ekranina geldik.
+
+ 
+
+Istersek “try ubuntu” diyerek ubuntuyu kurmadan “live Ubuntu” yapabiliriz.
+
+Bunun dezantaji/avantaji makineyi kapatinca her sey sifirlanir…
+
+ 
+
+“install Ubuntu” yaparak kurmaya baslayalim.
+
+ 
+
+Dil-klavye(Klavye seciminde harfleri deneme satirinda dene ki yanlis secim olmasin.)
+
+Normal kurulum- Ubuntu güncellemesini indir- ücüncü parti yazilimlari da ekle ve kur.
+
+(bu sekilde wifi vs de görülmüs oluyor.)
+
+Diski sil ve ubuntuyu kur.
+
+ 
+
+Eger Somethimg else secenegini secersek;
+
+Karsimniza cikan bilgisayarin fiziksel hard diskleri. /dev/sda , /dev/sdb, /dev /sdc….
+
+Eger tek varsa bölmek lazim… back<<<
+
+ 
+
+Diski sil ve ubuntuyu kur secenegini sectikten sonra kur diyoruz.
+
+Hard diskinize yazilsin mi? devam
+
+Saat dilimi sec- devam
+
+ 
+
+Bilgisayarin adi agda görülür ve host name olarak da gecer,
+
+isim ve kullanici isimlerini de ayni girmemekte fayda var.
+
+Sifre belirle(deneme ise kisa belirlenebilir.
+
+Kurulum basladi – bekle
+
+Islem tamamlandiktan sonra restart
+
+ 
