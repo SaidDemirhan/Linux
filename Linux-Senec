@@ -1,16 +1,13 @@
 LINUX
 
-Öncelikle bilgisayara VirtualBox programini https://www.virtualbox.org/wiki/Downloads sayfasindan, VirtualBox 7.0.8 platform packages kategorisinden, Windows hosts secenegini secerek indiriyoruz.
+Öncelikle bilgisayara VirtualBox programini https://www.virtualbox.org/wiki/Downloads sayfasindan, VirtualBox 7.0.8 platform packages kategorisinden, 
+Windows hosts secenegini secerek indiriyoruz.
 
- 
+Ayrica “VirtualBox 7.0.8 Oracle VM VirtualBox Extension Pack” basligi altindaki  “All supported platforms” paketini de indirelim. 
+Bu eklentiyi sanal makineyi daha esnek kullanabilmek icin indiriyoruz. Icinde bazi driverlar da mevcut.
 
-Ayrica “VirtualBox 7.0.8 Oracle VM VirtualBox Extension Pack” basligi altindaki  “All supported platforms” paketini de indirelim. Bu eklentiyi sanal makineyi daha esnek kullanabilmek icin indiriyoruz. Icinde bazi driverlar da mevcut.
-
- 
-
-Ubuntu’yu Donanim problemi olarak en problemsizi ve debian tabanli oldugu icin tercih ettik. “ https://ubuntu.com/#download” adresinden masaüstü versiyonunu indirelim.(uzun sürebilir.)
-
- 
+Ubuntu’yu Donanim problemi olarak en problemsizi ve debian tabanli oldugu icin tercih ettik. “ https://ubuntu.com/#download” adresinden 
+masaüstü versiyonunu indirelim.(uzun sürebilir.)
 
 Önce indirdigimiz vm yi kuralim.
 
