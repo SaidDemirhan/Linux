@@ -12,26 +12,15 @@ masaüstü versiyonunu indirelim.(uzun sürebilir.)
 Önce indirdigimiz vm yi kuralim.
 
 Yeni
-
 sanal makinenin ismini gir (Linux Ubuntu)
-
 version olarak Ubuntu 64 bit secelim
-
 ram ini en az 4 GB sec
-
 Hard disk i simdi olustur secili olsun
-
 Olustur
-
 Kayit yeri olarak default kalabilir.
-
 VMDK hard disk dosya tipi olarak secili olsun
-
 File size olarak 10 GB ama dinamik olmali
-
 Olustur dedigimizde vm olustu.
-
- 
 
 Olusan icon daki kisma tiklayip calistir diyoruz.
 
