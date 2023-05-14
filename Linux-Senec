@@ -1,7 +1,7 @@
 LINUX
 
 Öncelikle bilgisayara VirtualBox programini https://www.virtualbox.org/wiki/Downloads sayfasindan, VirtualBox 7.0.8 platform packages kategorisinden, 
-Windows hosts secenegini secerek indiriyoruz.
+Windows hosts secenegini secerek indiriyoruz. 
 
 Ayrica “VirtualBox 7.0.8 Oracle VM VirtualBox Extension Pack” basligi altindaki  “All supported platforms” paketini de indirelim. 
 Bu eklentiyi sanal makineyi daha esnek kullanabilmek icin indiriyoruz. Icinde bazi driverlar da mevcut.
