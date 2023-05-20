@@ -7,7 +7,8 @@ Die installierte Version von rm auf dem System ist fehlerhaft.
 rm hat einen Alias auf rm -i #
 Es ist ein inkorrekter Link in Ihrem System vorhanden. 
 
-rm komutu ile her dosya silmeye çalıştığınızda sistem sizden onay ister. Bildiğiniz gibi, bu rm komutuyla olağan davranış değildir. Sorun nedir?
+rm komutu ile her dosya silmeye çalıştığınızda sistem sizden onay ister. Bildiğiniz gibi, 
+bu rm komutuyla olağan davranış değildir. Sorun nedir?
 
 Bu, rm'nin eski sürümlerinde normaldir.
 Sistemde kurulu rm sürümü bozuk.
