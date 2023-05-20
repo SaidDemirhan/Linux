@@ -1,6 +1,7 @@
 15.06.2022 Linux Bausteinprüfung
 
-1. Jedes Mal, wenn Sie versuchen eine Datei mit dem rm-Kommando zu löschen, fordert Sie das System zur Bestätigung auf. Sie wissen, das ist nicht das übliche Verhalten beim rm-Kommando. Was läuft falsch?
+1. Jedes Mal, wenn Sie versuchen eine Datei mit dem rm-Kommando zu löschen, fordert Sie das System zur Bestätigung auf. 
+Sie wissen, das ist nicht das übliche Verhalten beim rm-Kommando. Was läuft falsch?
 Dies ist bei den älteren Versionen von rm normal. 
 Die installierte Version von rm auf dem System ist fehlerhaft. 
 rm hat einen Alias auf rm -i #
