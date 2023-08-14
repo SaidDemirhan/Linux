@@ -1,0 +1,787 @@
+LINUX
+Windows Sub -System WSL2 kurulumu
+Bilgisayarin menu dügmesine saga tikla
+Ausführen
+Cikan pencereye „winver“ yaz ok
+Windows versiyon sürümü cikacaktir.
+Version/Build 21H/22000.657 den büyük olmalidir.
+Ok tusuna basip kapatabiliriz.
+Yeniden menu ye girip terminal saga tiklayarak yönetici olarak aciyoruz.
+wsl --install 
+wsl --list --online
+wsl --install -d Ubuntu
+ubuntu kuruldu.
+Unix name: sdemirhan
+a
+
+artik ubuntumuz hazirdir.
+
+wsl --shutdown 
+wsl --l --v Calisan veya durdurulan  bir versiyonun olup olmadigini ögrenmek icin kullanilir.
+Wsl --list --online   
+wsl --unregister  Ubuntu kaldirmak icin kullanilir.
+
+
+
+Öncelikle bilgisayara VirtualBox programini https://www.virtualbox.org/wiki/Downloads sayfasindan, VirtualBox 7.0.8 platform packages kategorisinden, Windows hosts secenegini secerek indiriyoruz.
+
+Ayrica “VirtualBox 7.0.8 Oracle VM VirtualBox Extension Pack” basligi altindaki  “All supported platforms” paketini de indirelim. Bu eklentiyi sanal makineyi daha esnek kullanabilmek icin indiriyoruz. Icinde bazi driverlar da mevcut.
+
+Ubuntu’yu Donanim problemi olarak en problemsizi ve debian tabanli oldugu icin tercih ettik. “ https://ubuntu.com/#download” adresinden masaüstü versiyonunu indirelim.(uzun sürebilir.)
+
+Önce indirdigimiz vm yi kuralim.
+Yeni
+ sanal makinenin ismini gir (Linux Ubuntu) 
+version olarak Ubuntu 64 bit secelim
+ram ini en az 4 GB sec
+Hard disk i simdi olustur secili olsun
+Olustur
+Kayit yeri olarak default kalabilir.
+VMDK hard disk dosya tipi olarak secili olsun
+File size olarak 10 GB ama dinamik olmali
+Olustur dedigimizde vm olustu.
+
+Olusan icon daki kisma tiklayip calistir diyoruz.
+
+Artik isletim sistemimizi kurabiliriz.
+Host fiziksel makinamiz gast ise vm oluyor her zaman.
+Indirdigimiz ISO dosyasinin yolunu göstermemiz gerkiyor.
+Eger hata vermis ise ya yol yanlistir ya iso datei bozuktur.
+Kurdugumuz makinenin üzerine tiklayarak ayyarlar secenegini aciyoruz.
+Storage kisminda
+Eger aktif degil ise sanal makine tamamen kapatilmamistir!
+Makineyi tekrar acip sa üsttteki pecerak kapatma x ikonuna basip
+Power oft he Machine secenegini secip ok diyelim.
+Artik degistirebiliriz.
+Seceneklerdeki storage kisminda:
+Optical drive denilen kisim aslinda bizim cdroom umumuz.
+Yanindaki cd isaretine basarak indirdigimiz ISO Ubuntu dosyamizi secmeliyiz.
+
+Ayarlari kapatip vm yeniden start diyelim
+Sistem aciliyor…
+
+Artik kurulum ekranina geldik.
+
+Istersek “try ubuntu” diyerek ubuntuyu kurmadan “live Ubuntu” yapabiliriz.
+Bunun dezantaji/avantaji makineyi kapatinca her sey sifirlanir…
+
+“install Ubuntu” yaparak kurmaya baslayalim.
+
+Dil-klavye(Klavye seciminde harfleri deneme satirinda dene ki yanlis secim olmasin.)
+Normal kurulum- Ubuntu güncellemesini indir- ücüncü parti yazilimlari da ekle ve kur.
+(bu sekilde wifi vs de görülmüs oluyor.)
+Diski sil ve ubuntuyu kur.
+
+Eger Somethimg else secenegini secersek;
+Karsimniza cikan bilgisayarin fiziksel hard diskleri. /dev/sda , /dev/sdb, /dev /sdc….
+Eger tek varsa bölmek lazim… back<<<
+
+Diski sil ve ubuntuyu kur secenegini sectikten sonra kur diyoruz.
+Hard diskinize yazilsin mi? devam
+Saat dilimi sec- devam
+
+Bilgisayarin adi agda görülür ve host name olarak da gecer,
+isim ve kullanici isimlerini de ayni girmemekte fayda var.
+Sifre belirle(deneme ise kisa belirlenebilir.
+Kurulum basladi – bekle
+Islem tamamlandiktan sonra restart
+============================================================
+Eger bilgisayarin interneti yoksa update leri yapamayacaktir.
+ Acilirken karsimiza kurulum dosyasini ayarlayin ve enter a basin uyarisi cikiyor
+Öncesinde zaten bizim iso dosyamizi ubuntu ya gösterdigimiz icin buna gerek yok.
+
+Eger ekran cok üzun süre beklerse ekran donmus olabilir
+Cozum: machine-settings-display -video memory arttir.
+Cözum2: eger bilgisayarda baska program veya pencereler aciksa system yeterli ram I vm ye veremeyebilir. Kapatin ve tekar deneyin. 8gb Ram iniz varsa bilgisayarinise 3 gb veilebilir.
+machine-settings-system..
+Eger ubuntu yavas diyorsaniz birz cpu verebilirsiniz. (4 cekirdek olabilir)
+Tam ekran yapmak icin: View-Full-screen Mode-Swich
+Eger tam ekran modundan cikmak istenirse CTRL + F
+
+Daha iyi kullanim saglamak icin bazi paketler yükleyebiliriz.
+
+Extension Pack ile VM ayni sürüm olmakli ki uyumlu olsun!!! (Kilit *Anahtar)
+Calisan vm yi kapat
+Ayarlar- Extension(Uzantilar)- yesil + simgesine gir- Extension Pack I göster ve ac.- install
+
+Eger bu Exsention Pack I yüklemezseniz USB taktiginizda 1.1 mis gibi calisacak ve cok yavas olacak
+Settings-Usb- 2.0 I secelim…
+
+Fiziksel makinamiz ve Ubuntu arasinda kopyalama islemi yapmak icin:
+Ubuntuyu yeniden acalim
+Üstteki menüden-Devices-Insert Guest Additions CD image-Run- sifreyi gir enter- enter-
+Yükleme tamamlandiktan sonra masaüstüne gelen cd yi reject diyerek cikartabilirsiniz.
+Maschine- general- advanced- shared  Clipboard ve  Drag and drop -bidirectional
+Ubuntuyu  yeniden basalt.
+Artik ubuntumuz hazir…
+
+Ekran resmi cekmek icin;
+Ubuntu sol alttaki arama sekmesine screen yazarak aratip programinii buluyoruz. 
+Fotograf makinesi simgesine tiklayip istedigimiz ekran resmini aliyoruz.
+
+Bir sersim dosyasini acmak icin:
+Dosyanin üzerine saga tikalyip image viewer ile acabilirz veya cift tik yeterlidir.
+
+Terminali acmak icin:
+Ubuntu dan menuye girildiginde ister terminal yazariz ister alta inip terminali buluruz.(ucbirim)
+
+Terminalde bir sey yazdirma:
+Echo xxx
+Eger x basina $ isareti konursa cikti vermeyecektir!
+
+Eger echo $SHELL yazdigimizda terminalden shel programini ve bulundugu dizini görüyoruz. (/bin/bash)
+Bunu dosya yöyöneticisiyle görebiliriz.- files-other Location-computer-bin
+
+Versiyonu icin: echo $BASH_VERSION
+Veya $SHELL --version
+
+Masaüzerinde bir text dokumani olusturma: text editor(Gedid)
+Bos dahi olsa kaydetmek gerek. Open kisminin yanindaki kilit isaretine basmak yeterli kayit icin.
+Kaydetme yerini secebiliriz.
+
+Cd (change diroctery): dizini degistirmek icin kullanilir. cd/desktop
+dolar  isaretinin önundeki tilde cizgisi HOME dizinini ifade eder.
+ echo:  terminale yazdirma emridir.
+cat: ciktilarin terminalde yazdirilmasini saglar.
+ls: dizin icindeki dosya ve klosörleri listelemek icin kullanilir.
+ <veya>
+
+echo serhat > dosya1
+dosya 1 belgesi icine serhat yazdi
+eger dosya 1 diye bir metin belgesi yoksa kendisi olusturdu.
+cat dosya1
+dosya1 belgesinin icinde ne varsa terminale yazdirdi.
+echo -n dosya1 > dosya2
+dosya2 olarak dosya1 deki bilgileri numaralandirarak yeni bir dosyaya kaydetti
+cat dosya1 -n > dosya2 
+dosya1’i numaralandirarak dosya2 ye kaydetti
+
+man: komutu ile her türlü detayi ögrenebilirsiniz.
+
+echo ali > dosya1
+echo veli >>dosya 1
+vel iyi dosyanin yeni satirina ekledi
+
+pipe bir cizgidr ve diktir. |
+grep: bir kelimeyi bulur: global regular expretion print: man grep ten bakilabilir.
+cat dosya1 | grep serhat
+serhat kelimesinin yazili oldugu satirlari getirir. Satirlar enter ile belirlenir.
+Case sensetiv oldugu icin büyük kücük harflere dikkat edelim.
+
+Dosya yapisi
+Tüm dosyalar Root dizinine baglidir ve onun altindadir.
+Mount: baglamak demektir ve dosyalari birbirine baglar
+Home: dizininde kullanicilar bulunur
+Etc: dizininde program bilgi dosyalari bulunur.
+Proc: sürec dosyalari var
+Bin(binary): calistirilabilir dosyalar
+Sbin: sistem icindeki programlarin bulundugu yer C/d disk gibi
+Opt: linux disindan kurulan prograam dosyalari
+Media: harddisk flashdisk burada görünür.
+Dev: partition bölümleme dosyalari
+
+Dosya olusturma(belge)
+touch dosya1
+dosya 1 isminde dosya olusturdu
+Eger olusturulan bir dosya görünmüyorsa bulundugu klosorou refresh et, ciksin.
+
+dosya slime
+rm dosya1
+dosya 1 isminde dosyayi sildi
+
+dizin olusturma: (klosör)
+mkdir dizin1
+istenilen bir isimde klosör olusturdu
+
+dizin silme:
+rmdir dizin1
+tab tusuna basilirsa otomatik olarak tamamlar
+
+dizin icerigini görüntüleme
+ls: listeleme komutudur.
+ls -a: tüm dosyalari görüntüler
+nokta ile baslayan dosyalar system dosyalaridir.
+Sadece bu dosyalari görmek istersek cd . yazmamiz yeterli
+ls -t: dosya veya dizinleri zamana göre filtreler
+ls -l: uzun ve ayrintili bir listeleme yapar
+ls -n: sahiplik ve grupluk özelliklerini de listelemeye katar. drwxr…
+Mavi renktekiler dizinleri, beyaz renktekiler dosyalari ifade eder.
+Birden fazla parametre ayni anda kullanilabilir.
+ls -at
+
+Home dizinine geri dönme
+cd 
+yazmamiz yeterlidir.
+
+Dosya tasima
+mv (move)
+-f (force)parametresi, zorlayarak da olsa tasi manasina gelir
+-v (verbose) tasima sirasinda olusan/olusacak olan problemleri ayrintilica göster.
+mv dosya1 dizin1/
+Ayni seviyede olan dosya1 yine ayni seviyedek dizin1 klosörünün icine girmis oldu
+
+Dizin tasima:
+mv dizin1/ desktop/
+Dizin1 klosörü desktop klosörünün icine gitti.
+mv dizin1/ /home/xxx/yyy/ olarak da istedigimiz baska bir dizine tasinabilir.
+
+Dosya ve Dizin ismi degistirme:
+Bu komut aslinda isim degistirme komutu olarak da kullanilabilir.
+mv dosya1 dosya2
+Dosya1 i iceriklerini koruyarak dosya2 ismine getirdi.
+mv dizin1/ dizin2/
+/ isaretini unutma
+Rename dosya2 dosya1
+Olarak da uygulanabilir
+
+Dosya Dizin kopyalama
+cp(copy)
+cp dosya1 dosya2
+eger ayni isimde varsa uyari vereceektir
+-r (recursive) parametresi olmadan baska bir dizin icine kopyalayamiyoruz!
+cp -r dizin1/ /home/xxx/yyy/
+
+terminalde dosya bulma:
+find / -name dosya1
+dosya1 adli klosoru bulmaya calisacaktir.
+Gördügümüz hatalar yetki meselesiyle alakali
+find /home/xxx/xxx/  -name dosya1
+yalnizca belirtilen dizininn altinda arayacaktir.
+find / | grep dosya1
+icinde dosya1 gecen tüm dosya ve dizinleri bulur getirir.
+DB den getirmedigi icin aninda olusturulan ve silinen dosyalari görür
+
+Diger bir alternatif:
+locate dosya1
+eger yeni olusturulan bir dosya ise mutlaka veri tabeninin güncellenmesi gerekir. Yoksa bulamaz.
+sudo updatedb
+DB den getirdigi icin aninda olusturulan ve silinen dosyalari GÖREMEZ!
+
+Bir komutun calismasini durdurmak icin ctrl +c tusuna basilabilir.
+
+Bir dosyayi arsivlemek icin:
+tar -c : arsivlemek icin mutlak -c (create) parametresini kullanmaliyiz.
+tar -v : ayrintili modda arsivle
+tar -f : arsivlenen dosyanin adini gir.
+
+tar -cvf dosya1.tar
+dosya1 doysasini arsivleyip ayrintisini sonraki satirda gösterdi ve ls komutuyla KIRMIZI sekilde arsivli dosya görünüyor.
+
+Bir dosyayi arsivden cikarmak icin:
+tar -x komutunu kullaniyoruz.
+tar -xvf dosya1.tar
+ama bu direct bulundugu klosöre cikartacagi icin tavsiye edilmez, cünkü bircok dosya olabilir.
+tar -xvf dosya1.tar -C /home/xxx/yyy
+eger cikartmak istedigimiz yerde bu isimde bir dosya yoksa ne yazik ki hata verir.
+Cikartacagimiz yere o isimde bir klosör olusturmamiz lazim öncesinde.
+mkdir /home/xxx/yyy/klosorAdi
+ls /home/xxx/yyy/ diyerek listeleyebiliriz.
+
+Ya da hic klosör olusturmakla ugrasamam derseniz:
+tar -xvf dizin1.tar –one-top-level=olusturulacakKlosor
+eger tar klosorununu bulundugu dizine degil de baska bir yere cikarsin istersek;
+tar -xvf dizin1.tar –one-top-level=/home/xxx/yyy/ olusturulacakKlosor
+
+dosya icerigini okuma:
+more dosyaAdi
+tabi dosya klosorunde olmamiz gerek
+head dosyaAdi : bir metnin ilk 8 satiri
+tail dosyaAdi : bir metnin son 8 satiri
+tac dosyaAdi : dosyayi son satirdan baslayarak yazdirir.
+
+head dosyaAdi > yeniDosya
+ilk 8 satirir yeni bir dosyaya kaydetti
+
+Terminalde calisan icerik editörleri:
+nano ve vi
+
+nano ya girmek icin terminale nano yazip enter a basmamiz yeterli
+
+dosyanin icine istedigimizi yazabiliriz.
+
+kisa yollara bakarsak:
+ctrl+O (^O) : Dosyanin icerigini yazdir ve kaydet
+File Name to Write: kismina olusturulacak dosya adi yazilmalidir.
+
+ctrl+X : cikmak icin kullanilir 
+Y N ^C tuslariyla islem onaylanir.
+Ayrica tüm komutlar Get Help sayfasindan bulunabilir. ^G
+^W : where is? Bu kisayol ctrl+f islemini görür.
+^T : to Spell : kacinci satir kacinci süptun a gitmesi gerektigi yazilir.
+^\ : replace : degistirilmek istenileni yanisi ile degistirilmesini saglar.
+
+
+vi
+vi yaz enter a bas
+cikmak icin eger bir seyler yamissan ve modlar arasi degisiklik yapacaksan
+ esc ye bas + :q ya bas
+Eger bir seyler yazilmissa ve buna ragmen cikilacaksa 
+:q!
+
+Vi de yazilan bir metni kaydetmek icin
+Esc + :w Desktop/vimleOynadik +Enter
+
+Yeniden yazi(editor) moduna gecmek icin 
+Esc+i  
+Delete ile slime yapilir.
+
+Vim in  icerisinde Shell komutlari da calistirilabilir
+
+:wq +enter : degisiklikleri kaydederek cikar.
+
+Kullanici islemleri
+users : kullaniciyi gösterir.
+id -u : kullanicinin Id ini gösterir.
+1000 den balar ve devam eder.
+Sistem kullanicilarinin ID leri 1-99 arasindadir.
+0. ID root kullanicisidir.
+
+Tüm kullanicilari listeleme:
+cat /etc/passwd
+root : kullanicisi tüm yetkileri elinde bulundurur ve 0 (sifir) olarak belirtilir.
+proxy
+www-data
+nobody
+mail
+man
+bin 
+sys
+pulse : süreci yöneten bir kullanici
+gnm (Gnome Display Manager) : görsel arayüzün bize sunulmasini saglayan bir kullanici
+
+eger sadece bir bildigimiz kullaniciyi yazdirmak istersek:
+cat /etc/passwd | grep xxx
+
+system kullanicisi ile login kullanicisi arasindaki fark:
+kullanici numarasi :1000 den baslayarak devam eder…
+Ubuntu icin 1000 in öncesi system kullanicilaridir.
+uzantisi: kullaniciAdi: /bin/bash
+bu özellik olmazsa kullanici Shell ekranini kullanamaz.
+Ayrica uzanti olarak sistem kullanicilarinda …/nologin yazar. 
+
+Parola özetlerinin tutuldugu dosya: 
+cat /etc/shadow
+eger yetkili kullanici degilseniz “Permission denied“ hatasi alirsiniz ve okuyamazsiniz.
+
+Gruplar:
+id : yazildiginda tüm kullanicilar ve id leri ve gruplar görülecektir.
+•	Sambashare: linux ile windows arasindaki iletisimi saglayan bir ag sunucusu uygulamasidir.
+Tabi tüm gruplar görülmez, ayrintili grup görmek icin:
+cat /etc/group
+1000 in öncesi system gruplari olarakadlandirilir.
+root
+disk : disk üzerindeki iislemlerin yapilabilmesi icin 
+audio : ses grubu
+sudo
+users
+nogroup
+cdroom
+…..
+Bu gruplarin hangisinin arkasinda kullanici adiniz yazarsa onun yetkisine sahipsiniz demektir.
+
+Sudo yetkisi:
+Yetkimizi asan bir durumu root olmadan arka planda islem yaptirmasidir.
+touch /etc/dosya1
+burada etc dosyasi icinde bir veri olusturmaya calistik ama iznimizin olmadigini gördük..
+sudo touch /etc/dosya1
+sizden sifre isteyecek ve sifreyi girdiginizde olusacaktir.
+ls /etc |grep dosya 
+ile görülebilir
+sudo rm /etc/dosya1
+ile yine silinebilir..(Aman Dikkat!!!)
+
+ sudoers dosyasini görme:
+nano sudo /etc/sudoers
+nano programi ile sudoers dosyasini actik ve hangi grubun hangi  yetkileri oldugunu görmüs olduk.
+
+Root yetkisine erisebilmemiz icin:
+Ubuntu ekraninin sag üst kismindaki kücük ok kismindan kullaniiciyi logout yapmaliyiz,
+Not Listed yazisina tiklayip name olarak “root” yazim onaylayin ve sifrenizi girin.
+Sifre belirlememissek  eger:
+Kendi kullanicimiza girelim
+Eger sifreyi girdigimiz halde acmazsa normal kullanicinin terminalinden root olarak login olabiliriz.
+Burda giremememizin sebebi, giris ekranindan default olarak root giririnin kapali olmasidir.
+
+Root sirresi icin, Terminalde: 
+passwd root
+Izin vermeyecektir, o yüzden sudo kullanalim:
+sudo passwd root
+yeni sifremizi yazmamiz istenecektir. Onay icin ikinci kez istenecektir.ve sifre tamamdir.
+
+Terminalden root yetkisi alabilmemiz icin:
+sudo su
+(su root yazarak da direkt gecis yapilabilir. Eger ubuntu kurulumundaki kullanici degil ise sudo komutu yetkili olmadigi icin calismayacaktir.)
+artik root ile login olduk, kanit olarak
+cat /etc/passwd görülüyor.
+
+Terminalden root kullanicisindan cikmak icin:
+exit
+kendi kullanicimiza geri döndük…
+
+Arayüzden yeni bir kullanici olusturma:
+Ubuntu nun ekraninin Sag üst kismindaki ok tan Account settings secenegine tikla
+Veya aplication penceresinden user yazarak ayarlar penceresine ulasilabilir
+Cikan penceredeki üst kisimdaki “unlock” secenegine basarak yetkimizi yükseltiyoruz.
+Ayni yerde beliren “Add User” secenegiyle yeni kullaniciyi olusturuyoruz.
+Standard kullanici
+Sifrenin belli sartlari var burada artik…
+Artik yeniden baslatarak veya ubutu ust ok tusundan kullanici degistirerek yeni kullaniciya gecilebilir.
+
+Iki kullanici arasinda login olma:
+Terminalde
+su kullaniciAdi
+yazarak gecilebilir.
+
+Kullanici yetkileri:
+ls ile sadece dizin ve dosya isimlerini görüyoruz
+ls -la ile ise yetkileriyle birlikte kullanici adlarini görebiliriz.
+ls -lna ile kullanici id leri ile birlikte yetkileri görülür.
+ls -ln ile de bakilabilir.
+Ilk kisim izinleri gösterir- drwxr-xr-x
+Ikinci kisim dosanin sahibini gösterir
+Ücüncü kisim ise dosyanin grubunu 
+
+Yetkileri degistirme:
+chmod u=rwx,g=rwx,o=rwx dosyaAdi
+hepsini bos biraksak yetkiler sifirlanir  ancak kesinlikle root un yetkilerini sinirlayamayiz.
+
+Sayi ile yetkileri degistirme: 
+Read 4, write:2, execute:1 toplamda 7 oluyor.
+Kullanici,grup,other olarak yaziliyor:761
+chmod dosyaAdi 777
+tüm kullanicilara rwx yetkilerini verdik
+ls -ln ile control edilebilir.
+Diger bir yetki kaldirma kullanimi:
+chmod -004
+yaparak her kullanicidan denilen sayiyi kaldirdik. Burda sadece other dan 4 yani okuma izni kaldirildi
+(rwxrwxrwx seklinde iken  rwxrwx-wx seklinde oldu)
+Tam tersi + ile de yetkiler verilebiliyor!
+
+eger bir dosyayi calistirmak istiyorsak:
+./dosyaadi
+Yazmamiz yeterli, icinde calistirilabilecek bir dosya varsa calisacaktir.
+
+Kullanici olusturma:
+adduser Kullanicinin adi
+Root izni ister
+Sudo adduser Kullanicinin adi
+Root sifresini ve yeni kullanici bilgi ve sifresini girerek olusturuyoruz.
+Control icin: cat /etc/passwd yaz ve gör.
+
+Grup eklemek:
+Sudo groupadd grupAdi
+Cat /etc/group yapilarak görülebilir.
+
+Dosya sahipligini veya kullanici grubunu  degistirme:
+sudo chown IstenilenSahipAdi:KullaniciGrubu DosyaAdi
+istersek asil sahibini istersek grubunu sudo yetkisi kullanarak degistirebiliriz.
+sudo chown sahipAdi:istenilenKullaniciGrubu DosyaAdi
+yetkileri istedigimiz sekilde extra olarak verebiliriz. (chmod 770 dosyaAdi)
+Kullaniciyi bir gruba dahil etme:
+Istenrse birden fazla gruba kullanici dahil edilebilir.
+usermod -a -G grupA kullaniciAdi
+eger normal bir kullanici isek bizden sudo yetkisi isteyecektir. Cünkü root haricindekilerin passwd dosyasini degistirmr hakki yoktur.
+ sudo usermod -a -G grupA kullaniciAdi
+-a --append paremetresi ile ekliyoruz
+-G --groups paametresiyle gruba ekliyoruz. 
+“id“ yazdigimizda ekledigimiz grup görünmüyorsa yeniden baslatmak gerekebilir.
+Eger Ubuntuyu en bastan baslatmak istersek „reboot“ yazarak enter a basabiliriz.
+cat /etc/group yazarak gruba eklendigini görebiliriz.
+
+
+Kullaniciyi gruptan silme:
+deluser kaldirilmakIstenenKullaniciAdi GrupAdi
+sudo yetkisi isteyecektir.
+sudo deluser kaldirilmakIstenenKullaniciAdi GrupAdi
+“id“ yazdigimizda ekledigimiz grup muhtemelen görünecegi icin yeniden baslatmak gerekebilir.
+(kullanici eklerken yasadigimiz gibi)
+cat /etc/group yazarak zaten kaldirildigini da görebiliriz.
+Eger bunu not prograninda görmek isterseniz “sudo gedit /etc/group“ ile görülebilir.
+
+Kullaniciyi tamamen sistemden kaldirma:
+sudo userdel kullaniciAdi
+cat /etc/passwd icinde de olmadigini görürüz.
+
+Eger bir dosyanin sahibi tamamen silinirse root veya yetkilendirilmis bir grup üyesi kullanici o dosyadaki degisiklikleri yapabilir ve yetki verebilir.
+
+Kullanici grubu slime:
+Sudo groupdel grupAdi
+Eger bir dosyanin sahibi ve grubu tamamen silinirse root olarak (sudo ile de yapilabilir)  o dosyadaki degisiklikleri yapabilir ve yetki verebilir.
+ls -la ile yetki ayrintilarina bakilabilir.
+
+
+Sistem icinde calisan prosess (sürec) lerin incelenmesi
+
+Task manager sürec yönetim programi(windows)
+Ubuntuda System Monitor ayni sekildedir.
+Her prosess in bir PID (prosess ID) degeri vardir.
+
+Sürecleri görüntüleme:
+ps 
+enter a basarsak kisitli bilgi görürüz. Ayrintilar man ps de bulunur.
+ps -aux
+-a tüm islemler, u kullanici, x tüm kullanicilari temsil ediyor
+Eger calistirdigimiz belli bi program ariyorsak
+ps -aux | grep gedit
+
+sürec sonlandirma(öldürme):
+man kill den her ayrinti ögrenilebilir.
+Sürec sonlandirilirken sayilar kullaniliyor ve bu sayi listesi kill -l ile görülebilir.
+Donmus haldeki bir ekrani kapatmak icin özellikle xkill komutu kullanilabilir ve sonrasinda donan pencere kapatilabilir. Arayüz olarak söylenebilir.
+ps -auroot
+yalnizca roota ait olan prosessleri gösterir
+ps -auKullaniciAdi 
+yalnizca istenilen kullanicinin süreclerini getirir.
+
+killall gedit
+ne kadar gedit isminde prozess varsa hepsini öldürür, cok tavsiye edilmez.
+kill -9 3926
+eger PID ile birlikte bir kill -9 komutu girersek yalnizca o ID e sahip islem sonlandirilir.
+Eger yetki problem yasaniyorsa root veya sudo yetkisi ile islem sonlandirilabilir.
+kill -15 3992 
+bu -15 de ayni -9 gibi sürec sonlandirici olarak karsimiza cikiyor.
+
+Süreci arka plana atma:
+Örnegin actigimiz bir program bizim terminale girmemizi engelliyor ve kücültmek gerekiyor
+gedit
+örnegin not programini actik ve terminale yazamiyoruz,
+Ctrl + Z (^Z) tusuna basarak arka plana atabiliyoruz
+Ekranda hangi sirada oldugu ve durduruldugu yaziyor ama arka planda calismaya devam ediyor.
+[1]+ Stopped gedit seklinde görünüyor.
+
+Arka plandaki sürecleri görüntüleme:
+jobs -l
+veya 
+bg
+yazarak arka plana ctrl +Z  ile gönderdigimiz programlari görebiliriz.
+
+Süreci yeniden ön plana tasima:
+fg 1
+diyerek ön plana ilk sirada gördügümüz programi tasiyabiliiz.
+
+Linux taki servisler:
+service gdm3 status
+bu kod Ubuntu nun arayüz ekranin(görüntü yöneticsi) aktüel durumunu ifade ediyor.
+Eger programda bir hata varsa o ayrintilari günlük seklinde gösteriyor.
+Loaded lisminda servisin yüklendigi dizindir
+systemclt status gdm3.service 
+komutu da ayni/benzer ekrani acacaktir.
+Bu dizini nano prograninda acabiliriz ve ayrintilarini görebiliriz. 
+(nano lib/system/system/gdm.service)
+ 
+service --status-all
+systemctl list-units --type=service
+yukaridaki bu ki komut da servisleri gösterir ama tavsiye edilen systemctl dir(ayrintilidir).
+
+acpid : bilgisayarin güc dügmesine bastigimizda veya bekleme moduna aldigimizda denetleyici rolundedir.
+alsa-utils : bilgisayarin ses düzenegi olan realtec I control eder.
+bluetooth
+cron : zamanlanmis görevleri calistirmaktan sorumludur.
+gmd3 : Arayüz denetleyicisi display manager
+network-manager : ag yöneticisi
+
+servis sonlandirma:
+service --status-all
+ile servisleri görüyoruz,
+örnegin network-manager servisini durduralim
+service network-manager stop
+bizden sifre isteyerek servisi durdurdu ve ekrandak baglanti simgesi de kayboldu.
+
+Servisi baslatma:
+Service network-manager start
+Bizden sifre isteyerek baslatti.
+
+Servisi yeniden baslatma:
+Service network-manager start
+Yapilabilir.
+systemctl restart gdm3.service
+ile arayüzü yeniden baslatabiliririz ama YAPMAYINIZ cünkü bug var acilmiyor cok yavastir.
+Yeniden acabilmek icin ubuntuyu bastan baslatmak gerekecektir.
+Eger bu servisi root baslatmissa kesinlikle basina sudo yetkisi isteyecektir.
+Bunu görebilmek icin;
+systemclt status gdm3.service 
+kismindan PID kodunu bulup (865)
+ps -aux | grep 865
+olarak kimin bu hizmeti baslattigini görebiliriz.
+
+Kabuk Programlama (Shell(Bach) Scripting):
+https://raw.githubusercontent.com/alexanderepstein/Bash-Snippets/master/weather/weather 
+bu adresteki hava durumunu masaüstünde bir gedit dosyasina kaydedelim.
+Chmod +x havaDurumu 
+Ile calistirma yetkisi verelim
+./havaDurumu
+Enter a basarak calistiralim.
+
+Bir de kendimiz yazalim..
+Her gün gelen loglar var ve bize icindeki belli bir kelimenin gectigi satirlar lazim…
+Öncelikle icinde bir seyler yazili bir metin belgesi olusturalim(gedit).
+Adina da log diyelim ve masaüstüne kaydedelim.
+
+gedit
+yazarak shellscript adindaki belgemizi olusturalim.
+En basina mutlaka 
+#! /bin/bash
+Yazalim, bu sayede bunun bir bash dosyasi oldugunu anlayacak ve ona göre islem yapacaktir.
+Artik Shell script imizi yazmaya baslayabiliriz.
+cat /home/kullanici/desktop/log |grep kelime >> /home/kullanici/desktop/logtoplam
+mkdir /home/kullanici/desktop/Loglar
+tar -cvf /home/kullanici/desktop/logtoplam.tar /home/kullanici/desktop/logtoplam
+echo islem tamam
+dosyayi kaydediyoruz.
+
+Ubuntu desktop ta arama kismina shellscript yazip enter a basiyoruz.
+Shellscript dosyamiz acildi.
+
+Terminalden hemen bir calistirma yetkisi veriyoruz
+Chmod +x shellscript
+Artik dosyamizi calistirabilirz:
+./shellscript
+Dosyamiz hazir.. artik her gün gelen notu sadece üstteki komut ile calistirabiliyoruz.
+
+Arayüzden Program yükleme:
+Ubuntu Software progamini ubuntu ekranindan acalim
+Sectigimiz bir programi yüklerken sudo ile yaptigi icin sifre isteyecektir.
+Sonrasinda kurulmus oluyor
+
+Paketler yani windowstaki .exe dosyalari gibi paketler sistemlere özgüdür.
+Ubuntu paketlerini https://packages.ubuntu.com/ adresinden bulabilirsiniz.
+Ernegin kelime olarak „Leafpad“(gedit gibi text editörü) ara
+Arama sonuclarindaki “bionic” kelimesine tiklayinca paketin icerigi görülüyor.
+Sistemimize uygun olan Amd64 mimarisine uygun dosyayi indirelim.
+Ubuntudaki paketler .deb uzantilidir, cünkü Ubuntu debian ile ayni paket yöneticisini kullanir.
+(mesela Centos un uzantisi .yum olacaktir.)
+Terminalden dpkg (debianPackage) komutuyla debian tabanli paketleri kaldir, kur, sil, kurtar…
+dpkg yerini zamanla apt paket yöneticisine birakti ve daha gelismisi diyebiliriz.
+apt extra olarak cevrim ici bir hizmet de sunmakta.
+man apt komutuyla ayrintilara erisilebilir.
+Install :kurma, remove: kaldirma, purge: arindirma ama ne var ne yok siler. Search: program arama, list: ubuntumuzdaki progamlari listeler. 
+Apt indirmek istedigi dosyalari etc dosyasindaki adreslerde arayip buluyor (cat /etc/apt/sources.list)
+Bu adreslerin güncel olabilmesi icin update edilemesi gerekir ve sudo yetkisi ister.
+apt update
+artik paketi apt ile yükleyebiliriz.
+
+Apt ile program yükleme:
+sudo apt install leafpad
+aktif kullanici root ise sudo istemeyecektir.
+Program bu kadar kolay yükendi
+Tavsiye edilen paketler direkt yazacaktir.
+Apt ile yüklenilen programlar in kisa yollari da menüye eklenmekte.
+hatta iki paketi ayni anda kurabiliriz.
+sudo apt install chromium-browser leafpad
+
+
+Apt ile program silme:
+sudo apt remove leafpad
+y/n sorusu soracaktir emin misiniz diye, y diyoruz ve programimiz kalkti.
+
+Apt ile program arama:
+apt search chromium
+hangisi uygun ise onu kopyalayip  yükleyebiliriz.
+sudo apt install chromium-browser
+
+dpkg ile program yükleme:
+öncelikle yüklenecek paket indirilmelidir.
+Ubuntu paketlerini https://packages.ubuntu.com/ adresinden bulabilirsiniz.
+Terminalde paketin bulundugu konuma gelinmeli(desktop) ve paketin adi kaopyalanmalidir.
+Eger ismi yanlis yazilir ise kesinlikle yükleyemez.
+sudo dpkg -i  leafpad_0.8.18.1-5_amd64.deb
+
+sistemde yüklü olan paketleri dpkg ile görme:
+dpkg -l
+
+dpkg ile program kaldirma:
+listeledigimiz programlar arasinda adinin ne ise tam olarak o adin girilmesi/kopyalanmasi gerekmektedir.
+dpkg -l | grep leafpad 
+komutu ile nasil gectigi kontrol edilebilir.
+sudo dpkg -r leafpad
+
+ Kaynak koddan kurulum yapma:
+Kodun derlenmesi ve sonrasindaki islemler icin bir program kurulmasi gerekmekte
+sudo apt install build-essential
+http://tarot.freeshell.org/leafpad/ adresinden bize lazim olacak örnek olarak kuracagigimiz program dosyasini Download kismindan leafpad in son versiyonunu bir arsiv dosyasi olarak indirelim ve terminalden tar -xvf leafpadDosyaTamAdi diyerek arsivden cikartalim.
+Cd komutuyla cikarttigimiz bu leafpad dosyasina girelim. cd /leafpad
+Bizim icin bu dosyanin icindeki „configure” dosyasi önemli. Bu dosya kendisi calisabilir bir dosya ve eger ./configure komutuyla terminalden calistirildiginda her hangi biir hata mesaji vermiyorsa y diyerek sonuna kadar devam edip yüklememiz gerceklesecektir.
+Eger hata msji aliyorsak bir dependency eksiktir onu bularak önce onu yüklememiz ve sonrasinda kurulumu yeniden yapmamiz gerekecektir.
+Eger hey tamamsa artik configure etmisiz demektir.
+Simdi kuruluma gecelim
+make
+komutunu terminale yazip enter a basalim ki derleme islemi yapilabilsin.
+sudo make install
+diyerek derlenen programi kuruyoruz.
+Yüklendi. Terminale leafpad yazarak programi acabiliriz.
+Bu program dpkg veya apt ile yüklenmedigi icin kayit yeri olarak system dosyalarini opt klosörüne kaydedildi. 
+
+Kaynak koddan kurulumu slime:
+sudo make uninstall
+
+extralar: 
+Ubuntunun arayüzü GNOME3 default olarak geliyor.
+Gnome tweaks program arayüzde oynamalar yapmamizi saglayan bir program
+Display manager : Linux u ilk actigimizda hangi kullaniciyi sececegimizi ve sifremozo soran onay alan ve gerekli kullanici ekranina yönelten bölümdür.
+Window manager : bir programi actigimizda karsimiza gelen pencere diyebiliriz. Openbox olarak archlinux tan indirilerek Desktop environment olmadan da kullanilabilir.
+
+sudo apt openbox
+yüklendikten sonra yeniden baslatmamiz gerek.
+Kullanici secim ekranindaki ayar ikonundan openbox i secmemiz gerek.
+Karsimiza siyah bir ekran cikiyor ve o ekrandan terminale girim kendi istedigimiz gibi masa üstünü dizayn edebiliriz.
+
+
+
+Desktop environment : Gnome gibi cok fazla ek bilesene sahip olan Desktop ta gördügümüz (renk görüntü)  ve actigimiz her olay denilebilir. Archlinux adresinden kendi desktop enviroment imizi kurabiliriz. Mate, Lxde ve  Xfce tavsiye edilir
+sudo apt install mate-desktop-environment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
